@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".Register">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/sustituirporgif" />
+        android:src="@drawable/alterback"
+        android:background="@android:color/background_dark"
+        />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -114,6 +115,7 @@
             android:text="@string/btBack"
             android:textColor="#ffedb2"
             android:textSize="30sp"
+            android:onClick="toLogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.455"
             app:layout_constraintStart_toStartOf="parent"

@@ -17,14 +17,13 @@ class Characters : AppCompatActivity() {
     var beardList = ArrayList<Bitmap>()
 
     var currentBody = 0
-    var curretSuit = 0
+    var currentSuit = 0
     var currentBeard = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_characters)
-
-        // val icon = BitmapFactory.decodeResource(this.getResources(), android.R.drawable.)
 
         //region Skin tones
         bodyList.add(BitmapFactory.decodeResource(this.resources, R.drawable.bodyzero))
@@ -46,15 +45,21 @@ class Characters : AppCompatActivity() {
 
 
         //TODO añadir y cambiar las imageviews
-        var bodyImg = findViewById<ImageView>(R.id.ivTopChar)
-        var suitImg = findViewById<ImageView>(R.id.ivTopChar)
+
         var beardImg = findViewById<ImageView>(R.id.ivTopChar)
+        var bodyImg = findViewById<ImageView>(R.id.ivSkinChar)
+        var suitImg = findViewById<ImageView>(R.id.ivSuitChar)
+
+        beardImg.setImageBitmap(beardList[0])
+        bodyImg.setImageBitmap(bodyList[0])
+        suitImg.setImageBitmap(suitList[0])
 
         updateCharacter()
-
     }
 
 
+
+    //Method to change the next beard in the imageview
     fun nextBeard(v:View){
         var beardImg = findViewById<ImageView>(R.id.ivTopChar)
         if (currentBeard < beardList.size-1){
@@ -68,13 +73,48 @@ class Characters : AppCompatActivity() {
 
     }
 
+    //Method to change the next Skincolor in the imageview
+    fun nextSkin(v:View){
+
+        var bodyImg = findViewById<ImageView>(R.id.ivSkinChar)
+        if (currentBody < bodyList.size-1){
+            currentBody++
+        }else{
+            currentBody = 0
+        }
+        bodyImg.setImageBitmap(bodyList[currentBody])
+        updateCharacter()
+
+    }
+
+    //Method to change the next Suit in the imageview
+    fun nextSuit(v:View){
+
+        var suitImg = findViewById<ImageView>(R.id.ivSuitChar)
+        if (currentSuit < suitList.size-1){
+            currentSuit++
+        }else{
+            currentSuit = 0
+        }
+
+        suitImg.setImageBitmap(suitList[currentSuit])
+        updateCharacter()
+
+    }
+
+
+
+
+
+
+    //Update the imageview with the final custom character
     private fun updateCharacter() {
         finalCharacter = Bitmap.createBitmap(bodyList[0].width, bodyList[0].width, bodyList[0].config)
         var canvas = Canvas(finalCharacter)
         canvas.drawBitmap(bodyList[currentBody], Matrix(), null)
-        canvas.drawBitmap(suitList[curretSuit], 0f, 0f ,null)
+        canvas.drawBitmap(suitList[currentSuit], 0f, 0f ,null)
         canvas.drawBitmap(beardList[currentBeard], 0f, 0f, null)
-        var img = findViewById<ImageView>(R.id.testImg)
+        var img = findViewById<ImageView>(R.id.charFinished)
         img.setImageBitmap(finalCharacter)
     }
 

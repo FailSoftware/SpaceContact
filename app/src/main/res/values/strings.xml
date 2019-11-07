@@ -1,12 +1,14 @@
 <resources>
     <string name="app_name">SpaceContact</string>
     <string name="login">Log In</string>
-    <string name="user">"@Users"</string>
+    <string name="user">"@Username"</string>
     <string name="password">********</string>
-    <string name="email">email</string>
-    <string name="etPassword">password</string>
+    <string name="email">Email</string>
+    <string name="etPassword">Password</string>
     <string name="btLog">Login</string>
     <string name="btReg">Register</string>
     <string name="btConf">Confirm</string>
     <string name="btBack">Back</string>
+    <string name="btStrNext">Next</string>
+    <string name="btConfirm">Confirm</string>
 </resources>

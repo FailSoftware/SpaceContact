@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".Login">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:scaleType="centerCrop"
-        android:layout_width="wrap_content"
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srcCompat="@drawable/sustituirporgif" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/alterback"
+        android:background="@android:color/background_dark"
+        />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,9 +24,9 @@
             android:layout_width="207dp"
             android:layout_height="84dp"
             android:layout_marginTop="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:srcCompat="@drawable/logoletras" />
 
         <ImageView
@@ -32,9 +34,8 @@
             android:layout_width="98dp"
             android:layout_height="96dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivLog1"
             app:srcCompat="@drawable/logoimagen" />
 
@@ -47,25 +48,23 @@
             android:textAlignment="center"
             android:textColor="@color/yellow"
             android:textSize="40sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivLog2" />
 
         <EditText
             android:id="@+id/etUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="10dp"
             android:background="@color/brokengrey"
-            android:ems="10"
+            android:ems="9"
             android:hint="@string/user"
             android:inputType="textPersonName"
             android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.414"
-            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvLog" />
 
         <EditText
@@ -74,27 +73,26 @@
             android:layout_height="wrap_content"
             android:background="@color/brokengrey"
             android:layout_marginTop="20dp"
-            android:ems="10"
+            android:ems="9"
             android:hint="@string/password"
             android:textSize="25sp"
             android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.484"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etUser" />
 
         <Button
             android:id="@+id/btLog"
-            android:layout_width="242dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="204dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/buttonstyle"
+            android:onClick="toCharacter"
             android:shadowColor="#A8A8A8"
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="5"
             android:text="@string/btLog"
-            android:onClick="toCharacter"
             android:textColor="#ffedb2"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -104,14 +102,15 @@
 
         <Button
             android:id="@+id/btReg"
-            android:layout_width="243dp"
-            android:layout_height="51dp"
-            android:layout_marginTop="36dp"
+            android:layout_width="204dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/buttonstyle"
             android:shadowColor="#A8A8A8"
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="5"
+            android:onClick="toRegister"
             android:text="@string/btReg"
             android:textColor="#ffedb2"
             android:textSize="30sp"
@@ -123,8 +122,11 @@
             android:id="@+id/ivLogEm"
             android:layout_width="99dp"
             android:layout_height="94dp"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/logoempresa" />
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
