@@ -94,6 +94,7 @@
             android:shadowDy="0"
             android:shadowRadius="5"
             android:text="@string/btLog"
+            android:onClick="toCharacter"
             android:textColor="#ffedb2"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
