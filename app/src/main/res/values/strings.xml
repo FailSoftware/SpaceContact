@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SpaceContact</string>
+    <string name="login">Log In</string>
+    <string name="user">"@Users"</string>
+    <string name="password">********</string>
+    <string name="btLog">Login</string>
+    <string name="btReg">Register</string>
 </resources>
