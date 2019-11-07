@@ -1,0 +1,123 @@
+package com.example.spacecontact.entity;
+
+import java.util.Random;
+
+public class Worker extends Entity {
+    private Integer totalTurns;
+    private Integer currentTurns;
+    private Integer hungerLevel;
+    private Integer fatigue;
+    private Boolean isWounded;
+    private Boolean isOnFire;
+    private Boolean isOnShock;
+    private Job job;
+    public enum Job
+    {
+        PILOT, MECHANIC, MEDIC, FIREFIGHTER, ASSAULT, RECRUIT
+    }
+
+    // General constructor with all fields
+    public Worker(String name, Integer totalXp, Integer currentXp, Integer level, Integer currentHealth,
+                  Integer totalTurns, Integer hungerLevel, Integer fatigue, Job job)
+    {
+        super(name, totalXp, currentXp, level, 100, currentHealth);
+        this.totalTurns = totalTurns;
+        this.currentTurns = totalTurns;
+        this.hungerLevel = hungerLevel;
+        this.fatigue = fatigue;
+        this.job = job;
+    }
+
+    // Used to add a random worker to the player ship when they win a battle or hire a new worker
+    //TODO change super NAME to a random name from a text file;
+    public Worker(Ship pShip)
+    {
+        super("John doe", 100, 1, 1, 100, 100);
+
+        int pick = new Random().nextInt(Job.values().length);
+
+        hungerLevel = 100;
+        fatigue = 100;
+        isWounded = false;
+        isOnFire = false;
+        isOnShock = false;
+        totalTurns = 1 + (int) ((pShip.getWorld() + 1) / 25);
+        if (totalTurns > 5)
+        {
+            totalTurns = 5;
+        }
+        job = Job.values()[pick];
+        if (job.equals(Job.PILOT))
+        {
+            job = Job.RECRUIT;
+        }
+        currentTurns = totalTurns;
+
+    }
+
+    //region Getters/Setters
+        public Integer getTotalTurns() {
+            return totalTurns;
+        }
+
+        public void setTotalTurns(Integer totalTurns) {
+            this.totalTurns = totalTurns;
+        }
+
+        public Integer getCurrentTurns() {
+            return currentTurns;
+        }
+
+        public void setCurrentTurns(Integer currentTurns) {
+            this.currentTurns = currentTurns;
+        }
+
+        public Integer getHungerLevel() {
+            return hungerLevel;
+        }
+
+        public void setHungerLevel(Integer hungerLevel) {
+            this.hungerLevel = hungerLevel;
+        }
+
+        public Integer getFatigue() {
+            return fatigue;
+        }
+
+        public void setFatigue(Integer fatigue) {
+            this.fatigue = fatigue;
+        }
+
+        public Boolean getWounded() {
+            return isWounded;
+        }
+
+        public void setWounded(Boolean wounded) {
+            isWounded = wounded;
+        }
+
+        public Boolean getOnFire() {
+            return isOnFire;
+        }
+
+        public void setOnFire(Boolean onFire) {
+            isOnFire = onFire;
+        }
+
+        public Boolean getOnShock() {
+            return isOnShock;
+        }
+
+        public void setOnShock(Boolean onShock) {
+            isOnShock = onShock;
+        }
+
+        public Job getJob() {
+            return job;
+        }
+
+        public void setJob(Job job) {
+            this.job = job;
+        }
+    //endregion
+}
