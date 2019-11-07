@@ -22,14 +22,14 @@ public class Ship extends Entity {
     private Float criticalChance;
     private Float failureIgnoreChance;
 
-    private Worker[] crew;
+    private ArrayList<Worker> crew;
     private ArrayList<ShipPart> part;
 
     //General constructor with all fields
     public Ship(Integer world, Integer credit, String name, Integer totalXp, Integer currentXp, Integer level,
                 Integer currentHealth, Integer shield, Integer currentOxygen, Integer currentFuel, Integer currentFood,
                 Integer healthBooster, Integer weaponBooster, Float criticalChance, Float failureIgnoreChance,
-                Worker[] crew, ArrayList<ShipPart> part)
+                ArrayList<Worker> crew, ArrayList<ShipPart> part)
     {
         super(name, totalXp, currentXp, level, 100, currentHealth);
         this.world = world;
@@ -165,11 +165,11 @@ public class Ship extends Entity {
         this.failureIgnoreChance = failureIgnoreChance;
     }
 
-    public Worker[] getCrew() {
+    public ArrayList<Worker> getCrew() {
         return crew;
     }
 
-    public void setCrew(Worker[] crew) {
+    public void setCrew(ArrayList<Worker> crew) {
         this.crew = crew;
     }
 

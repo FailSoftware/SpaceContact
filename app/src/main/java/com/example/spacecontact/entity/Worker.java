@@ -1,8 +1,11 @@
 package com.example.spacecontact.entity;
 
+import android.graphics.Bitmap;
+
 import java.util.Random;
 
 public class Worker extends Entity {
+    private Bitmap picture;
     private Integer totalTurns;
     private Integer currentTurns;
     private Integer hungerLevel;
@@ -60,9 +63,17 @@ public class Worker extends Entity {
             return totalTurns;
         }
 
-        public void setTotalTurns(Integer totalTurns) {
-            this.totalTurns = totalTurns;
+        public Bitmap getPicture() {
+            return picture;
         }
+
+        public void setPicture(Bitmap picture) {
+            this.picture = picture;
+        }
+
+        public void setTotalTurns(Integer totalTurns) {
+                this.totalTurns = totalTurns;
+            }
 
         public Integer getCurrentTurns() {
             return currentTurns;

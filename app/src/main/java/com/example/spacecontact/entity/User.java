@@ -9,16 +9,18 @@ public class User {
     private String username;
     private String description;
     private Date dateofbirth;
+    private Worker pilot;
 
 
     // General constructor with all fields
-    public User(Integer userid, Boolean developer, String fullname, String username, String description, Date dateofbirth) {
+    public User(Integer userid, Boolean developer, String fullname, String username, String description, Date dateofbirth, Worker pilot) {
         this.userid = userid;
         this.developer = developer;
         this.fullname = fullname;
         this.username = username;
         this.description = description;
         this.dateofbirth = dateofbirth;
+        this.pilot = pilot;
     }
 
     //region Getters / Setters
@@ -69,6 +71,14 @@ public class User {
 
     public void setDateofbirth(Date dateofbirth) {
         this.dateofbirth = dateofbirth;
+    }
+
+    public Worker getPilot() {
+        return pilot;
+    }
+
+    public void setPilot(Worker pilot) {
+        this.pilot = pilot;
     }
 
     //endregion
