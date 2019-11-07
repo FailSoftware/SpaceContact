@@ -6,4 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".Characters">
 
+
+    <ImageView
+        android:id="@+id/ivTopChar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginTop="150dp"
+        />
+
+    <Button
+        android:id="@+id/btLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toLeftOf="@id/ivTopChar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="165dp"/>
+
+    <Button
+        android:id="@+id/btRight"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/ivTopChar"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="165dp"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
