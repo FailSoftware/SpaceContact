@@ -3,6 +3,10 @@
     <string name="login">Log In</string>
     <string name="user">"@Users"</string>
     <string name="password">********</string>
+    <string name="email">email</string>
+    <string name="etPassword">password</string>
     <string name="btLog">Login</string>
     <string name="btReg">Register</string>
+    <string name="btConf">Confirm</string>
+    <string name="btBack">Back</string>
 </resources>
