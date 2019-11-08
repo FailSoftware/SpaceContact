@@ -1,5 +1,6 @@
 package com.example.spacecontact
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import com.example.spacecontact.entity.User
 import com.example.spacecontact.entity.Worker
 
 class Characters : AppCompatActivity() {
@@ -19,6 +21,8 @@ class Characters : AppCompatActivity() {
     var currentBody = 0
     var currentSuit = 0
     var currentBeard = 0
+
+    lateinit var usr:User
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +58,13 @@ class Characters : AppCompatActivity() {
         bodyImg.setImageBitmap(bodyList[0])
         suitImg.setImageBitmap(suitList[0])
 
+
         updateCharacter()
+        var intent: Intent = intent
+        usr = intent.getParcelableExtra<User>("usr")
+        usr.pilot = saveCharacter(usr.pilot)
+
+
     }
 
 
@@ -103,10 +113,6 @@ class Characters : AppCompatActivity() {
     }
 
 
-
-
-
-
     //Update the imageview with the final custom character
     private fun updateCharacter() {
         finalCharacter = Bitmap.createBitmap(bodyList[0].width, bodyList[0].width, bodyList[0].config)
@@ -120,7 +126,17 @@ class Characters : AppCompatActivity() {
 
     // Changes the picture of a worker
     fun saveCharacter(w: Worker): Worker {
-       w.picture = finalCharacter
+       w.sprite = finalCharacter
         return w
     }
+
+
+    fun toConfirm(view: View) {
+        saveCharacter(usr.pilot)
+        var intent = Intent(this, MainMenu::class.java)
+        intent.putExtra("usr", usr)
+        startActivity(intent)
+    }
+
+
 }

@@ -100,10 +100,12 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <Button
+            android:id="@+id/btConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="164dp"
             android:text="@string/btConfirm"
+            android:onClick="toConfirm"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toRightOf="@id/charFinished"
             app:layout_constraintRight_toRightOf="parent"

@@ -52,34 +52,42 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivLog2" />
 
-        <EditText
-            android:id="@+id/etUser"
+        <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/brokengrey"
-            android:ems="9"
-            android:hint="@string/user"
-            android:inputType="textPersonName"
-            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/yellow"
+            android:padding="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLog">
 
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLog" />
+            <EditText
+                android:id="@+id/etUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/brokengreyAlpha"
+                android:ems="9"
+                android:hint="@string/user"
+                android:inputType="textPersonName"
+                android:textSize="25sp"
+
+                />
+        </FrameLayout>
 
         <EditText
             android:id="@+id/etPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/brokengrey"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
+            android:background="@color/brokengreyAlpha"
             android:ems="9"
             android:hint="@string/password"
-            android:textSize="25sp"
             android:inputType="textPassword"
+            android:textSize="25sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etUser" />
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
         <Button
             android:id="@+id/btLog"
@@ -125,7 +133,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:srcCompat="@drawable/logoempresa" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

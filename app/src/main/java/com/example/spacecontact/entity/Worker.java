@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import java.util.Random;
 
 public class Worker extends Entity {
-    private Bitmap picture;
+    private Bitmap sprite;
     private Integer totalTurns;
     private Integer currentTurns;
     private Integer hungerLevel;
@@ -20,10 +20,11 @@ public class Worker extends Entity {
     }
 
     // General constructor with all fields
-    public Worker(String name, Integer totalXp, Integer currentXp, Integer level, Integer currentHealth,
+    public Worker(String name, Integer totalXp, Integer currentXp, Integer level, Integer currentHealth, Bitmap sprite,
                   Integer totalTurns, Integer hungerLevel, Integer fatigue, Job job)
     {
         super(name, totalXp, currentXp, level, 100, currentHealth);
+        this.sprite = sprite;
         this.totalTurns = totalTurns;
         this.currentTurns = totalTurns;
         this.hungerLevel = hungerLevel;
@@ -63,12 +64,12 @@ public class Worker extends Entity {
             return totalTurns;
         }
 
-        public Bitmap getPicture() {
-            return picture;
+        public Bitmap getSprite() {
+            return sprite;
         }
 
-        public void setPicture(Bitmap picture) {
-            this.picture = picture;
+        public void setSprite(Bitmap sprite) {
+            this.sprite = sprite;
         }
 
         public void setTotalTurns(Integer totalTurns) {
