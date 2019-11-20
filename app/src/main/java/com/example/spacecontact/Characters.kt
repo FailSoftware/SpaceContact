@@ -60,9 +60,10 @@ class Characters : AppCompatActivity() {
 
 
         updateCharacter()
+        /*
         var intent: Intent = intent
         usr = intent.getParcelableExtra<User>("usr")
-        usr.pilot = saveCharacter(usr.pilot)
+        usr.pilot = saveCharacter(usr.pilot)*/
 
 
     }

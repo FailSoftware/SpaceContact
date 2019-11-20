@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/settings"
+        android:title="loquesea"
+        android:icon="@drawable/ic_settings"
+        app:showAsAction="ifRoom">
+
+        <menu>
+            <item android:id="@+id/settEng"
+                android:title="@string/menuEng"
+                android:icon="@drawable/ic_sett_english"
+                />
+            <item android:id="@+id/settSpa"
+                android:title="@string/menuSpa"
+                android:icon="@drawable/ic_sett_spain"
+               />
+
+            <item android:id="@+id/settMute"
+                android:title="@string/menuMute"
+                android:icon="@drawable/ic_sett_mute"
+                />
+            <item android:id="@+id/settUnmute"
+                android:title="@string/menuUnmute"
+                android:icon="@drawable/ic_sett_unmute"
+                />
+        </menu>
+
+    </item>
+</menu>

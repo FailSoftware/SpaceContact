@@ -25,14 +25,14 @@ class Register : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        bm = BitmapFactory.decodeResource(resources, R.drawable.bodyzero)
+        /*bm = BitmapFactory.decodeResource(resources, R.drawable.bodyzero)
         pilot = Worker("Test", 1, 1, 1, 100, bm, 2, 100, 100, Worker.Job.PILOT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
             usr = User(0, false, "Falso", "Falso", "Un usuario", LocalDate.parse("31-12-2018", formatter), pilot)
         }else{
             Toast.makeText(this,"Your device is not compatible with this version of the program", Toast.LENGTH_SHORT).show()
-        }
+        }*/
     }
 
     fun toCharacters(view: View){

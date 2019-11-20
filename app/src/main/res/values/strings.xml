@@ -11,4 +11,8 @@
     <string name="btBack">Back</string>
     <string name="btStrNext">Next</string>
     <string name="btConfirm">Confirm</string>
+    <string name="menuSpa">Spanish</string>
+    <string name="menuEng">English</string>
+    <string name="menuMute">Mute</string>
+    <string name="menuUnmute">Unmute</string>
 </resources>
