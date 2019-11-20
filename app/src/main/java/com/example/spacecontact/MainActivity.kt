@@ -3,6 +3,8 @@ package com.example.spacecontact
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,5 +29,6 @@ class MainActivity : AppCompatActivity() {
         var intent: Intent = Intent(this, Characters::class.java)
         startActivity(intent)
     }
+
 
 }

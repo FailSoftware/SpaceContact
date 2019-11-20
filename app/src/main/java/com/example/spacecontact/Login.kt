@@ -3,20 +3,22 @@ package com.example.spacecontact
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
-import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Toast
-import com.example.spacecontact.entity.User
-import com.example.spacecontact.entity.Worker
-import java.util.*
+
+
+
+
 
 class Login : AppCompatActivity() {
 
 
     //TODO Si el usuario ya tiene cuenta, hacer que los datos de piloto se carguen directamente desde la base de datos.
     //TODO Si el usuario NO ti ene cuenta, el register deberá llevarle a la pantalla de creacion de personaje y automaticamente aplicar un sprite base, en caso contrario más tarde tendremos problemas de nullexception a la hora de hacer login
-    var pilot: Worker = Worker("Test", 1, 1, 1, 100, null, 2, 100, 100, Worker.Job.PILOT)
+    //var pilot: Worker = Worker("Test", 1, 1, 1, 100, null, 2, 100, 100, Worker.Job.PILOT)
     //var usr: User = User(0, false, "Falso", "Falso", "Un usuario", Date(), pilot)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +26,24 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_settings, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+
+       when(item.itemId){
+            R.id.Eng -> Toast.makeText(this,"English selected", Toast.LENGTH_LONG).show()
+            R.id.Spa -> Toast.makeText(this,"Español seleccionado", Toast.LENGTH_LONG).show()
+            R.id.mute -> Toast.makeText(this,"Audio muted", Toast.LENGTH_LONG).show()
+            R.id.unMute -> Toast.makeText(this,"Audio unmuted", Toast.LENGTH_LONG).show()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     fun toCharacter(view: View) {
 

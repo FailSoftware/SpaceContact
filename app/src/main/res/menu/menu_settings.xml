@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_sett_icon"
+        android:title="Language"
+        app:showAsAction="ifRoom"
+        >
+
+        <menu>
+                <item
+                    android:id="@+id/Spa"
+                    android:icon="@drawable/ic_sett_spain"
+                    android:title="@string/menuEsp"/>
+                <item
+                    android:id="@+id/Eng"
+                    android:icon="@drawable/ic_sett_united_kingdom"
+                    android:title="@string/menuEng" />
+                <item
+                    android:id="@+id/mute"
+                    android:icon="@drawable/ic_sett_mute"
+                    android:title="@string/menuMute" />
+                <item
+                    android:id="@+id/unMute"
+                    android:icon="@drawable/ic_sett_unmute"
+                    android:title="@string/menuUnmute" />
+        </menu>
+
+    </item>
+
+</menu>

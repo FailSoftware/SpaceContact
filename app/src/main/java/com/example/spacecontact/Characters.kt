@@ -60,14 +60,12 @@ class Characters : AppCompatActivity() {
 
 
         updateCharacter()
-        var intent: Intent = intent
+       /*var intent: Intent = intent
         usr = intent.getParcelableExtra<User>("usr")
-        usr.pilot = saveCharacter(usr.pilot)
+        usr.pilot = saveCharacter(usr.pilot)*/
 
 
     }
-
-
 
     //Method to change the next beard in the imageview
     fun nextBeard(v:View){
