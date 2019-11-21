@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SpaceContact</string>
     <string name="login">Log In</string>
-    <string name="user">"@Username"</string>
+    <string name="user">"Username"</string>
     <string name="password">********</string>
     <string name="email">Email</string>
     <string name="etPassword">Password</string>

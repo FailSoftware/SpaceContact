@@ -50,14 +50,24 @@ class Login : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when(item.itemId){
-
-            R.id.settSpa -> setLocale("es")
+            R.id.settSpa -> setLocale("Default value")            //prueba(item)
             R.id.settEng -> setLocale("Default value")
-            R.id.settMute -> Toast.makeText(this,"Sound muted", Toast.LENGTH_SHORT).show()
-            R.id.settUnmute -> Toast.makeText(this,"Sound unmuted", Toast.LENGTH_SHORT).show()
+            R.id.settMute -> Toast.makeText(this,"Sound muted...", Toast.LENGTH_SHORT).show()
+            R.id.settUnmute -> Toast.makeText(this,"Sound unmuted...", Toast.LENGTH_SHORT).show()
         }
+
+
         return super.onOptionsItemSelected(item)
     }
+
+    /*
+    fun prueba (item : MenuItem){
+
+        setLocale("Default value")
+        item.setIcon(R.drawable.ic_sett_mute)
+
+    }*/
+
 
     fun toCharacter(view: View) {
 

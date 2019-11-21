@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/ivLog1"
-            android:layout_width="220dp"
-            android:layout_height="89dp"
+            android:layout_width="270dp"
+            android:layout_height="90dp"
             android:layout_marginTop="24dp"
             android:src="@drawable/logoletras"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,9 +31,10 @@
 
         <ImageView
             android:id="@+id/ivLog2"
-            android:layout_width="111dp"
-            android:layout_height="92dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/logoimagen"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivLog1" />
@@ -48,6 +49,7 @@
             android:hint="@string/user"
             android:inputType="textPersonName"
             android:textSize="25sp"
+            android:fontFamily="@font/geostar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivLog2" />
@@ -61,6 +63,7 @@
             android:ems="10"
             android:hint="@string/email"
             android:padding="5dp"
+            android:fontFamily="@font/geostar"
             android:inputType="textPersonName"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,6 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/geostar"
             android:background="@color/brokengrey"
             android:ems="10"
             android:hint="@string/etPassword"
@@ -86,6 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:fontFamily="@font/geostar"
             android:background="@color/brokengrey"
             android:ems="10"
             android:hint="@string/etPassword"
@@ -105,8 +110,8 @@
 
         <Button
             android:id="@+id/btback"
-            android:layout_width="242dp"
-            android:layout_height="53dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:background="@drawable/buttonstyle"
             android:shadowColor="#A8A8A8"
@@ -114,8 +119,10 @@
             android:shadowDy="0"
             android:shadowRadius="5"
             android:text="@string/btBack"
+            android:textStyle="bold"
+            android:fontFamily="@font/geostar"
             android:textColor="#ffedb2"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:onClick="toLogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.455"
@@ -124,10 +131,12 @@
 
         <Button
             android:id="@+id/btConf"
-            android:layout_width="242dp"
-            android:layout_height="53dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:background="@drawable/buttonstyle"
+            android:textStyle="bold"
+            android:fontFamily="@font/geostar"
             android:onClick="toCharactersNew"
             android:shadowColor="#A8A8A8"
             android:shadowDx="0"
@@ -135,7 +144,7 @@
             android:shadowRadius="5"
             android:text="@string/btConf"
             android:textColor="#ffedb2"
-            android:textSize="30sp"
+            android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.455"
             app:layout_constraintStart_toStartOf="parent"
