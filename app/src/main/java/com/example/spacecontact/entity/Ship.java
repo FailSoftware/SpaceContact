@@ -1,9 +1,12 @@
 package com.example.spacecontact.entity;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Ship extends Entity {
-    private Integer world;      //Number of worlds cleared, used to calculate difficulty
+    private Integer difficulty;      //Number of worlds cleared, used to calculate difficulty
     private Integer credit;
     private Integer shield;
     private Integer currentOxygen;
@@ -22,17 +25,16 @@ public class Ship extends Entity {
     private Float criticalChance;
     private Float failureIgnoreChance;
 
-    private ArrayList<Worker> crew;
+    private Worker[] crew;
     private ArrayList<ShipPart> part;
 
     //General constructor with all fields
     public Ship(Integer world, Integer credit, String name, Integer totalXp, Integer currentXp, Integer level,
                 Integer currentHealth, Integer shield, Integer currentOxygen, Integer currentFuel, Integer currentFood,
                 Integer healthBooster, Integer weaponBooster, Float criticalChance, Float failureIgnoreChance,
-                ArrayList<Worker> crew, ArrayList<ShipPart> part)
-    {
-        super(name, totalXp, currentXp, level, 100, currentHealth);
-        this.world = world;
+                Worker[] crew, ArrayList<ShipPart> part) {
+        super(name, totalXp, currentXp, level, 100 * healthBooster, currentHealth);
+        this.difficulty = world;
         this.credit = credit;
         this.shield = shield;
         this.totalOxygen = 100;
@@ -51,14 +53,135 @@ public class Ship extends Entity {
     }
 
 
-    //region Getters/Setters\
+    //region Enemy AI
 
-    public Integer getWorld() {
-        return world;
+    // Enemy AI core, call this to make the enemy act
+    public void EnemyAction(Ship playerShip) {
+        int totalTurns = this.TurnsLeft();
+        int randomTurn = 0;
+        int attackChance = 500, repairChance = 700, shieldChance = 900, confusedChance = 1000;
+
+        Log.d("Enemy", "Enemy is now starting it's turn, and has a total of [" + totalTurns + "] actions");
+
+
+        for (int i = 0; i < totalTurns; i++) {
+            randomTurn = ThreadLocalRandom.current().nextInt(0, 1000 + 1);
+            Log.d("Enemy", "Current random turn is [" + randomTurn + "]");
+
+            //Attack
+            if (randomTurn < attackChance) {
+                Log.d("Enemy", "    >Enemy is now attacking");
+                this.EnemyAttack(playerShip);
+            }
+
+            //Repair
+            if (randomTurn > attackChance && randomTurn < repairChance) {
+                Log.d("Enemy", "    >Enemy is now repairing");
+                EnemyRepair();
+            }
+
+            //Shield
+            if (randomTurn > repairChance && randomTurn < confusedChance) {
+                Log.d("Enemy", "    >Enemy is now shielding");
+                EnemyShield();
+            }
+        }
     }
 
-    public void setWorld(Integer world) {
-        this.world = world;
+    // Calculates total of turns left for a ship
+    private int TurnsLeft() {
+        int turnsLeft = 0;
+        Worker[] enemyCrew = this.crew;
+
+        for (Worker worker : enemyCrew) {
+            if (worker.getCurrentTurns() != null && worker.getCurrentTurns() > 0) {
+                turnsLeft += worker.getCurrentTurns();
+            }
+        }
+        return turnsLeft;
+    }
+
+    // Calculates attack dealt by EnemyShip to PlayerShip
+    private void EnemyAttack(Ship playerShip) {
+        int failChance = 3, damageDealt = 0;
+        float criticalMultiplier = 1.5f;
+        int rndAttackStat = ThreadLocalRandom.current().nextInt(0, 20 + 1);
+        String descriptor = ""; //Used only in logger
+
+        if (rndAttackStat <= failChance) {
+            descriptor = "failed";
+            damageDealt = 1;
+        } else if (rndAttackStat >= criticalChance) {
+            descriptor = "hit critically";
+            damageDealt = Math.round((this.getWeaponPower() * this.getWeaponBooster()) * criticalMultiplier);
+        } else {
+            descriptor = "hit";
+            damageDealt = this.getWeaponPower() * this.getWeaponBooster();
+        }
+
+
+        //Checks if player is shielded
+        if (playerShip.getShield() == 0) { //Player has no shield and gets damaged
+            Log.d("Enemy", "Current random AttackStat is [" + rndAttackStat + "], enemy " + descriptor + " and dealt [" + damageDealt + "]");
+            playerShip.setCurrentHealth(playerShip.getCurrentHealth() - damageDealt);
+        } else {
+            if (!descriptor.equals("failed")) { //Player has shield and gets removed
+                Log.d("Enemy", "Enemy attack was succesful, but player had shield");
+                playerShip.setShield(playerShip.getShield() - 1);
+            } else { //Player has shield and does not get removed
+                Log.d("Enemy", "Enemy failed and the player was shielded, nothing happened");
+            }
+        }
+    }
+
+    // Calculates ammount of health EnemyShip recovers
+    private void EnemyRepair() {
+        int healthRecovered = 0, repairPercentage = 5;
+
+        //If health is at max
+        if (this.getCurrentHealth() >= this.getTotalHealth()) {
+            Log.d("Enemy", "Enemy tried to recover health, but already had max health. Calling EnemyConfused()");
+            EnemyConfused();
+
+        } else { //Calculates health
+            int rep = (repairPercentage / 100) * getTotalHealth();
+
+            //Caps health at max
+            if (this.getCurrentHealth() + rep > this.getTotalHealth()) {
+                Log.d("Enemy", "Enemy recovere all of it's health");
+                this.setCurrentHealth(this.getTotalHealth());
+            } else { //Recovers health
+                Log.d("Enemy", "Enemy recovers [" + rep + "HP (" + repairPercentage + "%)]");
+                this.setCurrentHealth(getCurrentHealth() + rep);
+            }
+        }
+    }
+
+    // Makes enemy have 1 shield max
+    private void EnemyShield() {
+        // Todo Add a max shield variable (?
+
+        if (this.getShield() < 1) {
+            Log.d("Enemy", "Enemy shield set to 1");
+            this.setShield(1);
+        }
+    }
+
+    //TODO make enemy stupid and confused
+    private void EnemyConfused() {
+        Log.d("Enemy", "Enemy is confused");
+    }
+
+    //endregion
+
+    //region Getters/Setters\
+
+    public Integer getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Integer difficulty) {
+        this.difficulty = difficulty;
     }
 
     public Integer getCredit() {
@@ -165,11 +288,11 @@ public class Ship extends Entity {
         this.failureIgnoreChance = failureIgnoreChance;
     }
 
-    public ArrayList<Worker> getCrew() {
+    public Worker[] getCrew() {
         return crew;
     }
 
-    public void setCrew(ArrayList<Worker> crew) {
+    public void setCrew(Worker[] crew) {
         this.crew = crew;
     }
 

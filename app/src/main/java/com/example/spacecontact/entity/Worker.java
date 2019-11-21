@@ -45,7 +45,7 @@ public class Worker extends Entity {
         isWounded = false;
         isOnFire = false;
         isOnShock = false;
-        totalTurns = 1 + (int) ((pShip.getWorld() + 1) / 25);
+        totalTurns = 1 + (int) ((pShip.getDifficulty() + 1) / 25);
         if (totalTurns > 5)
         {
             totalTurns = 5;

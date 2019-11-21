@@ -5,16 +5,25 @@ public class ShipPart {
     private Integer currentHealth;
     private Boolean isOnFire;
     private Boolean isOnShock;
+    private Boolean isPierced;
 
     // General constructor with all fields
-    public ShipPart(Integer totalHealth, Integer currentHealth, Boolean isOnFire, Boolean isOnShock) {
+    public ShipPart(Integer totalHealth, Integer currentHealth, Boolean isOnFire, Boolean isOnShock, Boolean isPierced) {
         this.totalHealth = totalHealth;
         this.currentHealth = currentHealth;
         this.isOnFire = isOnFire;
         this.isOnShock = isOnShock;
+        this.isPierced = isPierced;
     }
 
     //region Getters/Setters
+    public Boolean getPierced() {
+        return isPierced;
+    }
+
+    public void setPierced(Boolean pierced) {
+        isPierced = pierced;
+    }
 
     public Integer getTotalHealth() {
         return totalHealth;
