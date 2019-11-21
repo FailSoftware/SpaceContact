@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ContactoEspacial</string>
+    <string name="login">Registarse</string>
+    <string name="user">"@Usuario"</string>
+    <string name="password">********</string>
+    <string name="email">Email</string>
+    <string name="etPassword">Password</string>
+    <string name="btLog">Conectar</string>
+    <string name="btReg">Registrarse</string>
+    <string name="btConf">Confirmar</string>
+    <string name="btBack">Atras</string>
+    <string name="btStrNext">Siguente</string>
+    <string name="btConfirm">Conectar</string>
+    <string name="menuSpa">Spanish</string>
+    <string name="menuEng">English</string>
+    <string name="menuMute">Mute</string>
+    <string name="menuUnmute">Unmute</string>
+</resources>
