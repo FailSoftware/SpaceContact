@@ -42,7 +42,6 @@ class Login : AppCompatActivity() {
             R.id.settMute -> Toast.makeText(this,"Sound muted", Toast.LENGTH_SHORT).show()
             R.id.settUnmute -> Toast.makeText(this,"Sound unmuted", Toast.LENGTH_SHORT).show()
         }
-
         return super.onOptionsItemSelected(item)
     }
 
