@@ -64,10 +64,10 @@ public class Adapter extends BaseAdapter {
 
 
         nAdapt.setText(contextWorkers.getName());
-        fAdapt.setText(contextWorkers.getFatigue());
-        hAdapt.setText(contextWorkers.getHungerLevel());
-        tAdapt.setText(contextWorkers.getCurrentTurns());
-        //iAdapt.setImageResource(contextWorkers.getSprite());
+        fAdapt.setText(contextWorkers.getFatigue() + "");
+        hAdapt.setText(contextWorkers.getHungerLevel() + "");
+        tAdapt.setText(contextWorkers.getCurrentTurns() + "");
+        iAdapt.setImageBitmap(contextWorkers.getSprite());
 
 
         return convertView;

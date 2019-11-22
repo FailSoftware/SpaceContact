@@ -1,5 +1,6 @@
 package com.example.spacecontact.entity;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -48,6 +49,61 @@ public class Ship extends Entity {
         this.weaponBooster = weaponBooster;
         this.criticalChance = criticalChance;
         this.failureIgnoreChance = failureIgnoreChance;
+        this.crew = crew;
+        this.part = part;
+    }
+
+    //Test ship
+    public Ship(Context con) {
+        super("TestShip", 100, 1, 1, 100 * 0, 100);
+        this.difficulty = 1;
+        this.credit = 1;
+        this.shield = 1;
+        this.totalOxygen = 100;
+        this.currentOxygen = 1;
+        this.totalFuel = 1000;
+        this.currentFuel = 100;
+        this.totalFood = 100;
+        this.currentFood = 100;
+        this.weaponPower = 20;
+        this.healthBooster = 0;
+        this.weaponBooster = 0;
+        this.criticalChance = 10f;
+        this.failureIgnoreChance = 10f;
+
+        Worker[] crew = new Worker[9];
+        crew = new Worker[6];
+        crew[0] = new Worker(con);
+        crew[1] = new Worker(con);
+        crew[2] = new Worker(con);
+        crew[3] = new Worker(con);
+        crew[4] = new Worker(con);
+        crew[5] = new Worker(con);
+
+        part = new ArrayList<>();
+        ShipPart body = new ShipPart(100, 100, false, false, false);
+        ShipPart wing = new ShipPart(100, 100, false, false, false);
+        ShipPart cockpit = new ShipPart(100, 100, false, false, false);
+        ShipPart kitchen = new ShipPart(100, 100, false, false, false);
+        ShipPart dorm = new ShipPart(100, 100, false, false, false);
+        ShipPart engine = new ShipPart(100, 100, false, false, false);
+        ShipPart forcefield = new ShipPart(100, 100, false, false, false);
+        ShipPart storage = new ShipPart(100, 100, false, false, false);
+        ShipPart infirmary = new ShipPart(100, 100, false, false, false);
+        ShipPart armory = new ShipPart(100, 100, false, false, false);
+        ShipPart bathroom = new ShipPart(100, 100, false, false, false);
+        part.add(body);
+        part.add(wing);
+        part.add(cockpit);
+        part.add(kitchen);
+        part.add(dorm);
+        part.add(engine);
+        part.add(forcefield);
+        part.add(storage);
+        part.add(infirmary);
+        part.add(armory);
+        part.add(bathroom);
+
         this.crew = crew;
         this.part = part;
     }
