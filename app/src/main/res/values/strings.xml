@@ -15,4 +15,7 @@
     <string name="menuEng">English</string>
     <string name="menuMute">Mute</string>
     <string name="menuUnmute">Unmute</string>
+    <string name="fatigeChar">Fatige</string>
+    <string name="hungerChar">Hunger</string>
+    <string name="turnsChar">Turns</string>
 </resources>

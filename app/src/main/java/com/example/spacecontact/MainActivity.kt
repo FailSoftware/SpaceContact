@@ -12,11 +12,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //TODO que alguien ponga que salga el logo de la empresa aqui 3 segundos, porfaplz :3
-        loadLogin()
+        //loadLogin()
 
         //TODO Este apartado solo está por motivos de prueba, borrar al tener el menu principal acabado
         //loadCharacter()
-        //loadNewGame()
+        loadNewGame()
 
     }
 

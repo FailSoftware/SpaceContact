@@ -19,6 +19,9 @@ public class Adapter extends BaseAdapter {
     private Context context;
     private ArrayList<Worker> workers;
 
+    private String hunger;
+    private String fatige;
+    private String turns;
     public Adapter(Context context, ArrayList<Worker> workers){
         this.context = context;
         this.workers = workers;
@@ -62,11 +65,16 @@ public class Adapter extends BaseAdapter {
         }while(iter.hasNext() && contador <= position);
         contextWorkers = auxWorker;
 
+        //TODO CAMBIAR LOS STRINGS POR STRINGS INTERNOS
+
+        hunger = context.getString(R.string.hungerChar);
+        fatige = context.getString(R.string.fatigeChar);
+        turns = context.getString(R.string.turnsChar);
 
         nAdapt.setText(contextWorkers.getName());
-        fAdapt.setText(contextWorkers.getFatigue() + "");
-        hAdapt.setText(contextWorkers.getHungerLevel() + "");
-        tAdapt.setText(contextWorkers.getCurrentTurns() + "");
+        fAdapt.setText(fatige+": " +contextWorkers.getFatigue() + "/100");
+        hAdapt.setText(hunger+": "+contextWorkers.getHungerLevel() + "/100");
+        tAdapt.setText(turns+": "+contextWorkers.getCurrentTurns() + "/" + contextWorkers.getTotalTurns());
         iAdapt.setImageBitmap(contextWorkers.getSprite());
 
 

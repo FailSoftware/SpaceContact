@@ -12,19 +12,27 @@
         android:id="@+id/gameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.7"
+        app:layout_constraintHeight_percent="0.77"
         app:layout_constraintTop_toTopOf="parent">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <GridView
-        android:id="@+id/gridLay"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gameLayout"
-        android:numColumns="3"/>
+        android:padding="4dp"
+        android:background="@color/violetMain">
 
+        <GridView
+            android:id="@+id/gridLay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="2"
+            android:background="@color/violetMain"
+            android:horizontalSpacing="5dp"
+            android:verticalSpacing="5dp"/>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
