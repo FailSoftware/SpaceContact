@@ -14,7 +14,7 @@ import com.example.spacecontact.entity.Worker;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Adapter extends BaseAdapter {
+public class AdapterWorkers extends BaseAdapter {
 
     private Context context;
     private ArrayList<Worker> workers;
@@ -22,7 +22,7 @@ public class Adapter extends BaseAdapter {
     private String hunger;
     private String fatige;
     private String turns;
-    public Adapter(Context context, ArrayList<Worker> workers){
+    public AdapterWorkers(Context context, ArrayList<Worker> workers){
         this.context = context;
         this.workers = workers;
     }
@@ -46,7 +46,7 @@ public class Adapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater lInflater = ((Activity)context).getLayoutInflater();
-        convertView  = lInflater.inflate(R.layout.adapter, null);
+        convertView  = lInflater.inflate(R.layout.adapter_workers, null);
 
         TextView nAdapt = convertView.findViewById(R.id.tvName);
         TextView fAdapt = convertView.findViewById(R.id.tvFat);

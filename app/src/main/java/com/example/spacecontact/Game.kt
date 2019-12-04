@@ -22,8 +22,9 @@ class Game : AppCompatActivity() {
         var gridLay : GridView = findViewById(R.id.gridLay)
         val ship : Ship = Ship(this)
 
-        var adapter: Adapter = Adapter(this, (ship.crew).toCollection(ArrayList()))
-        gridLay.adapter = adapter;
+        var adapterWorkers: AdapterWorkers =
+            AdapterWorkers(this, (ship.crew).toCollection(ArrayList()))
+        gridLay.adapter = adapterWorkers;
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

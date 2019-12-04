@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1028422819715",
+    "firebase_url": "https://spacecontact-58621.firebaseio.com",
+    "project_id": "spacecontact-58621",
+    "storage_bucket": "spacecontact-58621.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1028422819715:android:4ce58a849d42fc5dff60b6",
+        "android_client_info": {
+          "package_name": "com.example.spacecontact"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1028422819715-kjubk8rpc319f2vum2qhb017jdk43tmu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.spacecontact",
+            "certificate_hash": "84200c291452e8e9e8da8153f512612db3bf84e8"
+          }
+        },
+        {
+          "client_id": "1028422819715-cfe4lrbmvusjorsc3i20p81d5d4igcls.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBn4I9hJBA6qskGQ2erTbnWypYY9cixm_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1028422819715-cfe4lrbmvusjorsc3i20p81d5d4igcls.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
