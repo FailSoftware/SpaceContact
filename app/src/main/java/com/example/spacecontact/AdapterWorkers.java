@@ -65,7 +65,6 @@ public class AdapterWorkers extends BaseAdapter {
         }while(iter.hasNext() && contador <= position);
         contextWorkers = auxWorker;
 
-        //TODO CAMBIAR LOS STRINGS POR STRINGS INTERNOS
 
         hunger = context.getString(R.string.hungerChar);
         fatige = context.getString(R.string.fatigeChar);

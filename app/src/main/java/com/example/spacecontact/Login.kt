@@ -68,7 +68,7 @@ class Login : AppCompatActivity() {
     }*/
 
 
-    fun toCharacter(view: View) {
+    fun toMenu(view: View) {
 
         var name = findViewById<EditText>(R.id.etUser)
         var sName = name.text.toString()
@@ -77,7 +77,7 @@ class Login : AppCompatActivity() {
         var sPass = pass.text.toString()
 
         if (sName.equals("user") && sPass.equals("user")) {
-            val i = Intent(this, Characters::class.java)
+            val i = Intent(this, MainMenu::class.java)
             startActivity(i)
 
         } else {

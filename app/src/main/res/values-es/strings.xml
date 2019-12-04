@@ -19,4 +19,7 @@
     <string name="fatigeChar">Fatiga</string>
     <string name="hungerChar">Hambre</string>
     <string name="turnsChar">Turnos</string>
+    <string name="newGamer">Partida Nueva</string>
+    <string name="contGame">Continuar</string>
+    <string name="editChar">Editar Piloto</string>
 </resources>
