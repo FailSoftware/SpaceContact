@@ -25,6 +25,10 @@
                 android:title="@string/menuUnmute"
                 android:icon="@drawable/ic_sett_unmute"
                 />
+            <item android:id="@+id/settContact"
+                android:title="@string/menuContact"
+                android:icon="@drawable/ic_contact"
+                />
         </menu>
 
     </item>

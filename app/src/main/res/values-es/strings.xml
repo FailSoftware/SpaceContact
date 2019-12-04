@@ -22,4 +22,5 @@
     <string name="newGamer">Partida Nueva</string>
     <string name="contGame">Continuar</string>
     <string name="editChar">Editar Piloto</string>
+    <string name="menuContact">Contactar</string>
 </resources>
