@@ -27,38 +27,4 @@ class Game : AppCompatActivity() {
         gridLay.adapter = adapterWorkers;
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
-        var inflate : MenuInflater = menuInflater
-        inflate.inflate(R.menu.menu_settings, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when(item.itemId){
-            R.id.settSpa -> setLocale("es")            //prueba(item)
-            R.id.settEng -> setLocale("Default value")
-            R.id.settMute -> Toast.makeText(this,"Sound muted...", Toast.LENGTH_SHORT).show()
-            R.id.settUnmute -> Toast.makeText(this,"Sound unmuted...", Toast.LENGTH_SHORT).show()
-        }
-
-
-        return super.onOptionsItemSelected(item)
-    }
-
-
-    fun setLocale(lang: String) {
-        val myLocale = Locale(lang)
-        val res = resources
-        val dm = res.displayMetrics
-        val conf = res.configuration
-        conf.locale = myLocale
-        res.updateConfiguration(conf, dm)
-        val refresh = Intent(this, Game::class.java)
-        finish()
-        startActivity(refresh)
-    }
-
-
 }
