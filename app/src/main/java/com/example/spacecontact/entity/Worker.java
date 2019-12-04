@@ -1,6 +1,11 @@
 package com.example.spacecontact.entity;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import com.example.spacecontact.Game;
+import com.example.spacecontact.R;
 
 import java.util.Random;
 
@@ -34,18 +39,20 @@ public class Worker extends Entity {
 
     // Used to add a random worker to the player ship when they win a battle or hire a new worker
     //TODO change super NAME to a random name from a text file;
-    public Worker(Ship pShip)
+    //TODO Change difficulty multiplier (turns)
+    public Worker(Context con)
     {
         super("John doe", 100, 1, 1, 100, 100);
 
         int pick = new Random().nextInt(Job.values().length);
 
+        sprite = BitmapFactory.decodeResource(con.getResources(),R.drawable.bodyzero);
         hungerLevel = 100;
         fatigue = 100;
         isWounded = false;
         isOnFire = false;
         isOnShock = false;
-        totalTurns = 1 + (int) ((pShip.getWorld() + 1) / 25);
+        totalTurns = 1;
         if (totalTurns > 5)
         {
             totalTurns = 5;

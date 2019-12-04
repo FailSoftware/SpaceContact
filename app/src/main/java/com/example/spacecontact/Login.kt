@@ -39,7 +39,6 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         var inflate : MenuInflater = menuInflater

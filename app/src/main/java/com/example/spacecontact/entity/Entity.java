@@ -67,5 +67,7 @@ public abstract class Entity {
         public void setCurrentHealth(Integer currentHealth) {
             this.currentHealth = currentHealth;
         }
+
+
     //endregion
 }
