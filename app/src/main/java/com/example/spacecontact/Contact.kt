@@ -29,7 +29,7 @@ class Contact : Login() {
     }
 
     fun toSocial(view: View) {
-        val uri = Uri.parse("https://twitter.com/home") // missing 'http://' will cause crashed
+        val uri = Uri.parse("https://twitter.com/fail_software") // missing 'http://' will cause crashed
         val intent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(intent)
     }
