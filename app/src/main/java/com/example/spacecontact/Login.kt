@@ -3,6 +3,7 @@ package com.example.spacecontact
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -25,10 +26,24 @@ open class Login : AppCompatActivity() {
     //var usr: User = User(0, false, "Falso", "Falso", "Un usuario", Date(), pilot)
 
     var c : Context = this
+    val preferencesfieldName  = "Preferences"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         getSupportActionBar()?.setDisplayShowTitleEnabled(false)
+        val settingsfile = getSharedPreferences(preferencesfieldName, Context.MODE_PRIVATE)
+        if( settingsfile.getBoolean("language",true)&& (!settingsfile.contains("iniciado")||settingsfile.getBoolean("iniciado",true))){
+            var myeditor: SharedPreferences.Editor  = settingsfile.edit();
+            myeditor.putBoolean("iniciado",false);
+            myeditor.commit()
+            setLocale("es")
+        }
+        if( settingsfile.getBoolean("language",false)&& (!settingsfile.contains("iniciado")||settingsfile.getBoolean("iniciado",true))){
+            var myeditor: SharedPreferences.Editor  = settingsfile.edit();
+            myeditor.putBoolean("iniciado",false);
+            myeditor.commit()
+            setLocale("in")
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -108,6 +123,14 @@ open class Login : AppCompatActivity() {
     }
 
     fun setLocale(lang: String) {
+        val settingsfile = getSharedPreferences(preferencesfieldName, Context.MODE_PRIVATE)
+        var myeditor: SharedPreferences.Editor  = settingsfile.edit();
+        if(lang.equals("es")){
+            myeditor.putBoolean("language", true);
+        }else{
+            myeditor.putBoolean("language", false);
+        }
+        myeditor.apply();
         val myLocale = Locale(lang)
         val res = resources
         val dm = res.displayMetrics
@@ -128,6 +151,10 @@ open class Login : AppCompatActivity() {
         bdr.setMessage(msg)
         bdr.setPositiveButton(R.string.alertYes, DialogInterface.OnClickListener { dialog, id ->
             moveTaskToBack(true)
+            val settingsfile = getSharedPreferences(preferencesfieldName, Context.MODE_PRIVATE)
+            var myeditor: SharedPreferences.Editor  = settingsfile.edit();
+            myeditor.putBoolean("iniciado",true);
+            myeditor.commit()
             android.os.Process.killProcess(android.os.Process.myPid())
             System.exit(1)
         })
@@ -143,4 +170,5 @@ open class Login : AppCompatActivity() {
         alertExit()
         // Do Here what ever you want do on back press;
     }
+
 }
