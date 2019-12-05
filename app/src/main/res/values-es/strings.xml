@@ -30,4 +30,5 @@
     <string name="alertNo">No</string>
     <string name="alertTitle">Saliendo del juego</string>
     <string name="alertMsg">Estas saliendo del juego, ¿Estás seguro de salir?</string>
+
 </resources>
