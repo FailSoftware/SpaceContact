@@ -152,8 +152,8 @@ open class Login : AppCompatActivity() {
         bdr.setPositiveButton(R.string.alertYes, DialogInterface.OnClickListener { dialog, id ->
             moveTaskToBack(true)
             val settingsfile = getSharedPreferences(preferencesfieldName, Context.MODE_PRIVATE)
-            var myeditor: SharedPreferences.Editor  = settingsfile.edit();
-            myeditor.putBoolean("iniciado",true);
+            var myeditor: SharedPreferences.Editor  = settingsfile.edit()
+            myeditor.putBoolean("iniciado",true)
             myeditor.commit()
             android.os.Process.killProcess(android.os.Process.myPid())
             System.exit(1)
@@ -168,7 +168,6 @@ open class Login : AppCompatActivity() {
 
     override fun onBackPressed() {
         alertExit()
-        // Do Here what ever you want do on back press;
     }
 
 }
