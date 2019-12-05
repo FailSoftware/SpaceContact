@@ -29,6 +29,11 @@
     <string name="alertNo">No</string>
     <string name="alertTitle">Saliendo del juego</string>
     <string name="alertMsg">Estas saliendo del juego, ¿Estás seguro de salir?</string>
+    <string name="alertTitlePerm">Permisos necesarios</string>
+    <string name="alertMsgPerm">"Si quieres llamarnos tendrás que activar los permisos en Ajustes del Telefono -> Apps -> SpaceContact -> Permisos y activar permisos de LLamada."</string>
+    <string name="descFail">"Somos un equipo de estudiantes que está desarrollando un un videojuego como proyecto en base Kotlin y Java usando AndroidStudio, similar a Faster Than Light"</string>
+    <string name="contactInfo">"Sobre nosotros"</string>
+
 
 
 </resources>

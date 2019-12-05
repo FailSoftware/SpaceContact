@@ -17,37 +17,84 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/ivLog1"
-            android:layout_width="270dp"
-            android:layout_height="90dp"
-            android:layout_marginTop="35dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logoletras" />
-
-        <ImageView
-            android:id="@+id/ivLog2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivLog1"
-            app:srcCompat="@drawable/logoimagen" />
+        android:layout_height="match_parent"
+        android:backgroundTint="#EEF5EEEE">
 
 
         <ImageView
             android:id="@+id/ivLogEm"
-            android:layout_width="99dp"
-            android:layout_height="94dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="299dp"
+            android:layout_height="282dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logoempresa" />
 
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/geostar"
+            android:text="@string/contactInfo"
+            android:textAlignment="center"
+            android:textColor="@color/yellow"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivLogEm" />
+
+        <ImageButton
+            android:id="@+id/icCall"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#02FFFFFF"
+            android:onClick="toCall"
+            app:layout_constraintLeft_toRightOf="@id/icTw"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDesc"
+            app:srcCompat="@drawable/ic_telephone" />
+
+        <ImageButton
+            android:id="@+id/icTw"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#00F7F6F6"
+            android:onClick="toSocial"
+            app:layout_constraintLeft_toRightOf="@id/icWeb"
+            app:layout_constraintRight_toLeftOf="@id/icCall"
+            app:layout_constraintTop_toBottomOf="@id/tvDesc"
+            app:srcCompat="@drawable/ic_twbueno" />
+
+        <ImageButton
+            android:id="@+id/icWeb"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#00FFFFFF"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:onClick="toWeb"
+            app:layout_constraintTop_toBottomOf="@id/tvDesc"
+            app:srcCompat="@drawable/ic_worldwide" />
+
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/geostar"
+            android:text="@string/descFail"
+            android:textAlignment="center"
+            android:textColor="@color/yellow"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
 
 

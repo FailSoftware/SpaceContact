@@ -30,4 +30,8 @@
     <string name="alertNo">No</string>
     <string name="alertTitle">Leaving game</string>
     <string name="alertMsg">You are leaving of the game now, are you sure?</string>
+    <string name="alertTitlePerm">Permissions needed</string>
+    <string name="alertMsgPerm">"If you want to call, you need permissions. Please, go to Adjusts -> Apps -> SpaceContact -> Permissions and activate Phone Permissions."</string>
+    <string name="descFail">"We are a team of students who are developing a group-project producing a videogame, based on Kotlin and Java using Android Studio, similar to Faster than light."</string>
+    <string name="contactInfo">"About Us"</string>
 </resources>
