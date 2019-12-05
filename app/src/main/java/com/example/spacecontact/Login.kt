@@ -36,13 +36,14 @@ open class Login : AppCompatActivity() {
             var myeditor: SharedPreferences.Editor  = settingsfile.edit();
             myeditor.putBoolean("iniciado",false);
             myeditor.commit()
-            setLocale("es")
+            setLocale("en")
         }
         if( settingsfile.getBoolean("language",false)&& (!settingsfile.contains("iniciado")||settingsfile.getBoolean("iniciado",true))){
             var myeditor: SharedPreferences.Editor  = settingsfile.edit();
             myeditor.putBoolean("iniciado",false);
             myeditor.commit()
-            setLocale("in")
+            setLocale("es")
+
         }
     }
 
@@ -126,9 +127,10 @@ open class Login : AppCompatActivity() {
         val settingsfile = getSharedPreferences(preferencesfieldName, Context.MODE_PRIVATE)
         var myeditor: SharedPreferences.Editor  = settingsfile.edit();
         if(lang.equals("es")){
+            myeditor.putBoolean("language", false)
+        }
+        else{
             myeditor.putBoolean("language", true);
-        }else{
-            myeditor.putBoolean("language", false);
         }
         myeditor.apply();
         val myLocale = Locale(lang)
@@ -141,6 +143,7 @@ open class Login : AppCompatActivity() {
         finish()
         startActivity(refresh)
     }
+
 
     fun alertExit() {
 

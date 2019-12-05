@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SpaceContact</string>
+    <string name="login">Log In</string>
+    <string name="user">"Username"</string>
+    <string name="password">********</string>
+    <string name="email">Email</string>
+    <string name="etPassword">Password</string>
+    <string name="btLog">Login</string>
+    <string name="btReg">Register</string>
+    <string name="btConf">Confirm</string>
+    <string name="btBack">Back</string>
+    <string name="btStrNext">Next</string>
+    <string name="btConfirm">Confirm</string>
+    <string name="menuSpa">Spanish</string>
+    <string name="menuEng">English</string>
+    <string name="menuMute">Mute</string>
+    <string name="menuUnmute">Unmute</string>
+    <string name="fatigeChar">Fatige</string>
+    <string name="hungerChar">Hunger</string>
+    <string name="turnsChar">Turns</string>
+    <string name="newGamer">New Game</string>
+    <string name="contGame">Continue</string>
+    <string name="editChar">Edit Pilot</string>
+    <string name="menuContact">Contact</string>
+    <string name="menuLogOff">Log Off</string>
+    <string name="menuExit">Exit</string>
+    <string name="menuBackMenu">Main Menu</string>
+    <string name="alertYes">Yes</string>
+    <string name="alertNo">No</string>
+    <string name="alertTitle">Leaving game</string>
+    <string name="alertMsg">You are leaving of the game now, are you sure?</string>
+</resources>
