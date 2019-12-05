@@ -92,7 +92,7 @@
             android:id="@+id/btEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/buttonstyle"
             android:fontFamily="@font/geostar"
             android:onClick="newGame"
@@ -125,17 +125,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </FrameLayout>
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="Button"
-            android:onClick="rueba"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btEdit" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

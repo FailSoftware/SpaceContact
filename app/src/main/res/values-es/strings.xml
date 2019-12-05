@@ -23,4 +23,11 @@
     <string name="contGame">Continuar</string>
     <string name="editChar">Editar Piloto</string>
     <string name="menuContact">Contactar</string>
+    <string name="menuLogOff">Desconectar</string>
+    <string name="menuExit">Salir</string>
+    <string name="menuBackMenu">Menu Principal</string>
+    <string name="alertYes">Si</string>
+    <string name="alertNo">No</string>
+    <string name="alertTitle">Saliendo del juego</string>
+    <string name="alertMsg">Estas saliendo del juego, ¿Estás seguro de salir?</string>
 </resources>

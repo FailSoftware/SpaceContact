@@ -2,8 +2,42 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <item android:id="@+id/menuContact"
+        android:title="text"
+        android:icon="@drawable/ic_contact"
+        app:showAsAction="ifRoom"
+        >
+    </item>
+
+
+    <item android:id="@+id/home"
+        android:title="text"
+        android:icon="@drawable/ic_home_black"
+        app:showAsAction="ifRoom"
+        >
+
+        <menu>
+            <item android:id="@+id/menuBack"
+                android:title="@string/menuBackMenu"
+                android:icon="@drawable/ic_sett_english"
+                />
+            <item android:id="@+id/logOff"
+                android:title="@string/menuLogOff"
+                android:icon="@drawable/ic_sett_spain"
+                />
+            <item android:id="@+id/allExit"
+                android:title="@string/menuExit"
+                android:icon="@drawable/ic_sett_spain"
+                />
+
+        </menu>
+
+    </item>
+
+
     <item android:id="@+id/settings"
-        android:title="loquesea"
+        android:title="text"
         android:icon="@drawable/ic_settings"
         app:showAsAction="ifRoom">
 
@@ -19,17 +53,16 @@
 
             <item android:id="@+id/settMute"
                 android:title="@string/menuMute"
-                android:icon="@drawable/ic_sett_mute"
+                android:icon="@drawable/ic_volume_off"
                 />
             <item android:id="@+id/settUnmute"
                 android:title="@string/menuUnmute"
-                android:icon="@drawable/ic_sett_unmute"
-                />
-            <item android:id="@+id/settContact"
-                android:title="@string/menuContact"
-                android:icon="@drawable/ic_contact"
+                android:icon="@drawable/ic_volume_up"
                 />
         </menu>
 
     </item>
+
+
+
 </menu>

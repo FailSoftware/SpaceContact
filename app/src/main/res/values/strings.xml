@@ -22,4 +22,12 @@
     <string name="contGame">Continue</string>
     <string name="editChar">Edit Pilot</string>
     <string name="menuContact">Contact</string>
+    <string name="menuLogOff">Log Off</string>
+    <string name="menuExit">Exit</string>
+    <string name="menuBackMenu">Main Menu</string>
+    <string name="alertYes">Yes</string>
+    <string name="alertNo">No</string>
+    <string name="alertTitle">Leaving game</string>
+    <string name="alertMsg">You are leaving of the game now, are you sure?</string>
+
 </resources>

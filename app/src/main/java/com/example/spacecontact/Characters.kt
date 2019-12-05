@@ -12,7 +12,7 @@ import android.widget.ImageView
 import com.example.spacecontact.entity.User
 import com.example.spacecontact.entity.Worker
 
-class Characters : AppCompatActivity() {
+class Characters : Login() {
     lateinit var finalCharacter:Bitmap
     var bodyList = ArrayList<Bitmap>()
     var suitList = ArrayList<Bitmap>()

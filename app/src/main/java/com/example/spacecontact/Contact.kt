@@ -3,7 +3,7 @@ package com.example.spacecontact
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class Contact : AppCompatActivity() {
+class Contact : Login() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

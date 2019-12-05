@@ -1,9 +1,8 @@
 package com.example.spacecontact
 
-import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -11,11 +10,10 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import android.widget.Toolbar
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import java.util.*
-
-
-
-
 
 
 open class Login : AppCompatActivity() {
@@ -27,10 +25,10 @@ open class Login : AppCompatActivity() {
     //var usr: User = User(0, false, "Falso", "Falso", "Un usuario", Date(), pilot)
 
     var c : Context = this
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        getSupportActionBar()?.setDisplayShowTitleEnabled(false)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -52,9 +50,22 @@ open class Login : AppCompatActivity() {
             R.id.settUnmute -> {
                 ////TODO HACER LA FUNCION PARA UNMUTEAR EL SONIDO Y AÑADIRLO A PREFERENCIAS
                 Toast.makeText(this,"Sound unmuted...", Toast.LENGTH_SHORT).show()}
-            R.id.settContact ->{
+            R.id.menuContact ->{
                 val i = Intent(this, Contact::class.java)
                 startActivity(i)
+            }
+
+            R.id.menuBack ->{
+                val i = Intent(this, MainMenu::class.java)
+                startActivity(i)
+            }
+            R.id.logOff ->{
+                val i = Intent(this, Login::class.java)
+                startActivity(i)
+            }
+
+            R.id.allExit ->{
+                alertExit()
             }
         }
 
@@ -103,8 +114,34 @@ open class Login : AppCompatActivity() {
         val conf = res.configuration
         conf.locale = myLocale
         res.updateConfiguration(conf, dm)
-        val refresh = Intent(this, Login::class.java)
+        val refresh = Intent(this, c::class.java)
         finish()
         startActivity(refresh)
+    }
+
+    fun alertExit() {
+
+        var title : String = this.getString(R.string.alertTitle)
+        var msg : String = this.getString(R.string.alertMsg)
+        val bdr = AlertDialog.Builder(this)
+        bdr.setTitle(title)
+        bdr.setMessage(msg)
+        bdr.setPositiveButton(R.string.alertYes, DialogInterface.OnClickListener { dialog, id ->
+            moveTaskToBack(true)
+            android.os.Process.killProcess(android.os.Process.myPid())
+            System.exit(1)
+        })
+        bdr.setNegativeButton(R.string.alertNo, DialogInterface.OnClickListener { dialog, id ->
+            // User cancelled the dialog and do nothing.
+        })
+        bdr.create()
+        bdr.show()
+
+    }
+
+    override fun onBackPressed() {
+        alertExit()
+
+        // Do Here what ever you want do on back press;
     }
 }

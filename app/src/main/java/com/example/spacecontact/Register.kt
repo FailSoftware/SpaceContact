@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-class Register : AppCompatActivity() {
+class Register : Login() {
      lateinit var bm:Bitmap
      lateinit var pilot:Worker
      lateinit var usr:User

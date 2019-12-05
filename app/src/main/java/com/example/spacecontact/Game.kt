@@ -12,7 +12,7 @@ import com.example.spacecontact.entity.Ship
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Game : AppCompatActivity() {
+class Game : Login() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
