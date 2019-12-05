@@ -43,7 +43,7 @@ open class Login : AppCompatActivity() {
 
         when(item.itemId){
             R.id.settSpa -> setLocale("es")            //prueba(item)
-            R.id.settEng -> setLocale("Default value")
+            R.id.settEng -> setLocale("en")
             R.id.settMute -> {
                 //TODO HACER LA FUNCION PARA MUTEAR EL SONIDO Y AÑADIRLO A PREFERENCIAS
                 Toast.makeText(this,"Sound muted...", Toast.LENGTH_SHORT).show()}
@@ -141,7 +141,6 @@ open class Login : AppCompatActivity() {
 
     override fun onBackPressed() {
         alertExit()
-
         // Do Here what ever you want do on back press;
     }
 }
