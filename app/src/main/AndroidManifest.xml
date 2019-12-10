@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.spacecontact">
 
-
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
@@ -12,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".entity.Shop"></activity>
+        <activity android:name=".Planet"></activity>
+        <activity android:name=".entity.Shop" />
         <activity android:name=".Contact" />
         <activity android:name=".Register" />
         <activity android:name=".Game" />

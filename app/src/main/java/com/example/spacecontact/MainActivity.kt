@@ -12,8 +12,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //TODO que alguien ponga que salga el logo de la empresa aqui 3 segundos, porfaplz :3
-        loadLogin()
-
+       // loadLogin()
+         loadPlanet()
         //TODO Este apartado solo está por motivos de prueba, borrar al tener el menu principal acabado
         //loadCharacter()
         //loadNewGame()
@@ -24,6 +24,10 @@ class MainActivity : AppCompatActivity() {
      var intent: Intent = Intent(this, Login::class.java)
         startActivity(intent)
 
+    }
+    fun loadPlanet(){
+        var intent: Intent = Intent(this, Planet::class.java)
+        startActivity(intent)
     }
 
 }
