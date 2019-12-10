@@ -174,7 +174,7 @@ public class Shop extends AppCompatActivity {
 
             Toast.makeText(this, "Your ship is totally repaired!", Toast.LENGTH_SHORT).show();
 
-            currenttHealth = ship.getTotalHealth();
+            ship.setTotalHealth(ship.getCurrentHealth());
         }
 
 
