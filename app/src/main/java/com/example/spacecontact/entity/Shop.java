@@ -81,8 +81,11 @@ public class Shop extends AppCompatActivity {
 
                 currentFood = foodToAdd + currentFood;
 
+                currentCredit = (prizePerFood * foodToAdd) - currentCredit;
+
                 ship.setCurrentFood(currentFood);
 
+                ship.setCredit(currentCredit);
 
             } else {
 
@@ -118,9 +121,11 @@ public class Shop extends AppCompatActivity {
 
                 currentFuel = fuelToAdd + currentFuel;
 
+                currentCredit = (prizePerFuel * fuelToAdd) - currentCredit;
 
                 ship.setCurrentFuel(currentFuel);
 
+                ship.setCredit(currentCredit);
 
             } else {
 
@@ -142,7 +147,35 @@ public class Shop extends AppCompatActivity {
 
     public void repairFunction(Integer currenttHealth, Integer currentCredit) {
 
-        Integer prizeRepair = 5 + ship.getDifficulty();
+
+        if (currenttHealth < ship.getTotalHealth()) {
+            Integer prizeRepair = 2 * ship.getDifficulty();
+
+            if (currentCredit >= prizeRepair) {
+
+
+                currentCredit = prizeRepair - currentCredit;
+
+                ship.setCredit(currentCredit);
+
+                ship.setTotalHealth(ship.getTotalHealth());
+
+
+            } else {
+
+                Toast.makeText(this, "You don't have enough money to repair the ship.", Toast.LENGTH_SHORT);
+
+                ship.setTotalHealth(ship.getCurrentHealth());
+
+            }
+
+
+        } else {
+
+            Toast.makeText(this, "Your ship is totally repaired!", Toast.LENGTH_SHORT).show();
+
+            currenttHealth = ship.getTotalHealth();
+        }
 
 
     }
