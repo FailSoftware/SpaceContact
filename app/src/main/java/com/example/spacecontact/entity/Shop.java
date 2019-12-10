@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.spacecontact.R;
@@ -29,6 +30,9 @@ public class Shop extends AppCompatActivity {
         currentFood = ship.getCurrentFood();
         currentHealth = ship.getCurrentHealth();
 
+        TextView txtV = findViewById(R.id.txtVCurrentCredit);
+
+        txtV.setText(currentCredit);
 
     }
 
@@ -87,6 +91,10 @@ public class Shop extends AppCompatActivity {
 
                 ship.setCredit(currentCredit);
 
+                TextView txtV = findViewById(R.id.txtVCurrentCredit);
+
+                txtV.setText(currentCredit);
+
             } else {
 
                 Toast.makeText(this, "You don't have enough credits to buy this", Toast.LENGTH_SHORT).show();
@@ -127,6 +135,10 @@ public class Shop extends AppCompatActivity {
 
                 ship.setCredit(currentCredit);
 
+                TextView txtV = findViewById(R.id.txtVCurrentCredit);
+
+                txtV.setText(currentCredit);
+
             } else {
 
                 Toast.makeText(this, "You don't have enough credits to buy this", Toast.LENGTH_SHORT).show();
@@ -159,6 +171,10 @@ public class Shop extends AppCompatActivity {
                 ship.setCredit(currentCredit);
 
                 ship.setTotalHealth(ship.getTotalHealth());
+
+                TextView txtV = findViewById(R.id.txtVCurrentCredit);
+
+                txtV.setText(currentCredit);
 
 
             } else {
