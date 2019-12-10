@@ -46,7 +46,7 @@ public class Shop extends AppCompatActivity {
 
     public void buyRepair(View view) {
 
-        repairFunction();
+        repairFunction(currentHealth, currentCredit);
 
 
     }
