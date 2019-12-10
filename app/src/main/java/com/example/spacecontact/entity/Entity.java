@@ -19,6 +19,22 @@ public abstract class Entity {
         this.currentHealth = currentHealth;
     }
 
+    public Entity(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Entity{" +
+                "name='" + name + '\'' +
+                ", totalXp=" + totalXp +
+                ", currentXp=" + currentXp +
+                ", level=" + level +
+                ", totalHealth=" + totalHealth +
+                ", currentHealth=" + currentHealth +
+                '}';
+    }
+
     //region Getters/Setters
         public String getName() {
             return name;

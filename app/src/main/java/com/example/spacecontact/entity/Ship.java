@@ -4,81 +4,84 @@ import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
 public class Ship extends Entity {
+    //region Private variables
     private Integer difficulty;      //Number of worlds cleared, used to calculate difficulty
     private Integer credit;
-    private Integer shield;
+    private Integer totalShield;
+    private Integer currentShield;
     private Integer currentOxygen;
     private Integer currentFuel;
-
     private Integer totalFood;
     private Integer totalOxygen;
     private Integer totalFuel;
-
     private Integer currentFood;
-    private Integer weaponPower;
-
     private Integer healthBooster;
-    private Integer weaponBooster;
-
-    private Float criticalChance;
     private Float failureIgnoreChance;
-
+    private Weapon weapon;
     private Worker[] crew;
     private ArrayList<ShipPart> part;
 
+
+//endregion
+
+    //region Constructors
+
     //General constructor with all fields
-    public Ship(Integer world, Integer credit, String name, Integer totalXp, Integer currentXp, Integer level,
-                Integer currentHealth, Integer shield, Integer currentOxygen, Integer currentFuel, Integer currentFood,
-                Integer healthBooster, Integer weaponBooster, Float criticalChance, Float failureIgnoreChance,
-                Worker[] crew, ArrayList<ShipPart> part) {
-        super(name, totalXp, currentXp, level, 100 * healthBooster, currentHealth);
-        this.difficulty = world;
+    public Ship(String name, Integer totalXp, Integer currentXp, Integer level, Integer totalHealth, Integer currentHealth,
+                Integer difficulty, Integer credit,Integer totalShield, Integer currentShield, Integer currentOxygen, Integer currentFuel, Integer totalFood,
+                Integer totalOxygen, Integer totalFuel, Integer currentFood, Integer healthBooster, Float failureIgnoreChance,
+                Weapon weapon, Worker[] crew, ArrayList<ShipPart> part) {
+
+        super(name, totalXp, currentXp, level, totalHealth, currentHealth);
+        this.difficulty = difficulty;
         this.credit = credit;
-        this.shield = shield;
-        this.totalOxygen = 100;
+        this.currentShield = currentShield;
         this.currentOxygen = currentOxygen;
-        this.totalFuel = 1000;
         this.currentFuel = currentFuel;
-        this.totalFood = 100;
+        this.totalFood = totalFood;
+        this.totalOxygen = totalOxygen;
+        this.totalFuel = totalFuel;
+        this.totalShield = totalShield;
         this.currentFood = currentFood;
-        this.weaponPower = 20;
         this.healthBooster = healthBooster;
-        this.weaponBooster = weaponBooster;
-        this.criticalChance = criticalChance;
         this.failureIgnoreChance = failureIgnoreChance;
+        this.weapon = weapon;
         this.crew = crew;
         this.part = part;
+
+        //Ship's total health is equal to the sum of all the ship parts times two plus the healthBooster if applicable
+        int partSum = 0;
+        for (int i = 0; i < part.size(); i++) {
+            partSum = part.get(i).getTotalHealth();
+        }
+
+        this.setTotalHealth(partSum * 2 + healthBooster);
     }
 
-    //Test ship
+    //Test ship constructor
     public Ship(Context con) {
-        super("TestShip", 100, 1, 1, 100 * 0, 100);
+        super("TestShip", 100, 1, 1, 1, 100);
         this.difficulty = 1;
         this.credit = 1;
-        this.shield = 1;
+        this.currentShield = 1;
         this.totalOxygen = 100;
         this.currentOxygen = 1;
         this.totalFuel = 1000;
         this.currentFuel = 100;
         this.totalFood = 100;
         this.currentFood = 100;
-        this.weaponPower = 20;
+        this.weapon = new Weapon("Basic Blaster", 20, 1, 2);
         this.healthBooster = 0;
-        this.weaponBooster = 0;
-        this.criticalChance = 10f;
         this.failureIgnoreChance = 10f;
 
-        Worker[] crew = new Worker[9];
-        crew = new Worker[6];
-        crew[0] = new Worker(con);
-        crew[1] = new Worker(con);
-        crew[2] = new Worker(con);
-        crew[3] = new Worker(con);
-        crew[4] = new Worker(con);
-        crew[5] = new Worker(con);
+
+        Worker[] crew = new Worker[6];
+        for (int i = 0; i < crew.length; i++) {
+            crew[i] = new Worker(con, 1);
+        }
 
         part = new ArrayList<>();
         ShipPart body = new ShipPart(100, 100, false, false, false);
@@ -108,8 +111,466 @@ public class Ship extends Entity {
         this.part = part;
     }
 
+    //Enemy ship constructor
+    public Ship(int difficulty) {
+        super("Enemy", 1, difficulty, difficulty, 100 + difficulty * 2, 100 + difficulty * 2);
+        this.difficulty = difficulty;
+        //Random credit = MIN (10 + difficulty) * 10), MAX (10 + difficulty) * 50)
+        this.credit = new Random().nextInt((((((10 + difficulty) * 50) - ((10 + difficulty) * 10)) + 1) + (10 + difficulty) * 10));
+        if (difficulty < 100){
+            this.totalShield = (int)(1 + difficulty/20);
+        } else {
+            this.totalShield = 20;
+        }
+        this.currentShield = 0;
+        this.totalOxygen = 100;
+        this.currentOxygen = 100;
+        this.totalFuel = 1000;
+        this.currentFuel = 100;
+        this.totalFood = 100;
+        this.currentFood = 100;
+        this.weapon = new Weapon("Enemy Gun", (int) (10 + difficulty * 1.5), 0, 0);
+        this.healthBooster = 0;
 
-    //region Enemy AI
+        if (difficulty < 90) {
+            weapon.setWeaponCritChance(difficulty / 3f);
+        } else {
+            weapon.setWeaponCritChance(30);
+        }
+
+        if (difficulty < 100) {
+            weapon.setWeaponCritChance(difficulty / 10f);
+        } else {
+            weapon.setWeaponCritChance(10);
+        }
+
+        this.failureIgnoreChance = 0f;
+
+        //At difficulty 60, enemy crew caps out at 10 workers
+        if (difficulty >= 60) {
+            for (int i = 0; i < 9; i++) {
+                this.crew = new Worker[9];
+                crew[i] = new Worker(difficulty);
+            }
+        } else {
+            for (int i = 0; i < (int) (1 + difficulty * 0.15f); i++) {
+                this.crew = new Worker[(int) (1 + difficulty * 0.15f)];
+                crew[i] = new Worker(difficulty);
+            }
+        }
+        this.part = null;
+
+        //Ship's total health is equal to the sum of all the ship parts times two plus the healthBooster if applicable
+        int partSum = 0;
+        for (int i = 0; i < part.size(); i++) {
+            partSum = part.get(i).getTotalHealth();
+        }
+
+        this.setTotalHealth(partSum * 2 + healthBooster);
+    }
+
+//endregion
+
+    //region Player Ship functions
+
+    //Call this function when making a worker interact
+
+    /**
+     * @param action    String containing action done by a worker
+     * @param w         worker realizing the action
+     * @param enemyShip nullable, only used when attacking
+     * @param sp        nullable, only used when repairing
+     * @param injured   nullable, only used when curing
+     */
+    public void playerTurn(String action, Worker w, Ship enemyShip, ShipPart sp, Worker injured) {
+        Log.d("Action", "Player acted, " + w.getName() + " is trying to " + action);
+        switch (action) {
+            case "Attack":
+                PlayerAttack(w, enemyShip);
+                break;
+
+            case "Repair":
+                GeneralRepair(w);
+                break;
+
+            case "Extinguish":
+                RepairExtinguish(w, sp);
+                break;
+
+            case "Weld":
+                RepairWeld(w, sp);
+                break;
+
+            case "Fix":
+                RepairFix(w, sp);
+                break;
+
+            case "Eat":
+                WorkerEat(w);
+                break;
+
+            case "Sleep":
+                WorkerSleep(w);
+                break;
+
+            case "Talk":
+                WorkerTalk(w.getName());
+                break;
+
+            case "Cure":
+                WorkerHeal(w, injured);
+
+            case "Inspect":
+                WorkerInspect(w.getName());
+                break;
+
+            default:
+                Log.d("Combat", "Error in playerTurn action switch, Action does not exist");
+                break;
+        }
+
+        w.checkStatus();
+
+        if (w.getCurrentHealth() > 0) {
+            if (w.getCurrentTurns() > 0) {
+                w.setFatigue(w.getFatigue() - new Random().nextInt(30)); //Max of 30 fatigue lost each turn
+                w.setCurrentTurns(w.getCurrentTurns() - 1); //Always removes a turn
+            }
+        }
+    }
+
+
+    //region Worker SubFunctions
+    private void WorkerInspect(String w) {
+        //TODO show some info on screen
+    }
+
+    private void WorkerTalk(String w) {
+        //TODO show some info on screen
+    }
+
+    //Recovers 50 fatigue to worker if he's tired
+    private void WorkerSleep(Worker w) {
+
+        if (w.getFatigue() > 100) {
+            //TODO add snore sound
+            w.setFatigue(100);
+        } else {
+            //TODO display w is not tired
+            //1 turn added so that it is not lost to a useless action
+            w.setCurrentTurns(w.getCurrentTurns() + 1);
+        }
+    }
+
+    //Recovers 50 hunger to worker if there's any food in the ship
+    private void WorkerEat(Worker w) {
+
+        if (w.getHungerLevel() < 100) {
+            if (getCurrentFood() > 10) {
+                setCurrentFood(getCurrentFood() - 10);
+            } else {
+                setCurrentFood(0);
+            }
+            if (w.getHungerLevel() > 50) {
+                w.setHungerLevel(100);
+            } else {
+                w.setHungerLevel(w.getHungerLevel() + 50);
+            }
+            //TODO display w recovered X hunger
+            //TODO add eat sound
+        } else {
+            //TODO display w is not hungry
+            //1 turn added so that it is not lost to a useless action
+            w.setCurrentTurns(w.getCurrentTurns() + 1);
+        }
+    }
+
+
+    private void WorkerHeal(Worker w, Worker injured) {
+        int successChance = 0;
+
+        switch (w.getJob()) {
+            case MEDIC:
+                successChance = 90;
+                break;
+
+            case PILOT:
+                successChance = 75;
+                break;
+
+            case RECRUIT:
+                successChance = 60;
+                break;
+
+            default:
+                successChance = 40;
+                break;
+        }
+
+        //If successChance is greater than random %, worker successfully does the action
+        if (successChance > new Random().nextInt(100)) {
+            //TODO display worker cured injured
+            injured.removeStatuses();
+            injured.setCurrentHealth(injured.getCurrentHealth() + (injured.getTotalHealth()/8));
+        } else {
+            //TODO display worker failed and further damaged the injured worker
+            injured.setWounded(true);
+            injured.setCurrentHealth(injured.getCurrentHealth() - 20);
+        }
+    }
+    //endregion
+
+
+    //region Ship Repair subfunctions
+    //Repairs onShock part status if applicable
+    private void RepairFix(Worker w, ShipPart sp) {
+        int successChance = 0;
+
+        if (sp.getOnShock()) {
+            switch (w.getJob()) {
+                case MECHANIC:
+                    successChance = 90;
+                    break;
+
+                case PILOT:
+                    successChance = 75;
+                    break;
+
+                case RECRUIT:
+                    successChance = 60;
+                    break;
+
+                default:
+                    successChance = 40;
+                    break;
+            }
+
+            //If successChance is greater than random %, worker successfully does the action
+            if (successChance > new Random().nextInt(100)) {
+                //TODO display worker fixed shock
+                sp.setOnShock(false);
+            } else {
+                //TODO display worker failed and shocked himself
+                w.setOnShock(true);
+            }
+        } else {
+            //TODO display part not onShock
+            //1 turn added so that it is not lost to a useless action
+            w.setCurrentTurns(w.getCurrentTurns() + 1);
+        }
+
+    }
+
+    private void RepairWeld(Worker w, ShipPart sp) {
+        int successChance = 0;
+
+        if (sp.getPierced()) {
+            switch (w.getJob()) {
+                case MECHANIC:
+                    successChance = 90;
+                    break;
+
+                case PILOT:
+                    successChance = 75;
+                    break;
+
+                case RECRUIT:
+                    successChance = 60;
+                    break;
+
+                default:
+                    successChance = 40;
+                    break;
+            }
+
+            //If successChance is greater than random %, worker successfully does the action
+            if (successChance > new Random().nextInt(100)) {
+                //TODO display worker fixed breach
+                sp.setPierced(false);
+            } else {
+                //TODO display worker failed and wounded himself
+                w.setWounded(true);
+            }
+        } else {
+            //TODO display part not pierced
+            //1 turn added so that it is not lost to a useless action
+            w.setCurrentTurns(w.getCurrentTurns() + 1);
+        }
+    }
+
+    private void RepairExtinguish(Worker w, ShipPart sp) {
+        int successChance = 0;
+
+        if (sp.getOnFire()) {
+            switch (w.getJob()) {
+                case FIREFIGHTER:
+                    successChance = 90;
+                    break;
+
+                case PILOT:
+                    successChance = 75;
+                    break;
+
+                case RECRUIT:
+                    successChance = 60;
+                    break;
+
+                default:
+                    successChance = 40;
+                    break;
+            }
+
+            //If successChance is greater than random %, worker successfully does the action
+            if (successChance > new Random().nextInt(100)) {
+                //TODO display worker fixed breach
+                sp.setOnFire(false);
+            } else {
+                //TODO display worker failed and burned himself
+                w.setOnFire(true);
+            }
+        } else {
+            //TODO display part not pierced
+            //1 turn added so that it is not lost to a useless action
+            w.setCurrentTurns(w.getCurrentTurns() + 1);
+        }
+    }
+
+    private void GeneralRepair(Worker w) {
+        int successChance = 0;
+        //If true is returned, there's a status effect in a part that must be fixed before ship can be repaired
+        Boolean partStatus = CheckPartStatus();
+
+        if (!partStatus) {
+            if (getCurrentHealth() < getTotalHealth()) {
+                switch (w.getJob()) {
+                    case MECHANIC:
+                        successChance = 90;
+                        break;
+
+                    case PILOT:
+                        successChance = 75;
+                        break;
+
+                    case RECRUIT:
+                        successChance = 60;
+                        break;
+
+                    default:
+                        successChance = 40;
+                        break;
+                }
+                if (successChance > new Random().nextInt(100)) {
+                    //TODO display worker repaired X health (10%)
+                    this.setCurrentHealth(getCurrentHealth() + (getTotalHealth() / 10));
+                } else {
+                    //TODO display worker failed and wounded himself
+                    w.setWounded(true);
+                }
+            } else {
+                //TODO display Ship is already at full health
+                //1 turn added so that it is not lost to a useless action
+                w.setCurrentTurns(w.getCurrentTurns() + 1);
+            }
+        } else {
+            //TODO display There's a part with problems, need to repair before repairing ship
+            //1 turn added so that it is not lost to a useless action
+            w.setCurrentTurns(w.getCurrentTurns() + 1);
+        }
+    }
+    //endregion
+
+
+    private Boolean CheckPartStatus() {
+        Boolean problem = false;
+        for (ShipPart sp : this.getPart()) {
+            if (sp.getPierced()) {
+                problem = true;
+            } else if (sp.getOnFire()) {
+                problem = true;
+            } else if (sp.getOnShock()) {
+                problem = true;
+            }
+        }
+        return problem;
+    }
+
+    private void PlayerShield(Worker w){
+        int successChance = 0;
+
+        switch (w.getJob()) {
+            case MECHANIC:
+                successChance = 90;
+                break;
+
+            case PILOT:
+                successChance = 75;
+                break;
+
+            case RECRUIT:
+                successChance = 60;
+                break;
+
+            default:
+                successChance = 40;
+                break;
+        }
+        if (this.getCurrentShield() < this.getTotalShield()){
+            if (successChance > new Random().nextInt(100)) {
+                this.setCurrentShield(this.getCurrentShield() + 1);
+            } else {
+                //TODO display failed shielding, w got shocked
+                w.setOnShock(true);
+            }
+        } else {
+            //TODO display already on full shield
+            //1 turn added so that it is not lost to a useless action
+            w.setCurrentTurns(w.getCurrentTurns() + 1);
+        }
+
+    }
+
+    private void PlayerAttack(Worker w, Ship enemyShip) {
+        int successChance = 0;
+
+        switch (w.getJob()) {
+            case ASSAULT:
+                successChance = 90;
+                break;
+
+            case PILOT:
+                successChance = 75;
+                break;
+
+            case RECRUIT:
+                successChance = 60;
+                break;
+
+            default:
+                successChance = 40;
+                break;
+        }
+
+        if (successChance > new Random().nextInt(100)) {
+            //TODO display player shot enemy
+            int totalDamage = getWeapon().getWeaponPower();
+
+
+            if (getWeapon().getWeaponCritChance() > new Random().nextInt(100)) {
+                //TODO display it was critical
+                totalDamage = (int) (getWeapon().getWeaponPower() * getWeapon().getWeaponCritMultiplier());
+            }
+
+            enemyShip.setCurrentHealth(enemyShip.getCurrentHealth() - totalDamage);
+
+        } else {
+            //TODO display shot missed
+        }
+
+    }
+    //endregion
+
+
+    //region Enemy AI functions
 
     // Enemy AI core, call this to make the enemy act
     public void EnemyAction(Ship playerShip) {
@@ -121,7 +582,7 @@ public class Ship extends Entity {
 
 
         for (int i = 0; i < totalTurns; i++) {
-            randomTurn = ThreadLocalRandom.current().nextInt(0, 1000 + 1);
+            randomTurn = new Random().nextInt(1000);
             Log.d("Enemy", "Current random turn is [" + randomTurn + "]");
 
             //Attack
@@ -142,14 +603,14 @@ public class Ship extends Entity {
                 EnemyShield();
             }
         }
+        RestoreTurns();
     }
 
     // Calculates total of turns left for a ship
     private int TurnsLeft() {
         int turnsLeft = 0;
-        Worker[] enemyCrew = this.crew;
 
-        for (Worker worker : enemyCrew) {
+        for (Worker worker : this.crew) {
             if (worker.getCurrentTurns() != null && worker.getCurrentTurns() > 0) {
                 turnsLeft += worker.getCurrentTurns();
             }
@@ -157,34 +618,40 @@ public class Ship extends Entity {
         return turnsLeft;
     }
 
+    // Calculates total of turns left for a ship
+    private void RestoreTurns() {
+        for (Worker worker : this.crew) {
+            worker.setCurrentTurns(worker.getTotalTurns());
+        }
+    }
+
     // Calculates attack dealt by EnemyShip to PlayerShip
     private void EnemyAttack(Ship playerShip) {
         int failChance = 3, damageDealt = 0;
-        float criticalMultiplier = 1.5f;
-        int rndAttackStat = ThreadLocalRandom.current().nextInt(0, 20 + 1);
+        int rndAttackStat = new Random().nextInt(20);
         String descriptor = ""; //Used only in logger
 
         if (rndAttackStat <= failChance) {
             descriptor = "failed";
             damageDealt = 1;
-        } else if (rndAttackStat >= criticalChance) {
+        } else if (rndAttackStat == 20) {
             descriptor = "hit critically";
-            damageDealt = Math.round((this.getWeaponPower() * this.getWeaponBooster()) * criticalMultiplier);
+            damageDealt = Math.round((this.getWeapon().getWeaponPower() * this.getWeapon().getWeaponCritMultiplier()));
         } else {
             descriptor = "hit";
-            damageDealt = this.getWeaponPower() * this.getWeaponBooster();
+            damageDealt = this.getWeapon().getWeaponPower();
         }
 
 
         //Checks if player is shielded
-        if (playerShip.getShield() == 0) { //Player has no shield and gets damaged
+        if (playerShip.getCurrentShield() == 0) { //Player has no currentShield and gets damaged
             Log.d("Enemy", "Current random AttackStat is [" + rndAttackStat + "], enemy " + descriptor + " and dealt [" + damageDealt + "]");
             playerShip.setCurrentHealth(playerShip.getCurrentHealth() - damageDealt);
         } else {
-            if (!descriptor.equals("failed")) { //Player has shield and gets removed
-                Log.d("Enemy", "Enemy attack was succesful, but player had shield");
-                playerShip.setShield(playerShip.getShield() - 1);
-            } else { //Player has shield and does not get removed
+            if (!descriptor.equals("failed")) { //Player has currentShield and gets removed
+                Log.d("Enemy", "Enemy attack was succesful, but player had currentShield");
+                playerShip.setCurrentShield(playerShip.getCurrentShield() - 1);
+            } else { //Player has currentShield and does not get removed
                 Log.d("Enemy", "Enemy failed and the player was shielded, nothing happened");
             }
         }
@@ -213,13 +680,11 @@ public class Ship extends Entity {
         }
     }
 
-    // Makes enemy have 1 shield max
+    // Makes enemy have 1 currentShield max
     private void EnemyShield() {
-        // Todo Add a max shield variable (?
-
-        if (this.getShield() < 1) {
-            Log.d("Enemy", "Enemy shield set to 1");
-            this.setShield(1);
+        if (this.getCurrentShield() < this.getTotalShield()) {
+            Log.d("Enemy", "Enemy currentShield set to " + this.currentShield + 1);
+            this.setCurrentShield(this.getCurrentShield() + 1);
         }
     }
 
@@ -248,12 +713,12 @@ public class Ship extends Entity {
         this.credit = credit;
     }
 
-    public Integer getShield() {
-        return shield;
+    public Integer getCurrentShield() {
+        return currentShield;
     }
 
-    public void setShield(Integer shield) {
-        this.shield = shield;
+    public void setCurrentShield(Integer currentShield) {
+        this.currentShield = currentShield;
     }
 
     public Integer getCurrentOxygen() {
@@ -304,36 +769,12 @@ public class Ship extends Entity {
         this.currentFood = currentFood;
     }
 
-    public Integer getWeaponPower() {
-        return weaponPower;
-    }
-
-    public void setWeaponPower(Integer weaponPower) {
-        this.weaponPower = weaponPower;
-    }
-
     public Integer getHealthBooster() {
         return healthBooster;
     }
 
     public void setHealthBooster(Integer healthBooster) {
         this.healthBooster = healthBooster;
-    }
-
-    public Integer getWeaponBooster() {
-        return weaponBooster;
-    }
-
-    public void setWeaponBooster(Integer weaponBooster) {
-        this.weaponBooster = weaponBooster;
-    }
-
-    public Float getCriticalChance() {
-        return criticalChance;
-    }
-
-    public void setCriticalChance(Float criticalChance) {
-        this.criticalChance = criticalChance;
     }
 
     public Float getFailureIgnoreChance() {
@@ -358,6 +799,22 @@ public class Ship extends Entity {
 
     public void setPart(ArrayList<ShipPart> part) {
         this.part = part;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public Integer getTotalShield() {
+        return totalShield;
+    }
+
+    public void setTotalShield(Integer totalShield) {
+        this.totalShield = totalShield;
     }
 
     //endregion
