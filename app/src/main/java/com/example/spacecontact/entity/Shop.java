@@ -74,23 +74,32 @@ public class Shop extends AppCompatActivity {
 
         Integer foodToAdd = Integer.parseInt(foodToAddField.getText().toString());
 
-        if (currentCredit >= (prizePerFood * foodToAdd)) {
-
-            currentFood = foodToAdd + currentFood;
-
-            ship.setCurrentFood(currentFood);
+        if (currentFood < ship.getTotalFood()) {
 
 
+            if (currentCredit >= (prizePerFood * foodToAdd)) {
+
+                currentFood = foodToAdd + currentFood;
+
+                ship.setCurrentFood(currentFood);
+
+
+            } else {
+
+                Toast.makeText(this, "You don't have enough credits to buy this", Toast.LENGTH_SHORT).show();
+
+
+                ship.setCurrentFood(currentFood);
+
+
+            }
         } else {
 
-            Toast.makeText(this, "You don't have enough credits to buy this", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You have the pantry full, don't need to buy more food", Toast.LENGTH_SHORT).show();
 
-
-            ship.setCurrentFood(currentFood);
-
+            ship.setCurrentFood(ship.getTotalFood());
 
         }
-
 
     }
 
