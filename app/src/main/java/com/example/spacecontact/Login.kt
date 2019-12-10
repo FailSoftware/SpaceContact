@@ -14,6 +14,8 @@ import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_register.*
 import java.util.*
 
 
@@ -45,6 +47,9 @@ open class Login : AppCompatActivity() {
             setLocale("es")
 
         }
+
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
