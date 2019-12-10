@@ -17,20 +17,23 @@ public class Shop extends AppCompatActivity {
     private Integer currentCredit;
     private Integer currentFuel;
     private Integer currentFood;
+    private Integer currentHealth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
 
-
+        currentCredit = ship.getCredit();
+        currentFuel = ship.getCurrentFuel();
+        currentFood = ship.getCurrentFood();
+        currentHealth = ship.getCurrentHealth();
 
 
     }
 
 
-
-    public void Shop(Ship ship){
+    public void Shop(Ship ship) {
 
         currentCredit = ship.getCredit();
 
@@ -39,13 +42,11 @@ public class Shop extends AppCompatActivity {
         currentFood = ship.getCurrentFood();
 
 
-
-
-
     }
 
     public void buyRepair(View view) {
 
+        repairFunction();
 
 
     }
@@ -53,8 +54,7 @@ public class Shop extends AppCompatActivity {
     public void buyFood(View view) {
 
 
-        foodFunction(currentFood,currentCredit);
-
+        foodFunction(currentFood, currentCredit);
 
 
     }
@@ -66,7 +66,7 @@ public class Shop extends AppCompatActivity {
 
     }
 
-    public void foodFunction(Integer currentFood, Integer currentCredit){
+    public void foodFunction(Integer currentFood, Integer currentCredit) {
 
         Integer prizePerFood = 2;
 
@@ -74,29 +74,27 @@ public class Shop extends AppCompatActivity {
 
         Integer foodToAdd = Integer.parseInt(foodToAddField.getText().toString());
 
-        if(currentCredit >= (prizePerFood*foodToAdd)){
+        if (currentCredit >= (prizePerFood * foodToAdd)) {
 
             currentFood = foodToAdd + currentFood;
 
             ship.setCurrentFood(currentFood);
 
 
-           // return currentFood;
-
-        }else{
+        } else {
 
             Toast.makeText(this, "You don't have enough credits to buy this", Toast.LENGTH_SHORT).show();
 
 
             ship.setCurrentFood(currentFood);
 
-           // return currentFood;
+
         }
 
 
     }
 
-    public void fuelFunction(Integer currentFuel, Integer currentCredit){
+    public void fuelFunction(Integer currentFuel, Integer currentCredit) {
 
         Integer prizePerFuel = 3;
 
@@ -104,22 +102,39 @@ public class Shop extends AppCompatActivity {
 
         Integer fuelToAdd = Integer.parseInt(fuelToAddField.getText().toString());
 
-        if(currentCredit >= (prizePerFuel*fuelToAdd)){
 
-            currentFuel = fuelToAdd + currentFuel;
+        if (currentFuel < ship.getTotalFuel()) {
+
+            if (currentCredit >= (prizePerFuel * fuelToAdd)) {
+
+                currentFuel = fuelToAdd + currentFuel;
 
 
-            ship.setCurrentFuel(currentFuel);
+                ship.setCurrentFuel(currentFuel);
 
-            // return currentFuel;
 
-        }else{
+            } else {
 
-            Toast.makeText(this, "You don't have enough credits to buy this", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You don't have enough credits to buy this", Toast.LENGTH_SHORT).show();
 
-            ship.setCurrentFuel(currentFuel);
-            // return currentFuel;
+                ship.setCurrentFuel(currentFuel);
+
+            }
+
+        } else {
+
+            Toast.makeText(this, "The fuel tank is full, you don't need to buy more", Toast.LENGTH_SHORT).show();
+
+            ship.setCurrentFuel(ship.getTotalFuel());
         }
+
+
+    }
+
+    public void repairFunction(Integer currenttHealth, Integer currentCredit) {
+
+        Integer prizeRepair = 5 + ship.getDifficulty();
+
 
     }
 
