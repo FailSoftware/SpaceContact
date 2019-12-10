@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import com.example.spacecontact.entity.User
 import com.example.spacecontact.entity.Worker
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_register.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -69,19 +70,38 @@ class Register : Login() {
 
     fun newUser(view: View){
         var intent: Intent = Intent(this, Characters::class.java)
+        var email : String = etEmail.text.toString()
+        var password : String = etPassword.text.toString()
 
-
-        if (etPassword.text.toString().equals(etPasswordConf.text.toString())){
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(etEmail.text.toString(), etPassword.text.toString())
+        if (!email.isEmpty() && !password.isEmpty()){
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener{
                     if(!it.isSuccessful) return@addOnCompleteListener
                     startActivity(intent)
                     Toast.makeText(this, "Usuario creado", Toast.LENGTH_SHORT).show()
                     Log.d("Main", "Successfully created user with uid: ${it.result?.user?.uid}")
+                    val userSaved : String = etUser.text.toString()
+
+                    val uid = FirebaseAuth.getInstance().uid?:""
+                    val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+                    val user = User(uid, userSaved)
+                    ref.setValue(user).addOnSuccessListener {
+                        Log.d("RegisterActivity", "Alfin has registrado un usuario junto con su correo.")
+                    }
+                }.addOnFailureListener{
+                    Log.d("Main", "Failed to create user: ${it.message}")
+                    Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
                 }
-        }else{
-            alertMatch()
+
+                }else if(email.isEmpty() && !password.isEmpty()){
+                Toast.makeText(this, "Falta email", Toast.LENGTH_SHORT).show()
+
+                }else if(!email.isEmpty() && password.isEmpty()){
+                Toast.makeText(this, "Falta password", Toast.LENGTH_SHORT).show()
+                }else{
+                Toast.makeText(this, "Faltan los dos", Toast.LENGTH_SHORT).show()
         }
+
 
     }
 
@@ -91,5 +111,11 @@ class Register : Login() {
 
     }
 
+
+    private fun saveUser(){
+
+    }
+
+    class User(val uid: String, val username: String)
 
 }
