@@ -114,13 +114,14 @@ open class Login : AppCompatActivity() {
         val wor : Worker = Worker(view.context, 1)
         val usr : User = User(0, false, "NombreComp", "NombreUsuario", "Descripcion", LocalDate.now(), wor)
 
+        var msg : String = this.getString(R.string.welcomeMsg)
         fbAut.signInWithEmailAndPassword(userMail.text.toString(), userPass.text.toString()).addOnCompleteListener {
             if (it.isSuccessful){
                 val i = Intent(this, MainMenu::class.java)
                 i.putExtra("usr", usr)
                 i.putExtra("wor", wor)
                 startActivity(i)
-                Toast.makeText(this, "hola", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, msg+": "+ userMail.text.toString(), Toast.LENGTH_SHORT).show()
             }else{
 
             }
