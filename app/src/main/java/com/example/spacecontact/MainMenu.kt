@@ -10,9 +10,11 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.example.spacecontact.entity.Ship
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
+import com.google.gson.Gson
 import org.w3c.dom.Text
 import java.util.*
 
@@ -40,8 +42,13 @@ class MainMenu : Login(){
     }
 
     fun continueGame(view: View) {
-        var intent: Intent = Intent(this, Game::class.java)
-        startActivity(intent)
+        //TODO Change to playership when login is done
+        var ship : Ship = Ship(this)
+        val gson = Gson()
+        val json = gson.toJson(ship)
+        val intent = Intent(this, Game::class.java)
+        intent.putExtra("json", json)
+        this.startActivity(intent)
     }
 
     fun editChar(view: View) {
