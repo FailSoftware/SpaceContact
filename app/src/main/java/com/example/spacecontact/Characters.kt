@@ -23,11 +23,17 @@ class Characters : Login() {
     var currentBeard = 0
 
     lateinit var usr:User
+    lateinit var wor:Worker
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_characters)
+
+        var intent = intent
+        this.usr = intent.getParcelableExtra("usr")
+        this.wor = intent.getParcelableExtra("wor")
+        usr.pilot = wor
 
         //region Skin tones
         bodyList.add(BitmapFactory.decodeResource(this.resources, R.drawable.bodyzero))
@@ -136,6 +142,7 @@ class Characters : Login() {
         saveCharacter(usr.pilot)
         var intent = Intent(this, MainMenu::class.java)
         intent.putExtra("usr", usr)
+        intent.putExtra("wor", usr.pilot)
         startActivity(intent)
     }
 

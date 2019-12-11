@@ -123,6 +123,56 @@ public class Ship extends Entity {
         this.part = part;
     }
 
+    //Player ship constructor
+    public Ship(Worker worker, Context con) {
+        super("TestShip", 100, 1, 1, 1, 100);
+        this.difficulty = 1;
+        this.credit = 1;
+        this.currentShield = 1;
+        this.totalOxygen = 100;
+        this.currentOxygen = 1;
+        this.totalFuel = 1000;
+        this.currentFuel = 100;
+        this.totalFood = 100;
+        this.currentFood = 100;
+        this.weapon = new Weapon("Basic Blaster", 20, 1, 2);
+        this.healthBooster = 0;
+        this.failureIgnoreChance = 10f;
+
+        Worker[] crew = new Worker[6];
+        crew[0] = worker;
+        for (int i = 1; i < 3; i++){
+            crew[i] = new Worker(con, 1);
+        }
+
+        part = new ArrayList<>();
+        ShipPart body = new ShipPart(100, 100, false, false, false);
+        ShipPart wing = new ShipPart(100, 100, false, false, false);
+        ShipPart cockpit = new ShipPart(100, 100, false, false, false);
+        ShipPart kitchen = new ShipPart(100, 100, false, false, false);
+        ShipPart dorm = new ShipPart(100, 100, false, false, false);
+        ShipPart engine = new ShipPart(100, 100, false, false, false);
+        ShipPart forcefield = new ShipPart(100, 100, false, false, false);
+        ShipPart storage = new ShipPart(100, 100, false, false, false);
+        ShipPart infirmary = new ShipPart(100, 100, false, false, false);
+        ShipPart armory = new ShipPart(100, 100, false, false, false);
+        ShipPart bathroom = new ShipPart(100, 100, false, false, false);
+        part.add(body);
+        part.add(wing);
+        part.add(cockpit);
+        part.add(kitchen);
+        part.add(dorm);
+        part.add(engine);
+        part.add(forcefield);
+        part.add(storage);
+        part.add(infirmary);
+        part.add(armory);
+        part.add(bathroom);
+
+        this.crew = crew;
+        this.part = part;
+    }
+
     //Enemy ship constructor
     public Ship(int difficulty) {
         super("Enemy", 1, difficulty, difficulty, 100 + difficulty * 2, 100 + difficulty * 2);

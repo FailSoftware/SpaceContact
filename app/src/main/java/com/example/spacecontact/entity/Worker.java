@@ -3,6 +3,8 @@ package com.example.spacecontact.entity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 import com.example.spacecontact.R;
 import java.util.Arrays;
@@ -10,7 +12,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Worker extends Entity {
+public class Worker extends Entity implements Parcelable {
     private Bitmap sprite;
     private Integer totalTurns;
     private Integer currentTurns;
@@ -20,6 +22,87 @@ public class Worker extends Entity {
     private Boolean isOnFire;
     private Boolean isOnShock;
     private Job job;
+
+
+
+    protected Worker(Parcel in) {
+        sprite = in.readParcelable(Bitmap.class.getClassLoader());
+        if (in.readByte() == 0) {
+            totalTurns = null;
+        } else {
+            totalTurns = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            currentTurns = null;
+        } else {
+            currentTurns = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            hungerLevel = null;
+        } else {
+            hungerLevel = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            fatigue = null;
+        } else {
+            fatigue = in.readInt();
+        }
+        byte tmpIsWounded = in.readByte();
+        isWounded = tmpIsWounded == 0 ? null : tmpIsWounded == 1;
+        byte tmpIsOnFire = in.readByte();
+        isOnFire = tmpIsOnFire == 0 ? null : tmpIsOnFire == 1;
+        byte tmpIsOnShock = in.readByte();
+        isOnShock = tmpIsOnShock == 0 ? null : tmpIsOnShock == 1;
+    }
+
+    public static final Creator<Worker> CREATOR = new Creator<Worker>() {
+        @Override
+        public Worker createFromParcel(Parcel in) {
+            return new Worker(in);
+        }
+
+        @Override
+        public Worker[] newArray(int size) {
+            return new Worker[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(sprite, flags);
+        if (totalTurns == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(totalTurns);
+        }
+        if (currentTurns == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(currentTurns);
+        }
+        if (hungerLevel == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(hungerLevel);
+        }
+        if (fatigue == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(fatigue);
+        }
+        dest.writeByte((byte) (isWounded == null ? 0 : isWounded ? 1 : 2));
+        dest.writeByte((byte) (isOnFire == null ? 0 : isOnFire ? 1 : 2));
+        dest.writeByte((byte) (isOnShock == null ? 0 : isOnShock ? 1 : 2));
+    }
 
     public enum Job {
         PILOT, MECHANIC, MEDIC, FIREFIGHTER, ASSAULT, RECRUIT

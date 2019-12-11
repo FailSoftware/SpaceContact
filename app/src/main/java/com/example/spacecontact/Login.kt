@@ -1,5 +1,6 @@
 package com.example.spacecontact
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -14,8 +15,11 @@ import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.spacecontact.entity.User
+import com.example.spacecontact.entity.Worker
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_register.*
+import java.time.LocalDate
 import java.util.*
 
 
@@ -105,11 +109,16 @@ open class Login : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    @SuppressLint("NewApi")
     fun toMenu(view: View) {
+        val wor : Worker = Worker(view.context, 1)
+        val usr : User = User(0, false, "NombreComp", "NombreUsuario", "Descripcion", LocalDate.now(), wor)
 
         fbAut.signInWithEmailAndPassword(userMail.text.toString(), userPass.text.toString()).addOnCompleteListener {
             if (it.isSuccessful){
                 val i = Intent(this, MainMenu::class.java)
+                i.putExtra("usr", usr)
+                i.putExtra("wor", wor)
                 startActivity(i)
                 Toast.makeText(this, "hola", Toast.LENGTH_SHORT).show()
             }else{

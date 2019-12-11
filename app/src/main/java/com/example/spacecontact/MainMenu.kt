@@ -11,6 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.spacecontact.entity.Ship
+import com.example.spacecontact.entity.User
+import com.example.spacecontact.entity.Worker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
@@ -24,11 +26,22 @@ class MainMenu : Login(){
     lateinit var usFb : FirebaseUser
     lateinit var fbAu : FirebaseAuth
     lateinit var fbd : FirebaseDatabase
+    lateinit var usr : User
+    lateinit var ship : Ship
+    lateinit var wor : Worker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
 
+        var intent = intent
+        usr = intent.getParcelableExtra("usr")
+        wor = intent.getParcelableExtra("wor")
+        usr.pilot = wor
+        var tempShip : Ship = Ship(usr.pilot, this)
+        ship = tempShip
+
+        
         userM = findViewById(R.id.tvprueba)
         fbAu = FirebaseAuth.getInstance()
         usFb = fbAu.currentUser!!
@@ -43,7 +56,6 @@ class MainMenu : Login(){
 
     fun continueGame(view: View) {
         //TODO Change to playership when login is done
-        var ship : Ship = Ship(this)
         val gson = Gson()
         val json = gson.toJson(ship)
         val intent = Intent(this, Game::class.java)
@@ -53,6 +65,8 @@ class MainMenu : Login(){
 
     fun editChar(view: View) {
         var intent: Intent = Intent(this, Characters::class.java)
+        intent.putExtra("usr", this.usr)
+        intent.putExtra("wor", this.wor)
         startActivity(intent)
     }
 

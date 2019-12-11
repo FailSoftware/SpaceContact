@@ -49,6 +49,10 @@ class Register : Login() {
 
     fun newUser(view: View){
         var intent: Intent = Intent(this, Characters::class.java)
+        val wor : Worker = Worker(view.context, 1)
+        val usr : com.example.spacecontact.entity.User = User(0, false, "Falso", "Falso", "Un usuario", LocalDate.now(), wor)
+        intent.putExtra("usr", usr)
+        intent.putExtra("pilot", wor)
         var email : String = etEmail.text.toString()
         var password : String = etPassword.text.toString()
 
