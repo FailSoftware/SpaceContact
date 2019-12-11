@@ -41,6 +41,9 @@ open class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
+
         getSupportActionBar()?.setDisplayShowTitleEnabled(false)
         val settingsfile = getSharedPreferences(preferencesfieldName, Context.MODE_PRIVATE)
         if( settingsfile.getBoolean("language",true)&& (!settingsfile.contains("iniciado")||settingsfile.getBoolean("iniciado",true))){

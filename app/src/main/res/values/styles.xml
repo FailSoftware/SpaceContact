@@ -8,5 +8,12 @@
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="windowActionBarOverlay">true</item>
     </style>
+    <style name="SplashArt" parent="Theme.AppCompat.NoActionBar">
+        <!-- SplashArt. -->
+        <item name="colorPrimaryDark">@color/violetMain</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
 
 </resources>

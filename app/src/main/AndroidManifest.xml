@@ -21,7 +21,9 @@
         <activity android:name=".MainMenu" />
         <activity android:name=".Characters" />
         <activity android:name=".Login" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/SplashArt">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
