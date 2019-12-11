@@ -7,15 +7,30 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
+import org.w3c.dom.Text
 import java.util.*
 
 class MainMenu : Login(){
 
+    lateinit var userM : TextView
+    lateinit var usFb : FirebaseUser
+    lateinit var fbAu : FirebaseAuth
+    lateinit var fbd : FirebaseDatabase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
+
+        userM = findViewById(R.id.tvprueba)
+        fbAu = FirebaseAuth.getInstance()
+        usFb = fbAu.currentUser!!
+        userM.text = usFb.email
     }
 
 

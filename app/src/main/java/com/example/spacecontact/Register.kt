@@ -55,16 +55,7 @@ class Register : Login() {
         bdr.show()
     }
 
-    fun alertVoidUser() {
 
-        var title : String = this.getString(R.string.alertNoEmailTitle)
-        var msg : String = this.getString(R.string.alertEmailMsg)
-        val bdr = AlertDialog.Builder(this)
-        bdr.setTitle(title)
-        bdr.setMessage(msg)
-        bdr.create()
-        bdr.show()
-    }
 
 
 

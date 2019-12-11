@@ -20,15 +20,15 @@
         <menu>
             <item android:id="@+id/menuBack"
                 android:title="@string/menuBackMenu"
-                android:icon="@drawable/ic_sett_english"
+                android:icon="@drawable/ic_rocket"
                 />
             <item android:id="@+id/logOff"
                 android:title="@string/menuLogOff"
-                android:icon="@drawable/ic_sett_spain"
+                android:icon="@drawable/ic_logout"
                 />
             <item android:id="@+id/allExit"
                 android:title="@string/menuExit"
-                android:icon="@drawable/ic_sett_spain"
+                android:icon="@drawable/ic_exit"
                 />
 
         </menu>

@@ -126,6 +126,18 @@
                 android:layout_height="match_parent" />
         </FrameLayout>
 
+        <TextView
+            android:id="@+id/tvprueba"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="180dp"
+            android:text="TextView"
+            android:textSize="30sp"
+            android:textColor="@color/yellow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

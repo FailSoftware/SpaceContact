@@ -14,6 +14,7 @@ public class User implements Parcelable {
     private String description;
     private LocalDate dateofbirth;
     private Worker pilot;
+    private String id;
 
 
     // General constructor with all fields
@@ -109,6 +110,10 @@ public class User implements Parcelable {
     public void setPilot(Worker pilot) {
         this.pilot = pilot;
     }
+
+    public String getId() { return id; }
+
+    public void setId(String id) { this.id = id; }
 
     @Override
     public int describeContents() {

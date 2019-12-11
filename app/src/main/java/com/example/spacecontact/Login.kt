@@ -27,6 +27,11 @@ open class Login : AppCompatActivity() {
     //var pilot: Worker = Worker("Test", 1, 1, 1, 100, null, 2, 100, 100, Worker.Job.PILOT)
     //var usr: User = User(0, false, "Falso", "Falso", "Un usuario", Date(), pilot)
 
+
+    lateinit var userMail : EditText
+    lateinit var userPass : EditText
+    lateinit var fbAut : FirebaseAuth
+
     var c : Context = this
     val preferencesfieldName  = "Preferences"
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +54,11 @@ open class Login : AppCompatActivity() {
         }
 
 
+        userMail = findViewById(R.id.etUser)
+        userPass = findViewById(R.id.etPass)
+        fbAut = FirebaseAuth.getInstance()
+
+
 
     }
 
@@ -63,7 +73,7 @@ open class Login : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when(item.itemId){
-            R.id.settSpa -> setLocale("es")            //prueba(item)
+            R.id.settSpa -> setLocale("es")
             R.id.settEng -> setLocale("en")
             R.id.settMute -> {stopService(Intent(baseContext,MyService::class.java)) }
             R.id.settUnmute -> {startService(Intent(baseContext,MyService::class.java))}
@@ -79,7 +89,10 @@ open class Login : AppCompatActivity() {
                 startActivity(i)
             }
             R.id.logOff ->{
+                FirebaseAuth.getInstance().signOut()
                 val i = Intent(this, Login::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(i)
             }
 
@@ -92,29 +105,16 @@ open class Login : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    /*
-    fun prueba (item : MenuItem){
-
-        setLocale("Default value")
-        item.setIcon(R.drawable.ic_sett_mute)
-
-    }*/
-
-
     fun toMenu(view: View) {
 
-        var name = findViewById<EditText>(R.id.etUser)
-        var sName = name.text.toString()
+        fbAut.signInWithEmailAndPassword(userMail.text.toString(), userPass.text.toString()).addOnCompleteListener {
+            if (it.isSuccessful){
+                val i = Intent(this, MainMenu::class.java)
+                startActivity(i)
+                Toast.makeText(this, "hola", Toast.LENGTH_SHORT).show()
+            }else{
 
-        var pass = findViewById<EditText>(R.id.etPass)
-        var sPass = pass.text.toString()
-
-        if (sName.equals("user") && sPass.equals("user")) {
-            val i = Intent(this, MainMenu::class.java)
-            startActivity(i)
-
-        } else {
-            Toast.makeText(this, "No es correcto", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
