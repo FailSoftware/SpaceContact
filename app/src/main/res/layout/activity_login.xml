@@ -69,9 +69,9 @@
                 android:id="@+id/etUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:hint="@string/user"
                 android:background="@color/brokengrey"
                 android:ems="9"
-                android:hint="@string/user"
                 android:fontFamily="@font/geostar"
                 android:inputType="textPersonName"
                 android:textSize="25sp"/>

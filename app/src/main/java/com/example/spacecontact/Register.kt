@@ -30,18 +30,6 @@ class Register : Login() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        /*bm = BitmapFactory.decodeResource(resources, R.drawable.bodyzero)
-        pilot = Worker("Test", 1, 1, 1, 100, bm, 2, 100, 100, Worker.Job.PILOT);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-            usr = User(0, false, "Falso", "Falso", "Un usuario", LocalDate.parse("31-12-2018", formatter), pilot)
-        }else{
-            Toast.makeText(this,"Your device is not compatible with this version of the program", Toast.LENGTH_SHORT).show()
-        }*/
-
-
-
-
     }
 
     fun alertMatch() {
@@ -69,27 +57,29 @@ class Register : Login() {
                 .addOnCompleteListener{
                     if(!it.isSuccessful) return@addOnCompleteListener
                     startActivity(intent)
-                    //TODO AÑADIR A STRINGS USUARIO CREADO.
-                    Toast.makeText(this, "Usuario creado", Toast.LENGTH_SHORT).show()
+
+                    Toast.makeText(this, R.string.userCreated, Toast.LENGTH_SHORT).show()
                     Log.d("Main", "Successfully created user with uid: ${it.result?.user?.uid}")
                     val userSaved : String = etUser.text.toString()
 
                     val uid = FirebaseAuth.getInstance().uid?:""
                     val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
                     val user = User(uid, userSaved)
+
+
                     ref.setValue(user)
                 }.addOnFailureListener{
                     Log.d("Main", "Failed to create user: ${it.message}")
                     Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
                 }
-                //TODO AÑADIR LOS STRINGS
+
                 }else if(email.isEmpty() && !password.isEmpty()){
-                Toast.makeText(this, "Falta email", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.noEmailWritted, Toast.LENGTH_SHORT).show()
 
                 }else if(!email.isEmpty() && password.isEmpty()){
-                Toast.makeText(this, "Falta password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.noPassWritted, Toast.LENGTH_SHORT).show()
                 }else{
-                Toast.makeText(this, "Faltan los dos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.noBothFields, Toast.LENGTH_SHORT).show()
         }
 
 
