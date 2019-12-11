@@ -64,7 +64,7 @@
             android:hint="@string/email"
             android:padding="5dp"
             android:fontFamily="@font/geostar"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -136,7 +136,7 @@
             android:background="@drawable/buttonstyle"
             android:textStyle="bold"
             android:fontFamily="@font/geostar"
-            android:onClick="toCharactersNew"
+            android:onClick="newUser"
             android:shadowColor="#A8A8A8"
             android:shadowDx="0"
             android:shadowDy="0"
@@ -148,5 +148,6 @@
             app:layout_constraintHorizontal_bias="0.455"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etPasswordConf" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

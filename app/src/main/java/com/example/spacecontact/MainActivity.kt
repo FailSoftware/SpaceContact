@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         //loadNewGame()
         // loadPlanet()
 
+        //rewardTest()
     }
 
     fun loadLogin(){
@@ -31,4 +32,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun rewardTest(){
+        var ship1 : Ship = Ship(this)
+        var ship2 : Ship = Ship(80)
+
+        ship1.battleRewards(this, ship2)
+    }
 }

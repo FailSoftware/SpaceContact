@@ -1,6 +1,9 @@
 package com.example.spacecontact.entity;
 
-public class Weapon extends Entity{
+import java.io.Serializable;
+
+public class Weapon extends Entity implements Serializable {
+    //ProxyBitmap weaponSprite;
     int weaponPower;
     float weaponCritChance;
     float weaponCritMultiplier;
@@ -11,6 +14,14 @@ public class Weapon extends Entity{
         this.weaponCritChance = weaponCritChance;
         this.weaponCritMultiplier = weaponCritMultiplier;
     }
+
+//    public ProxyBitmap getWeaponSprite() {
+//        return weaponSprite;
+//    }
+//
+//    public void setWeaponSprite(ProxyBitmap weaponSprite) {
+//        this.weaponSprite = weaponSprite;
+//    }
 
     public int getWeaponPower() {
         return weaponPower;

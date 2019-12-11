@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="2dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/rareCoinImg"
+            android:layout_width="48dp"
+            android:layout_height="62dp"
+            android:layout_weight="2"
+            tools:srcCompat="@drawable/credit" />
+
+        <TextView
+            android:id="@+id/rareCoinAmmount"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:text="TextView"
+            android:textAlignment="textStart"
+
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="horizontal"
+        android:paddingVertical="2dp">
+
+        <ImageView
+            android:id="@+id/rareFuelImg"
+            android:layout_width="48dp"
+            android:layout_height="62dp"
+            android:layout_weight="2"
+            tools:srcCompat="@drawable/fuel"/>
+
+        <TextView
+            android:id="@+id/rareFuelAmmount"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:text="TextView"
+            android:textAlignment="textStart"
+
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="horizontal"
+        android:paddingVertical="2dp">
+
+        <ImageView
+            android:id="@+id/rareFoodImg"
+            android:layout_width="48dp"
+            android:layout_height="62dp"
+            android:layout_weight="2"
+            tools:src="@drawable/food" />
+
+        <TextView
+            android:id="@+id/rareFoodAmmount"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:text="TextView"
+            android:textAlignment="textStart"
+
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <ImageView
+            android:id="@+id/rareImage"
+            android:layout_width="38dp"
+            android:layout_height="90dp"
+            android:layout_weight="3"
+            tools:src="@drawable/food"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/rareName"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:text="TextView"
+
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/rareStat1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="18sp"
+        />
+    <TextView
+        android:id="@+id/rareStat2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/rareStat3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="18sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <Button
+            android:id="@+id/btnRareDiscard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discard"
+            android:layout_weight="5"/>
+
+        <Button
+            android:id="@+id/btnRareAccept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="Replace" />
+    </LinearLayout>
+
+
+</LinearLayout>

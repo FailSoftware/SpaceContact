@@ -70,11 +70,20 @@ public class AdapterWorkers extends BaseAdapter {
         fatige = context.getString(R.string.fatigeChar);
         turns = context.getString(R.string.turnsChar);
 
-        nAdapt.setText(contextWorkers.getName());
-        fAdapt.setText(fatige+": " +contextWorkers.getFatigue() + "/100");
-        hAdapt.setText(hunger+": "+contextWorkers.getHungerLevel() + "/100");
-        tAdapt.setText(turns+": "+contextWorkers.getCurrentTurns() + "/" + contextWorkers.getTotalTurns());
-        iAdapt.setImageBitmap(contextWorkers.getSprite());
+        try {
+            nAdapt.setText(contextWorkers.getName());
+            fAdapt.setText(fatige+": " +contextWorkers.getFatigue() + "/100");
+            hAdapt.setText(hunger+": "+contextWorkers.getHungerLevel() + "/100");
+            tAdapt.setText(turns+": "+contextWorkers.getCurrentTurns() + "/" + contextWorkers.getTotalTurns());
+            iAdapt.setImageBitmap(contextWorkers.getSprite());
+        } catch (NullPointerException e){
+            nAdapt.setText("Empty space");
+            fAdapt.setText("");
+            hAdapt.setText("");
+            tAdapt.setText("");
+           //iAdapt.setImageBitmap(contextWorkers.getSprite());
+        }
+
 
 
         return convertView;

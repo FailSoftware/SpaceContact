@@ -33,6 +33,10 @@
     <string name="alertMsgPerm">"Si quieres llamarnos tendrás que activar los permisos en Ajustes del Telefono -> Apps -> SpaceContact -> Permisos y activar permisos de LLamada."</string>
     <string name="descFail">"Somos un equipo de estudiantes que está desarrollando un videojuego como proyecto en base Kotlin y Java usando AndroidStudio, similar a Faster Than Light"</string>
     <string name="contactInfo">"Sobre nosotros"</string>
+    <string name="notMatchTitle">"Tu password no coincide."</string>
+    <string name="passNotMatch">"La contraseña tiene que ser igual en ambos campos, asegurate de escribirla bien."</string>
+    <string name="alertNoEmailTitle">"Campo email es obligatorio"</string>
+    <string name="alertEmailMsg">"No puedes dejar el campo email en blanco."</string>
 
 
 </resources>

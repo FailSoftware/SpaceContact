@@ -1,8 +1,20 @@
 package com.example.spacecontact.entity;
 
 import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
+
+import com.example.spacecontact.R;
+import com.example.spacecontact.RareRewardDialog;
+import com.example.spacecontact.SimpleRewardDialog;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -31,7 +43,7 @@ public class Ship extends Entity {
 
     //General constructor with all fields
     public Ship(String name, Integer totalXp, Integer currentXp, Integer level, Integer totalHealth, Integer currentHealth,
-                Integer difficulty, Integer credit,Integer totalShield, Integer currentShield, Integer currentOxygen, Integer currentFuel, Integer totalFood,
+                Integer difficulty, Integer credit, Integer totalShield, Integer currentShield, Integer currentOxygen, Integer currentFuel, Integer totalFood,
                 Integer totalOxygen, Integer totalFuel, Integer currentFood, Integer healthBooster, Float failureIgnoreChance,
                 Weapon weapon, Worker[] crew, ArrayList<ShipPart> part) {
 
@@ -79,7 +91,7 @@ public class Ship extends Entity {
 
 
         Worker[] crew = new Worker[6];
-        for (int i = 0; i < crew.length; i++) {
+        for (int i = 0; i < 3; i++) {
             crew[i] = new Worker(con, 1);
         }
 
@@ -117,8 +129,8 @@ public class Ship extends Entity {
         this.difficulty = difficulty;
         //Random credit = MIN (10 + difficulty) * 10), MAX (10 + difficulty) * 50)
         this.credit = new Random().nextInt((((((10 + difficulty) * 50) - ((10 + difficulty) * 10)) + 1) + (10 + difficulty) * 10));
-        if (difficulty < 100){
-            this.totalShield = (int)(1 + difficulty/20);
+        if (difficulty < 100) {
+            this.totalShield = (int) (1 + difficulty / 20);
         } else {
             this.totalShield = 20;
         }
@@ -126,9 +138,9 @@ public class Ship extends Entity {
         this.totalOxygen = 100;
         this.currentOxygen = 100;
         this.totalFuel = 1000;
-        this.currentFuel = 100;
+        this.currentFuel = new Random().nextInt(totalFuel / 5);
         this.totalFood = 100;
-        this.currentFood = 100;
+        this.currentFood = new Random().nextInt(totalFood / 5);
         this.weapon = new Weapon("Enemy Gun", (int) (10 + difficulty * 1.5), 0, 0);
         this.healthBooster = 0;
 
@@ -148,25 +160,20 @@ public class Ship extends Entity {
 
         //At difficulty 60, enemy crew caps out at 10 workers
         if (difficulty >= 60) {
+            this.crew = new Worker[9];
             for (int i = 0; i < 9; i++) {
-                this.crew = new Worker[9];
                 crew[i] = new Worker(difficulty);
             }
         } else {
+            this.crew = new Worker[(int) (1 + difficulty * 0.15f)];
             for (int i = 0; i < (int) (1 + difficulty * 0.15f); i++) {
-                this.crew = new Worker[(int) (1 + difficulty * 0.15f)];
                 crew[i] = new Worker(difficulty);
             }
         }
         this.part = null;
 
         //Ship's total health is equal to the sum of all the ship parts times two plus the healthBooster if applicable
-        int partSum = 0;
-        for (int i = 0; i < part.size(); i++) {
-            partSum = part.get(i).getTotalHealth();
-        }
-
-        this.setTotalHealth(partSum * 2 + healthBooster);
+        this.setTotalHealth(difficulty * 10);
     }
 
 //endregion
@@ -311,7 +318,7 @@ public class Ship extends Entity {
         if (successChance > new Random().nextInt(100)) {
             //TODO display worker cured injured
             injured.removeStatuses();
-            injured.setCurrentHealth(injured.getCurrentHealth() + (injured.getTotalHealth()/8));
+            injured.setCurrentHealth(injured.getCurrentHealth() + (injured.getTotalHealth() / 8));
         } else {
             //TODO display worker failed and further damaged the injured worker
             injured.setWounded(true);
@@ -494,7 +501,7 @@ public class Ship extends Entity {
         return problem;
     }
 
-    private void PlayerShield(Worker w){
+    private void PlayerShield(Worker w) {
         int successChance = 0;
 
         switch (w.getJob()) {
@@ -514,7 +521,7 @@ public class Ship extends Entity {
                 successChance = 40;
                 break;
         }
-        if (this.getCurrentShield() < this.getTotalShield()){
+        if (this.getCurrentShield() < this.getTotalShield()) {
             if (successChance > new Random().nextInt(100)) {
                 this.setCurrentShield(this.getCurrentShield() + 1);
             } else {
@@ -695,6 +702,87 @@ public class Ship extends Entity {
 
     //endregion
 
+    //region Rewards
+    public void battleRewards(AppCompatActivity aca, Ship enemyShip) {
+        int rareItemChance = new Random().nextInt(101);
+        Worker worker = null;
+        Weapon weapon = null;
+        int credits = enemyShip.getCredit()+1;
+        int fuel = enemyShip.getCurrentFuel()+1;
+        int food = enemyShip.getCurrentFood()+1;
+
+        //Worker reward
+        if (rareItemChance >= 1 && rareItemChance <= 100) {
+            worker = enemyShip.crew[0];
+
+        }
+
+        //Weapon reward
+        if (rareItemChance >= 95 && rareItemChance <= 100) {
+            //Possible legendary weapon
+            rareItemChance = new Random().nextInt(101);
+            if (rareItemChance >= 95 && rareItemChance <= 100) {
+                weapon = enemyShip.getWeapon();
+                weapon.setName("Legendary " + weapon.getName());
+                weapon.setWeaponPower((int)(weapon.getWeaponPower() * 1.5));
+                weapon.setWeaponCritChance(weapon.getWeaponCritChance() * 2);
+                weapon.setWeaponCritMultiplier(weapon.getWeaponCritMultiplier() * 2);
+            } else {
+                weapon = enemyShip.getWeapon();
+            }
+        }
+
+        Log.d("Reward", "Ship - cred:" + credits + ", fuel:" + fuel + ", food:"+food);
+
+        if (worker != null || weapon != null){
+           if (worker != null){
+               RareRewardDialog rewardDialog = new RareRewardDialog();
+               rewardDialog.setCon(aca);
+               rewardDialog.setShip(this);
+               rewardDialog.setWorker(worker);
+               rewardDialog.setCredits(credits);
+               rewardDialog.setFuel(fuel);
+               rewardDialog.setFood(food);
+               rewardDialog.setRarename("NEW WORKER");
+               rewardDialog.setRarestat1("Name: " + worker.getName());
+               rewardDialog.setRarestat2("Job: " + worker.getJob());
+               rewardDialog.setRarestat3("Turns: " + worker.getTotalTurns());
+               rewardDialog.show(aca.getSupportFragmentManager(), "tag");
+           }
+           if (weapon != null){
+               RareRewardDialog rewardDialog = new RareRewardDialog();
+               rewardDialog.setCon(aca);
+               rewardDialog.setShip(this);
+               rewardDialog.setWeapon(weapon);
+               rewardDialog.setCredits(credits);
+               rewardDialog.setFuel(fuel);
+               rewardDialog.setFood(food);
+               rewardDialog.setRarename(weapon.getName());
+               rewardDialog.setRarestat1("Fire Power: " + weapon.getWeaponPower());
+               rewardDialog.setRarestat2("Critical chance: " + weapon.getWeaponCritChance());
+               rewardDialog.setRarestat3("Critical multiplier: " + weapon.getWeaponCritMultiplier());
+               rewardDialog.show(aca.getSupportFragmentManager(), "tag");
+            }
+
+
+        } else {
+            SimpleRewardDialog rewardDialog = new SimpleRewardDialog();
+            rewardDialog.setCon(aca);
+            rewardDialog.setShip(this);
+            rewardDialog.setCredits(credits);
+            rewardDialog.setFuel(fuel);
+            rewardDialog.setFood(food);
+            rewardDialog.show(aca.getSupportFragmentManager(), "tag");
+        }
+
+
+
+
+
+
+    }
+    //endregion
+
     //region Getters/Setters\
 
     public Integer getDifficulty() {
@@ -816,6 +904,7 @@ public class Ship extends Entity {
     public void setTotalShield(Integer totalShield) {
         this.totalShield = totalShield;
     }
+
 
     //endregion
 }

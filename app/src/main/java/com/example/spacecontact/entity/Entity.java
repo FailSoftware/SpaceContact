@@ -19,6 +19,9 @@ public abstract class Entity {
         this.currentHealth = currentHealth;
     }
 
+    public Entity() {
+    }
+
     public Entity(String name) {
         this.name = name;
     }

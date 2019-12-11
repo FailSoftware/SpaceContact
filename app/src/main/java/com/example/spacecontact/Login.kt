@@ -14,6 +14,8 @@ import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_register.*
 import java.util.*
 
 
@@ -45,6 +47,9 @@ open class Login : AppCompatActivity() {
             setLocale("es")
 
         }
+
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -60,12 +65,10 @@ open class Login : AppCompatActivity() {
         when(item.itemId){
             R.id.settSpa -> setLocale("es")            //prueba(item)
             R.id.settEng -> setLocale("en")
-            R.id.settMute -> {
-                //TODO HACER LA FUNCION PARA MUTEAR EL SONIDO Y AÑADIRLO A PREFERENCIAS
-                Toast.makeText(this,"Sound muted...", Toast.LENGTH_SHORT).show()}
-            R.id.settUnmute -> {
-                ////TODO HACER LA FUNCION PARA UNMUTEAR EL SONIDO Y AÑADIRLO A PREFERENCIAS
-                Toast.makeText(this,"Sound unmuted...", Toast.LENGTH_SHORT).show()}
+            R.id.settMute -> {stopService(Intent(baseContext,MyService::class.java)) }
+            R.id.settUnmute -> {startService(Intent(baseContext,MyService::class.java))}
+
+
             R.id.menuContact ->{
                 val i = Intent(this, Contact::class.java)
                 startActivity(i)
