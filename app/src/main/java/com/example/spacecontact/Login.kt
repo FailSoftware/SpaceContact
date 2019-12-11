@@ -65,12 +65,10 @@ open class Login : AppCompatActivity() {
         when(item.itemId){
             R.id.settSpa -> setLocale("es")            //prueba(item)
             R.id.settEng -> setLocale("en")
-            R.id.settMute -> {
-                //TODO HACER LA FUNCION PARA MUTEAR EL SONIDO Y AÑADIRLO A PREFERENCIAS
-                Toast.makeText(this,"Sound muted...", Toast.LENGTH_SHORT).show()}
-            R.id.settUnmute -> {
-                ////TODO HACER LA FUNCION PARA UNMUTEAR EL SONIDO Y AÑADIRLO A PREFERENCIAS
-                Toast.makeText(this,"Sound unmuted...", Toast.LENGTH_SHORT).show()}
+            R.id.settMute -> {stopService(Intent(baseContext,MyService::class.java)) }
+            R.id.settUnmute -> {startService(Intent(baseContext,MyService::class.java))}
+
+
             R.id.menuContact ->{
                 val i = Intent(this, Contact::class.java)
                 startActivity(i)
