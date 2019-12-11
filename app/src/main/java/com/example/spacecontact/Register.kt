@@ -69,6 +69,7 @@ class Register : Login() {
                 .addOnCompleteListener{
                     if(!it.isSuccessful) return@addOnCompleteListener
                     startActivity(intent)
+                    //TODO AÑADIR A STRINGS USUARIO CREADO.
                     Toast.makeText(this, "Usuario creado", Toast.LENGTH_SHORT).show()
                     Log.d("Main", "Successfully created user with uid: ${it.result?.user?.uid}")
                     val userSaved : String = etUser.text.toString()
@@ -76,14 +77,12 @@ class Register : Login() {
                     val uid = FirebaseAuth.getInstance().uid?:""
                     val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
                     val user = User(uid, userSaved)
-                    ref.setValue(user).addOnSuccessListener {
-                        Log.d("RegisterActivity", "Alfin has registrado un usuario junto con su correo.")
-                    }
+                    ref.setValue(user)
                 }.addOnFailureListener{
                     Log.d("Main", "Failed to create user: ${it.message}")
                     Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
                 }
-
+                //TODO AÑADIR LOS STRINGS
                 }else if(email.isEmpty() && !password.isEmpty()){
                 Toast.makeText(this, "Falta email", Toast.LENGTH_SHORT).show()
 

@@ -118,13 +118,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivLog2"
             tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="234dp">
-
-            <ListView
-                android:id="@+id/charInfoLay"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </FrameLayout>
+            tools:layout_editor_absoluteY="234dp"/>
 
         <TextView
             android:id="@+id/tvprueba"
