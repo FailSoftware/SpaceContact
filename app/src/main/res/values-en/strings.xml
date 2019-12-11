@@ -44,5 +44,5 @@
     <string name="noEmailWritted">Email field cannot be empty.</string>
     <string name="noPassWritted">Password field cannot be empty.</string>
     <string name="noBothFields">Password and Email cannot be empty.</string>
-
+    <string name="welcomeMsg">Welcome back</string>
 </resources>

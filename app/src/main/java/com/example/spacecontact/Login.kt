@@ -107,11 +107,12 @@ open class Login : AppCompatActivity() {
 
     fun toMenu(view: View) {
 
+        var msg : String = this.getString(R.string.welcomeMsg)
         fbAut.signInWithEmailAndPassword(userMail.text.toString(), userPass.text.toString()).addOnCompleteListener {
             if (it.isSuccessful){
                 val i = Intent(this, MainMenu::class.java)
                 startActivity(i)
-                Toast.makeText(this, "hola", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, msg+": "+ userMail.text.toString(), Toast.LENGTH_SHORT).show()
             }else{
 
             }
