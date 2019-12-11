@@ -56,6 +56,9 @@ open class Login : AppCompatActivity() {
             setLocale("es")
 
         }
+        if (settingsfile.getBoolean("muisc",true)==true){
+            setMusicOn()
+        }
 
 
         userMail = findViewById(R.id.etUser)
@@ -79,8 +82,8 @@ open class Login : AppCompatActivity() {
         when(item.itemId){
             R.id.settSpa -> setLocale("es")
             R.id.settEng -> setLocale("en")
-            R.id.settMute -> {stopService(Intent(baseContext,MyService::class.java)) }
-            R.id.settUnmute -> {startService(Intent(baseContext,MyService::class.java))}
+            R.id.settMute -> {setMusicOff() }
+            R.id.settUnmute -> {setMusicOn()}
 
 
             R.id.menuContact ->{
@@ -134,6 +137,21 @@ open class Login : AppCompatActivity() {
         startActivity(i)
 
 
+    }
+    fun setMusicOn(){
+        val settingsfile = getSharedPreferences(preferencesfieldName, Context.MODE_PRIVATE)
+        var myeditor: SharedPreferences.Editor  = settingsfile.edit();
+        myeditor.putBoolean("muisc", true)
+        myeditor.apply();
+        startService(Intent(baseContext,MyService::class.java))
+    }
+
+    fun setMusicOff(){
+        val settingsfile = getSharedPreferences(preferencesfieldName, Context.MODE_PRIVATE)
+        var myeditor: SharedPreferences.Editor  = settingsfile.edit();
+        myeditor.putBoolean("muisc", false)
+        myeditor.apply();
+        stopService(Intent(baseContext,MyService::class.java))
     }
 
     fun setLocale(lang: String) {

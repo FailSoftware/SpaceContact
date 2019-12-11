@@ -73,7 +73,6 @@
                 android:background="@color/brokengrey"
                 android:ems="9"
                 android:fontFamily="@font/geostar"
-                android:hint="@string/user"
                 android:inputType="textEmailAddress"
                 android:textSize="25sp" />
         </FrameLayout>
