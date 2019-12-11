@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.spacecontact.entity.Worker;
 
@@ -44,7 +45,7 @@ public class AdapterWorkers extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         LayoutInflater lInflater = ((Activity)context).getLayoutInflater();
         convertView  = lInflater.inflate(R.layout.adapter_workers, null);
 
@@ -76,6 +77,14 @@ public class AdapterWorkers extends BaseAdapter {
             hAdapt.setText(hunger+": "+contextWorkers.getHungerLevel() + "/100");
             tAdapt.setText(turns+": "+contextWorkers.getCurrentTurns() + "/" + contextWorkers.getTotalTurns());
             iAdapt.setImageBitmap(contextWorkers.getSprite());
+
+            convertView.setOnClickListener(new View.OnClickListener() {
+                //TODO hacer un metodo que saque el trabajador y muestre sus acciones
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(parent.getContext(), "nometokei", Toast.LENGTH_SHORT).show();
+                }
+            });
         } catch (NullPointerException e){
             nAdapt.setText("Empty space");
             fAdapt.setText("");
