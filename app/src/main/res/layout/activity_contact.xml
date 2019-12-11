@@ -54,7 +54,7 @@
             android:onClick="toCall"
             app:layout_constraintLeft_toRightOf="@id/icTw"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDesc"
+            app:layout_constraintTop_toBottomOf="@id/frameDesc"
             app:srcCompat="@drawable/ic_telephone" />
 
         <ImageButton
@@ -66,7 +66,7 @@
             android:onClick="toSocial"
             app:layout_constraintLeft_toRightOf="@id/icWeb"
             app:layout_constraintRight_toLeftOf="@id/icCall"
-            app:layout_constraintTop_toBottomOf="@id/tvDesc"
+            app:layout_constraintTop_toBottomOf="@id/frameDesc"
             app:srcCompat="@drawable/ic_twbueno" />
 
         <ImageButton
@@ -78,24 +78,31 @@
             android:backgroundTint="#00FFFFFF"
             app:layout_constraintLeft_toLeftOf="parent"
             android:onClick="toWeb"
-            app:layout_constraintTop_toBottomOf="@id/tvDesc"
+            app:layout_constraintTop_toBottomOf="@id/frameDesc"
             app:srcCompat="@drawable/ic_worldwide" />
 
-        <TextView
-            android:id="@+id/tvDesc"
+        <FrameLayout
+            android:id="@+id/frameDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/geostar"
-            android:text="@string/descFail"
-            android:textAlignment="center"
-            android:textColor="@color/yellow"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvName" />
+            android:background="@color/yellow"
+            android:padding="4dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/tvName">
 
+            <TextView
+                android:id="@+id/tvDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/geostar"
+                android:background="@color/brokengreyAlpha"
+                android:text="@string/descFail"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </FrameLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
