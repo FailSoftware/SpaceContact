@@ -38,13 +38,23 @@ class Game : Login() {
     }
 
     fun loadCharData(view: View){
-        framChar.visibility = View.VISIBLE
+
+        if(framChar.visibility == View.VISIBLE){
+            framChar.visibility = View.GONE
+        }else{
+            framChar.visibility = View.VISIBLE
+        }
+
 
     }
 
-
-    fun exitCharacterSelect(view: View) {
+    fun optionsChar(view: View) {
+        frameOthers.visibility = View.VISIBLE
         framChar.visibility = View.GONE
+    }
+
+    fun exitOptionMenu(view: View){
+        frameOthers.visibility = View.GONE
     }
 
 }

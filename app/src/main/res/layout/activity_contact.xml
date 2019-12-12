@@ -85,18 +85,19 @@
             android:id="@+id/frameDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:background="@color/yellow"
             android:padding="4dp"
-            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvName">
 
             <TextView
                 android:id="@+id/tvDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:background="@color/brokengrey"
                 android:fontFamily="@font/geostar"
-                android:background="@color/brokengreyAlpha"
                 android:text="@string/descFail"
                 android:textAlignment="center"
                 android:textColor="@color/black"
