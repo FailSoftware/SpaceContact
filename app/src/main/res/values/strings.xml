@@ -44,5 +44,18 @@
     <string name="noPassWritted">El campo Password no puede estar vacio.</string>
     <string name="noBothFields">El campo Password y Email son obligatorios.</string>
     <string name="welcomeMsg">Bienvenido de nuevo</string>
+    <string name="buttonEat">Comer</string>
+    <string name="buttonSleep">Dormir</string>
+    <string name="buttonTalk">Hablar</string>
+    <string name="buttonAttack">Atacar</string>
+
+
+
+
+    >
+
+
+
+
 
 </resources>

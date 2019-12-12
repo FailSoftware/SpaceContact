@@ -45,4 +45,10 @@
     <string name="noPassWritted">Password field cannot be empty.</string>
     <string name="noBothFields">Password and Email cannot be empty.</string>
     <string name="welcomeMsg">Welcome back</string>
+    <string name="buttonEat">Eat</string>
+    <string name="buttonSleep">Sleep</string>
+    <string name="buttonInspect">Inspect</string>
+    <string name="buttonTalk">Talk</string>
+    <string name="buttonAttack">Attack</string>
+
 </resources>
