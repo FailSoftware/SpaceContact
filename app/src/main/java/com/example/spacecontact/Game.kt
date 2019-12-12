@@ -45,9 +45,13 @@ class Game : Login() {
 
     }
 
-
-    fun exitCharacterSelect(view: View) {
+    fun optionsChar(view: View) {
+        frameOthers.visibility = View.VISIBLE
         framChar.visibility = View.GONE
+    }
+
+    fun exitOptionMenu(view: View){
+        frameOthers.visibility = View.GONE
     }
 
 }
