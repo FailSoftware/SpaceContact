@@ -35,7 +35,13 @@ class Game : Login() {
     }
 
     fun loadCharData(view: View){
-        framChar.visibility = View.VISIBLE
+
+        if(framChar.visibility == View.VISIBLE){
+            framChar.visibility = View.GONE
+        }else{
+            framChar.visibility = View.VISIBLE
+        }
+
 
     }
 
