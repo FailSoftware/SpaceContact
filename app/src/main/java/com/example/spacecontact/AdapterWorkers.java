@@ -2,6 +2,8 @@ package com.example.spacecontact;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import java.util.Iterator;
 
 public class AdapterWorkers extends BaseAdapter {
 
+    private Boolean frameActivated = true;
     private Context context;
     private ArrayList<Worker> workers;
 
@@ -80,9 +83,13 @@ public class AdapterWorkers extends BaseAdapter {
 
             convertView.setOnClickListener(new View.OnClickListener() {
                 //TODO hacer un metodo que saque el trabajador y muestre sus acciones
+
+                ViewGroup activeChar = parent;
+
+
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(parent.getContext(), "nometokei", Toast.LENGTH_SHORT).show();
+                    Layout inf = parent.layout();
                 }
             });
         } catch (NullPointerException e){

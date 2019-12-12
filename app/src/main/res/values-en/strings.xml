@@ -50,5 +50,7 @@
     <string name="buttonInspect">Inspect</string>
     <string name="buttonTalk">Talk</string>
     <string name="buttonAttack">Attack</string>
+    <string name="buttonRepair">Repair</string>
+    <string name="buttonOthers">Others</string>
 
 </resources>
