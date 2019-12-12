@@ -13,6 +13,8 @@ import androidx.core.app.ActivityCompat
 import com.example.spacecontact.entity.Ship
 import com.example.spacecontact.entity.User
 import com.example.spacecontact.entity.Worker
+import com.example.spacecontact.gameFunctions.LoadGame
+import com.example.spacecontact.gameFunctions.SaveGame
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
@@ -30,6 +32,8 @@ class MainMenu : Login(){
     lateinit var ship : Ship
     lateinit var wor : Worker
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
@@ -38,9 +42,16 @@ class MainMenu : Login(){
         usr = intent.getParcelableExtra("usr")
         wor = intent.getParcelableExtra("wor")
         usr.pilot = wor
-        var tempShip : Ship = Ship(usr.pilot, this)
-        ship = tempShip
 
+        val lg = LoadGame()
+        lg.run()
+
+        ship = lg.ship
+
+
+
+
+        usr.pilot = ship.crew[0]
         
         userM = findViewById(R.id.tvprueba)
         fbAu = FirebaseAuth.getInstance()

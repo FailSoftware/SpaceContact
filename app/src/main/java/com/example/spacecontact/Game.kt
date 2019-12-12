@@ -5,8 +5,8 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.GridView
 import com.example.spacecontact.entity.Ship
+import com.example.spacecontact.gameFunctions.AdapterWorkers
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_game.*
 import kotlin.collections.ArrayList
 
 class Game : Login() {
@@ -28,7 +28,10 @@ class Game : Login() {
         val ship : Ship = gson.fromJson(json, Ship::class.java)
 
         var adapterWorkers: AdapterWorkers =
-            AdapterWorkers(this, (ship.crew).toCollection(ArrayList()))
+            AdapterWorkers(
+                this,
+                (ship.crew).toCollection(ArrayList())
+            )
         gridLay.adapter = adapterWorkers;
 
         framChar = findViewById(R.id.framChar)

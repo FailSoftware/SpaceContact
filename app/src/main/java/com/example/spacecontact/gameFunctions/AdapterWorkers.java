@@ -1,9 +1,10 @@
-package com.example.spacecontact;
+package com.example.spacecontact.gameFunctions;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,9 @@ import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.spacecontact.R;
 import com.example.spacecontact.entity.Worker;
+import com.google.firebase.database.snapshot.Index;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -25,7 +28,6 @@ public class AdapterWorkers extends BaseAdapter {
     private Boolean frameActivated = true;
     private Context context;
     private ArrayList<Worker> workers;
-    private FrameLayout flay;
 
     private String hunger;
     private String fatige;
@@ -66,28 +68,32 @@ public class AdapterWorkers extends BaseAdapter {
 
         Iterator iter = workers.iterator();
         Worker contextWorkers;
-        Worker auxWorker;
         int contador = 0;
 
         do{
-            auxWorker = (Worker) iter.next();
             contador ++;
         }while(iter.hasNext() && contador <= position);
-        contextWorkers = auxWorker;
+
+
 
 
         hunger = context.getString(R.string.hungerChar);
         fatige = context.getString(R.string.fatigeChar);
         turns = context.getString(R.string.turnsChar);
 
-        flay = parent.findViewById(R.id.framChar);
-
         try {
+            contextWorkers = workers.get(contador);
+
             nAdapt.setText(contextWorkers.getName());
             fAdapt.setText(fatige+": " +contextWorkers.getFatigue() + "/100");
             hAdapt.setText(hunger+": "+contextWorkers.getHungerLevel() + "/100");
             tAdapt.setText(turns+": "+contextWorkers.getCurrentTurns() + "/" + contextWorkers.getTotalTurns());
             iAdapt.setImageBitmap(contextWorkers.getSprite());
+
+            Log.d("Adapter", contador + " >> " + contextWorkers.getName() + " == " + workers.get(contador).getName());
+            for (Worker w: workers) {
+                Log.d("Adapter", "Workers >> " +  w.getName());
+            }
 
 
         } catch (NullPointerException e){
@@ -96,6 +102,8 @@ public class AdapterWorkers extends BaseAdapter {
             hAdapt.setText("");
             tAdapt.setText("");
            //iAdapt.setImageBitmap(contextWorkers.getSprite());
+        } catch (IndexOutOfBoundsException e){
+
         }
 
 

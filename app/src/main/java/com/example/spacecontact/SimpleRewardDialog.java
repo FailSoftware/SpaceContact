@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.example.spacecontact.entity.Ship;
-import com.google.gson.Gson;
+import com.example.spacecontact.gameFunctions.SaveGame;
 
 
 public class SimpleRewardDialog extends AppCompatDialogFragment {
@@ -72,11 +72,16 @@ public class SimpleRewardDialog extends AppCompatDialogFragment {
                     ship.setCurrentFood(ship.getCurrentFood() + food);
                 }
 
-                Gson gson = new Gson();
-                String json = gson.toJson(ship);
+                SaveGame sg = new SaveGame(ship);
+                sg.run();
+
 
                 Intent intent = new Intent(con, Game.class);
-                intent.putExtra("json", json);
+//                Gson gson = new Gson();
+//                String json = gson.toJson(ship);
+//                intent.putExtra("json", json);
+
+
                 con.startActivity(intent);
 
             }

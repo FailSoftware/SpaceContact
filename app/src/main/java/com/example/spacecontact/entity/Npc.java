@@ -1,6 +1,7 @@
 package com.example.spacecontact.entity;
 
 import android.graphics.Bitmap;
+import android.os.Parcel;
 
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ public class Npc extends Entity{
     private Bitmap npc;
 
     public Npc(String name, Integer totalXp, Integer currentXp, Integer level, Integer totalHealth, Integer currentHealth, ArrayList<String> lore, Bitmap npc) {
-        super("Pruebas", 1, 1, 1, 1, 1);
+        super("Pruebas");
         this.lore = lore;
         this.npc = npc;
     }
@@ -29,4 +30,5 @@ public class Npc extends Entity{
     public void setNpc(Bitmap npc) {
         this.npc = npc;
     }
+
 }

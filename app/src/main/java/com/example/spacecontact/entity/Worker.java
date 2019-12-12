@@ -10,7 +10,6 @@ import com.example.spacecontact.R;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Worker extends Entity implements Parcelable {
     private Bitmap sprite;
@@ -22,8 +21,6 @@ public class Worker extends Entity implements Parcelable {
     private Boolean isOnFire;
     private Boolean isOnShock;
     private Job job;
-
-
 
     protected Worker(Parcel in) {
         sprite = in.readParcelable(Bitmap.class.getClassLoader());
