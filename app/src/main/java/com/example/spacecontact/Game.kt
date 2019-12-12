@@ -2,6 +2,7 @@ package com.example.spacecontact
 
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.GridView
 import com.example.spacecontact.entity.Ship
 import com.google.gson.Gson
@@ -9,6 +10,8 @@ import kotlinx.android.synthetic.main.activity_game.*
 import kotlin.collections.ArrayList
 
 class Game : Login() {
+    lateinit var gridLay : GridView;
+    lateinit var framChar : FrameLayout;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +30,15 @@ class Game : Login() {
         var adapterWorkers: AdapterWorkers =
             AdapterWorkers(this, (ship.crew).toCollection(ArrayList()))
         gridLay.adapter = adapterWorkers;
+
+        framChar = findViewById(R.id.framChar)
     }
+
+    fun loadCharData(view: View){
+        framChar.visibility = View.VISIBLE
+
+    }
+
 
     fun exitCharacterSelect(view: View) {
         framChar.visibility = View.GONE

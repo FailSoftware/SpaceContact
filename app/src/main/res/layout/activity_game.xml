@@ -181,7 +181,9 @@
             android:background="@color/violetMain"
             android:horizontalSpacing="5dp"
             android:numColumns="2"
-            android:verticalSpacing="5dp" />
+            android:verticalSpacing="5dp"
+            android:descendantFocusability="blocksDescendants"
+            />
     </FrameLayout>
 
     <FrameLayout
@@ -190,7 +192,7 @@
         android:layout_height="wrap_content"
         android:background="@color/violetMain"
         android:padding="4dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/textLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

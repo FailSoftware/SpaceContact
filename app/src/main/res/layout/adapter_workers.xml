@@ -5,7 +5,9 @@
     android:id="@+id/ParentAdapter"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:onClick="loadCharData"
+    >
 
     <ImageView
         android:id="@+id/ivWorker"
