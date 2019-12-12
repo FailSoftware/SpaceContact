@@ -1,20 +1,13 @@
 package com.example.spacecontact.entity;
 
 import android.content.Context;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatTextView;
 
-import com.example.spacecontact.R;
 import com.example.spacecontact.RareRewardDialog;
 import com.example.spacecontact.SimpleRewardDialog;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 

@@ -5,7 +5,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Matrix
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -31,26 +30,42 @@ class Characters : Login() {
         setContentView(R.layout.activity_characters)
 
         var intent = intent
-        this.usr = intent.getParcelableExtra("usr")
-        this.wor = intent.getParcelableExtra("wor")
         usr.pilot = wor
 
         //region Skin tones
-        bodyList.add(BitmapFactory.decodeResource(this.resources, R.drawable.bodyzero))
-        bodyList.add(BitmapFactory.decodeResource(this.resources, R.drawable.bodyone))
-        bodyList.add(BitmapFactory.decodeResource(this.resources, R.drawable.bodytwo))
+        bodyList.add(BitmapFactory.decodeResource(this.resources,
+            R.drawable.bodyzero
+        ))
+        bodyList.add(BitmapFactory.decodeResource(this.resources,
+            R.drawable.bodyone
+        ))
+        bodyList.add(BitmapFactory.decodeResource(this.resources,
+            R.drawable.bodytwo
+        ))
         //endregion
 
         //region suits
-        suitList.add(BitmapFactory.decodeResource(this.resources, R.drawable.suitzero))
-        suitList.add(BitmapFactory.decodeResource(this.resources, R.drawable.suitone))
+        suitList.add(BitmapFactory.decodeResource(this.resources,
+            R.drawable.suitzero
+        ))
+        suitList.add(BitmapFactory.decodeResource(this.resources,
+            R.drawable.suitone
+        ))
         //endregion
 
         //region beards
-        beardList.add(BitmapFactory.decodeResource(this.resources, R.drawable.beardzero))
-        beardList.add(BitmapFactory.decodeResource(this.resources, R.drawable.beardone))
-        beardList.add(BitmapFactory.decodeResource(this.resources, R.drawable.beardtwo))
-        beardList.add(BitmapFactory.decodeResource(this.resources, R.drawable.beardthree))
+        beardList.add(BitmapFactory.decodeResource(this.resources,
+            R.drawable.beardzero
+        ))
+        beardList.add(BitmapFactory.decodeResource(this.resources,
+            R.drawable.beardone
+        ))
+        beardList.add(BitmapFactory.decodeResource(this.resources,
+            R.drawable.beardtwo
+        ))
+        beardList.add(BitmapFactory.decodeResource(this.resources,
+            R.drawable.beardthree
+        ))
         //endregion
 
 
@@ -141,8 +156,6 @@ class Characters : Login() {
     fun toConfirm(view: View) {
         saveCharacter(usr.pilot)
         var intent = Intent(this, MainMenu::class.java)
-        intent.putExtra("usr", usr)
-        intent.putExtra("wor", usr.pilot)
         startActivity(intent)
     }
 

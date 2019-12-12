@@ -6,6 +6,7 @@ import android.util.Log;
 import com.example.spacecontact.Preferences;
 import com.example.spacecontact.entity.Ship;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -24,7 +25,9 @@ public class SaveGame implements Runnable{
     @Override
     public void run(){
         try {
-            Gson gson = new Gson();
+            GsonBuilder gb = new GsonBuilder();
+            gb.setPrettyPrinting();
+            Gson gson = gb.create();
             String json = gson.toJson(ship);
             FileOutputStream fos = new FileOutputStream(new File(Environment.getExternalStorageDirectory(), "sps.json"));
             Log.d("save", Environment.getExternalStorageDirectory().toString());

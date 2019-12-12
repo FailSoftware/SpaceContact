@@ -6,7 +6,8 @@ import android.widget.FrameLayout
 import android.widget.GridView
 import com.example.spacecontact.entity.Ship
 import com.example.spacecontact.gameFunctions.AdapterWorkers
-import com.google.gson.Gson
+import com.example.spacecontact.gameFunctions.LoadGame
+import kotlinx.android.synthetic.main.activity_game.*
 import kotlin.collections.ArrayList
 
 class Game : Login() {
@@ -18,14 +19,12 @@ class Game : Login() {
         setContentView(R.layout.activity_game)
 
 
+        val lg = LoadGame()
+        lg.run()
+
         var gridLay : GridView = findViewById(R.id.gridLay)
-        var bundle = intent.extras as Bundle
+        val ship : Ship = lg.ship
 
-        //PASAR EL SHIP DEL JUGADOR EN UN OBJETO JSON SIEMPRE
-        val json : String ?= bundle.getString("json")
-        var gson : Gson = Gson()
-
-        val ship : Ship = gson.fromJson(json, Ship::class.java)
 
         var adapterWorkers: AdapterWorkers =
             AdapterWorkers(

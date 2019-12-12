@@ -25,7 +25,6 @@ import com.example.spacecontact.gameFunctions.SaveGame
 import com.google.firebase.auth.FirebaseAuth
 import java.time.LocalDate
 import java.util.*
-import java.util.jar.Manifest
 
 
 open class Login : AppCompatActivity() {
@@ -47,7 +46,10 @@ open class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        overridePendingTransition(
+            R.anim.fade_in,
+            R.anim.fade_out
+        )
 
 
         getSupportActionBar()?.setDisplayShowTitleEnabled(false)
@@ -176,8 +178,6 @@ open class Login : AppCompatActivity() {
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     val i = Intent(this, MainMenu::class.java)
-                    i.putExtra("usr", usr)
-                    i.putExtra("wor", wor)
                     startActivity(i)
                     Toast.makeText(this, msg + ": " + userMail.text.toString(), Toast.LENGTH_SHORT)
                         .show()

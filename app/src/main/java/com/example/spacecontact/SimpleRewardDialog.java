@@ -76,13 +76,13 @@ public class SimpleRewardDialog extends AppCompatDialogFragment {
                 sg.run();
 
 
-                Intent intent = new Intent(con, Game.class);
+
 //                Gson gson = new Gson();
 //                String json = gson.toJson(ship);
 //                intent.putExtra("json", json);
 
-
-                con.startActivity(intent);
+                Intent i = new Intent(con, Game.class);
+                con.startActivity(i);
 
             }
         });

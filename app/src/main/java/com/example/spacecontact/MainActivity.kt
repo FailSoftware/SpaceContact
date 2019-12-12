@@ -1,7 +1,6 @@
 package com.example.spacecontact
 
 import android.content.Intent
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -15,16 +14,23 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        overridePendingTransition(
+            R.anim.fade_in,
+            R.anim.fade_out
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        logoSplash.startAnimation(AnimationUtils.loadAnimation(this, R.anim.splash_in))
+        logoSplash.startAnimation(AnimationUtils.loadAnimation(this,
+            R.anim.splash_in
+        ))
         Handler().postDelayed({
-            logoSplash.startAnimation(AnimationUtils.loadAnimation(this,R.anim.splash_out))
+            logoSplash.startAnimation(AnimationUtils.loadAnimation(this,
+                R.anim.splash_out
+            ))
             Handler().postDelayed({
                 logoSplash.visibility = View.GONE
                 startActivity(Intent(this, Login::class.java))
