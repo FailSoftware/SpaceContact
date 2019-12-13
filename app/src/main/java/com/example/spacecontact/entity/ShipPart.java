@@ -1,6 +1,7 @@
 package com.example.spacecontact.entity;
 
 public class ShipPart {
+    private String partName;
     private Integer totalHealth;
     private Integer currentHealth;
     private Boolean isOnFire;
@@ -8,7 +9,8 @@ public class ShipPart {
     private Boolean isPierced;
 
     // General constructor with all fields
-    public ShipPart(Integer totalHealth, Integer currentHealth, Boolean isOnFire, Boolean isOnShock, Boolean isPierced) {
+    public ShipPart(String partName, Integer totalHealth, Integer currentHealth, Boolean isOnFire, Boolean isOnShock, Boolean isPierced) {
+        this.partName = partName;
         this.totalHealth = totalHealth;
         this.currentHealth = currentHealth;
         this.isOnFire = isOnFire;
@@ -55,6 +57,14 @@ public class ShipPart {
 
     public void setOnShock(Boolean onShock) {
         isOnShock = onShock;
+    }
+
+    public String getPartName() {
+        return partName;
+    }
+
+    public void setPartName(String partName) {
+        this.partName = partName;
     }
 
     //endregion
