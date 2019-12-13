@@ -32,7 +32,8 @@ public class AdapterWorkers extends BaseAdapter {
     private String hunger;
     private String fatige;
     private String turns;
-    public AdapterWorkers(Context context, ArrayList<Worker> workers){
+
+    public AdapterWorkers(Context context, ArrayList<Worker> workers) {
         this.context = context;
         this.workers = workers;
     }
@@ -55,8 +56,9 @@ public class AdapterWorkers extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, final ViewGroup parent) {
-        LayoutInflater lInflater = ((Activity)context).getLayoutInflater();
-        convertView  = lInflater.inflate(R.layout.adapter_workers, null);
+        LayoutInflater lInflater = ((Activity) context).getLayoutInflater();
+        convertView = lInflater.inflate(R.layout.adapter_workers, null);
+        convertView.setTag(position);
 
         TextView nAdapt = convertView.findViewById(R.id.tvName);
         TextView fAdapt = convertView.findViewById(R.id.tvFat);
@@ -64,53 +66,35 @@ public class AdapterWorkers extends BaseAdapter {
         TextView tAdapt = convertView.findViewById(R.id.tvTurns);
         ImageView iAdapt = convertView.findViewById(R.id.ivWorker);
 
-
-
-        Iterator iter = workers.iterator();
         Worker contextWorkers;
-        int contador = 0;
-
-        do{
-            contador ++;
-        }while(iter.hasNext() && contador <= position);
-
-
-
 
         hunger = context.getString(R.string.hungerChar);
         fatige = context.getString(R.string.fatigeChar);
         turns = context.getString(R.string.turnsChar);
 
         try {
-            contextWorkers = workers.get(contador);
+            contextWorkers = workers.get(position);
 
             nAdapt.setText(contextWorkers.getName());
-            fAdapt.setText(fatige+": " +contextWorkers.getFatigue() + "/100");
-            hAdapt.setText(hunger+": "+contextWorkers.getHungerLevel() + "/100");
-            tAdapt.setText(turns+": "+contextWorkers.getCurrentTurns() + "/" + contextWorkers.getTotalTurns());
+            fAdapt.setText(fatige + ": " + contextWorkers.getFatigue() + "/100");
+            hAdapt.setText(hunger + ": " + contextWorkers.getHungerLevel() + "/100");
+            tAdapt.setText(turns + ": " + contextWorkers.getCurrentTurns() + "/" + contextWorkers.getTotalTurns());
             iAdapt.setImageBitmap(contextWorkers.getSprite());
 
-            Log.d("Adapter", contador + " >> " + contextWorkers.getName() + " == " + workers.get(contador).getName());
-            for (Worker w: workers) {
-                Log.d("Adapter", "Workers >> " +  w.getName());
-            }
 
-
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             nAdapt.setText("Empty space");
             fAdapt.setText("");
             hAdapt.setText("");
             tAdapt.setText("");
-           //iAdapt.setImageBitmap(contextWorkers.getSprite());
-        } catch (IndexOutOfBoundsException e){
+            //iAdapt.setImageBitmap(contextWorkers.getSprite());
+        } catch (IndexOutOfBoundsException e) {
 
         }
 
 
-
         return convertView;
     }
-
 
 
 }

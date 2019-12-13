@@ -52,5 +52,9 @@
     <string name="buttonAttack">Attack</string>
     <string name="buttonRepair">Repair</string>
     <string name="buttonOthers">Others</string>
+    <string name="workerHP">[Health]</string>
+    <string name="workerFat">[Fatigue]</string>
+    <string name="workerHung">[Hunger]</string>
+
 
 </resources>

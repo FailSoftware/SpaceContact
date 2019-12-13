@@ -232,11 +232,14 @@ public class Ship extends Entity {
      * @param sp        nullable, only used when repairing
      * @param injured   nullable, only used when curing
      */
-    public void playerTurn(String action, Worker w, Ship enemyShip, ShipPart sp, Worker injured) {
+    public String playerTurn(String action, Worker w, Ship enemyShip, ShipPart sp, Worker injured) {
         Log.d("Action", "Player acted, " + w.getName() + " is trying to " + action);
+
+        String returnString = "";
+
         switch (action) {
             case "Attack":
-                PlayerAttack(w, enemyShip);
+                returnString = PlayerAttack(w, enemyShip);
                 break;
 
             case "Repair":
@@ -287,12 +290,16 @@ public class Ship extends Entity {
                 w.setCurrentTurns(w.getCurrentTurns() - 1); //Always removes a turn
             }
         }
+
+        return returnString;
     }
 
 
     //region Worker SubFunctions
-    private void WorkerInspect(String w) {
+    private String WorkerInspect(String w) {
         //TODO show some info on screen
+        String returnString = w + " tried to inspect something but failed cause I'm too lazy to code this properly";
+        return returnString;
     }
 
     private void WorkerTalk(String w) {
@@ -579,43 +586,49 @@ public class Ship extends Entity {
 
     }
 
-    private void PlayerAttack(Worker w, Ship enemyShip) {
-        int successChance = 0;
+    private String PlayerAttack(Worker w, Ship enemyShip) {
+        String returnString = "";
+        try {
 
-        switch (w.getJob()) {
-            case ASSAULT:
-                successChance = 90;
-                break;
+            int successChance = 0;
 
-            case PILOT:
-                successChance = 75;
-                break;
+            switch (w.getJob()) {
+                case ASSAULT:
+                    successChance = 90;
+                    break;
 
-            case RECRUIT:
-                successChance = 60;
-                break;
+                case PILOT:
+                    successChance = 75;
+                    break;
 
-            default:
-                successChance = 40;
-                break;
-        }
+                case RECRUIT:
+                    successChance = 60;
+                    break;
 
-        if (successChance > new Random().nextInt(100)) {
-            //TODO display player shot enemy
-            int totalDamage = getWeapon().getWeaponPower();
-
-
-            if (getWeapon().getWeaponCritChance() > new Random().nextInt(100)) {
-                //TODO display it was critical
-                totalDamage = (int) (getWeapon().getWeaponPower() * getWeapon().getWeaponCritMultiplier());
+                default:
+                    successChance = 40;
+                    break;
             }
 
-            enemyShip.setCurrentHealth(enemyShip.getCurrentHealth() - totalDamage);
+            if (successChance > new Random().nextInt(100)) {
+                //TODO display player shot enemy
+                int totalDamage = getWeapon().getWeaponPower();
 
-        } else {
-            //TODO display shot missed
+
+                if (getWeapon().getWeaponCritChance() > new Random().nextInt(100)) {
+                    //TODO display it was critical
+                    totalDamage = (int) (getWeapon().getWeaponPower() * getWeapon().getWeaponCritMultiplier());
+                }
+
+                enemyShip.setCurrentHealth(enemyShip.getCurrentHealth() - totalDamage);
+
+            } else {
+                //TODO display shot missed
+            }
+        }catch (NullPointerException e){
+            returnString = w.getName() + " wondered what would happen if he stuck a potato in the antimaterial cannon";
         }
-
+        return returnString;
     }
     //endregion
 

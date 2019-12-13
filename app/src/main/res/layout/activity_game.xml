@@ -28,7 +28,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/textLayout"
+        android:id="@+id/msgLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.10"
@@ -37,7 +37,7 @@
         >
 
         <TextView
-            android:id="@+id/textView31"
+            android:id="@+id/msgBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="holita"
@@ -193,7 +193,7 @@
         android:background="@color/violetMain"
         android:padding="4dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/textLayout"
+        app:layout_constraintBottom_toTopOf="@+id/msgLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/statsLayout">
@@ -209,10 +209,10 @@
                 android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/divider3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/bodyzero"
-                app:layout_constraintBottom_toTopOf="@id/divider3"/>
+                app:srcCompat="@drawable/bodyzero" />
 
             <Button
                 android:id="@+id/btAtack"
@@ -221,6 +221,7 @@
                 android:layout_marginBottom="2dp"
                 android:background="@drawable/buttonstyle"
                 android:fontFamily="@font/geostar"
+                android:onClick="attackFun"
                 android:shadowColor="#A8A8A8"
                 android:shadowDx="0"
                 android:shadowDy="0"
@@ -229,7 +230,6 @@
                 android:textColor="#ffedb2"
                 android:textSize="10sp"
                 android:textStyle="bold"
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -259,10 +259,10 @@
                 android:layout_marginBottom="2dp"
                 android:background="@drawable/buttonstyle"
                 android:fontFamily="@font/geostar"
+                android:onClick="optionsChar"
                 android:shadowColor="#A8A8A8"
                 android:shadowDx="0"
                 android:shadowDy="0"
-                android:onClick="optionsChar"
                 android:shadowRadius="5"
                 android:text="@string/buttonOthers"
                 android:textColor="#ffedb2"
@@ -272,7 +272,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/tvWorkerLore"
                 android:layout_width="322dp"
                 android:layout_height="82dp"
                 android:layout_marginTop="15dp"
@@ -288,33 +288,45 @@
                 app:layout_constraintVertical_bias="0.815" />
 
             <TextView
-                android:id="@+id/btFat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_marginLeft="5dp"
-                app:layout_constraintTop_toBottomOf="@id/btHung"
-                app:layout_constraintLeft_toRightOf="@id/divider2"
-                app:layout_constraintBottom_toTopOf="@id/divider3"
-                 />
-
-            <TextView
                 android:id="@+id/btHung"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:layout_marginEnd="16dp"
+                android:text="@string/workerHung"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_marginLeft="5dp"
-                app:layout_constraintTop_toBottomOf="@id/btHp"
-                app:layout_constraintLeft_toRightOf="@id/divider2"
                 app:layout_constraintBottom_toTopOf="@id/btFat"
-                 />
+                app:layout_constraintEnd_toStartOf="@+id/pbHung"
+                app:layout_constraintTop_toBottomOf="@id/btHp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/btHp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/workerHP"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/btHung"
+                app:layout_constraintEnd_toStartOf="@+id/pbHp"
+                app:layout_constraintLeft_toRightOf="@id/divider2"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
+
+            <TextView
+                android:id="@+id/btFat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/workerFat"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/divider3"
+                app:layout_constraintEnd_toStartOf="@+id/pbFat"
+                app:layout_constraintTop_toBottomOf="@id/btHung" />
+
+            <TextView
+                android:id="@+id/tvWorkerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -327,7 +339,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/tvWorkerJob"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -335,20 +347,8 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintStart_toEndOf="@+id/tvWorkerName"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/btHp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_marginLeft="5dp"
-                app:layout_constraintTop_toBottomOf="@id/divider"
-                app:layout_constraintLeft_toRightOf="@id/divider2"
-                app:layout_constraintBottom_toTopOf="@id/btHung"/>
 
             <View
                 android:id="@+id/divider"
@@ -363,40 +363,39 @@
 
 
             <ProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/pbHp"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="120dp"
                 android:layout_height="20dp"
-                android:progress="100"
                 android:layout_marginRight="5dp"
+                android:progress="100"
+                app:layout_constraintBottom_toTopOf="@id/pbHung"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/progressBar2"
 
-                 />
-
-            <ProgressBar
-                android:id="@+id/progressBar2"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="120dp"
-                android:layout_height="20dp"
-                android:layout_marginRight="5dp"
-                android:progress="100"
-                app:layout_constraintTop_toBottomOf="@id/progressBar"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/progressBar3"
                 />
 
             <ProgressBar
-                android:id="@+id/progressBar3"
+                android:id="@+id/pbHung"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="120dp"
                 android:layout_height="20dp"
-                android:progress="100"
                 android:layout_marginRight="5dp"
+                android:progress="100"
+                app:layout_constraintBottom_toTopOf="@id/pbFat"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/progressBar2"
-                app:layout_constraintBottom_toTopOf="@id/divider3"/>
+                app:layout_constraintTop_toBottomOf="@id/pbHp" />
+
+            <ProgressBar
+                android:id="@+id/pbFat"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="5dp"
+                android:progress="100"
+                app:layout_constraintBottom_toTopOf="@id/divider3"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pbHung" />
 
             <View
                 android:id="@+id/divider2"
@@ -419,7 +418,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/tvWorkerTurns"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
@@ -440,7 +439,7 @@
         android:background="@color/violetMain"
         android:padding="4dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/textLayout"
+        app:layout_constraintBottom_toTopOf="@id/msgLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/statsLayout">

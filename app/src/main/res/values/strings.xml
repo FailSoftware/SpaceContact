@@ -51,6 +51,9 @@
     <string name="buttonRepair">Reparar</string>
     <string name="buttonInspect">Inspeccionar</string>
     <string name="buttonOthers">Others</string>
+    <string name="workerHP">[Vida]</string>
+    <string name="workerFat">[Fatiga]</string>
+    <string name="workerHung">[Hambre]</string>
     >
 
 
