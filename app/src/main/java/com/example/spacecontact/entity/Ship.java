@@ -89,17 +89,17 @@ public class Ship extends Entity {
         }
 
         part = new ArrayList<>();
-        ShipPart body = new ShipPart(100, 100, false, false, false);
-        ShipPart wing = new ShipPart(100, 100, false, false, false);
-        ShipPart cockpit = new ShipPart(100, 100, false, false, false);
-        ShipPart kitchen = new ShipPart(100, 100, false, false, false);
-        ShipPart dorm = new ShipPart(100, 100, false, false, false);
-        ShipPart engine = new ShipPart(100, 100, false, false, false);
-        ShipPart forcefield = new ShipPart(100, 100, false, false, false);
-        ShipPart storage = new ShipPart(100, 100, false, false, false);
-        ShipPart infirmary = new ShipPart(100, 100, false, false, false);
-        ShipPart armory = new ShipPart(100, 100, false, false, false);
-        ShipPart bathroom = new ShipPart(100, 100, false, false, false);
+        ShipPart body = new ShipPart("body", 100, 100, false, false, false);
+        ShipPart wing = new ShipPart("wing", 100, 100, false, false, false);
+        ShipPart cockpit = new ShipPart("cockpit",100, 100, false, false, false);
+        ShipPart kitchen = new ShipPart("kitchen",100, 100, false, false, false);
+        ShipPart dorm = new ShipPart("dorm",100, 100, false, false, false);
+        ShipPart engine = new ShipPart("engine",100, 100, false, false, false);
+        ShipPart forcefield = new ShipPart("forcefield",100, 100, false, false, false);
+        ShipPart storage = new ShipPart("storage",100, 100, false, false, false);
+        ShipPart infirmary = new ShipPart("infirmary",100, 100, false, false, false);
+        ShipPart armory = new ShipPart("armory",100, 100, false, false, false);
+        ShipPart bathroom = new ShipPart("bathroom",100, 100, false, false, false);
         part.add(body);
         part.add(wing);
         part.add(cockpit);
@@ -139,17 +139,17 @@ public class Ship extends Entity {
         }
 
         part = new ArrayList<>();
-        ShipPart body = new ShipPart(100, 100, false, false, false);
-        ShipPart wing = new ShipPart(100, 100, false, false, false);
-        ShipPart cockpit = new ShipPart(100, 100, false, false, false);
-        ShipPart kitchen = new ShipPart(100, 100, false, false, false);
-        ShipPart dorm = new ShipPart(100, 100, false, false, false);
-        ShipPart engine = new ShipPart(100, 100, false, false, false);
-        ShipPart forcefield = new ShipPart(100, 100, false, false, false);
-        ShipPart storage = new ShipPart(100, 100, false, false, false);
-        ShipPart infirmary = new ShipPart(100, 100, false, false, false);
-        ShipPart armory = new ShipPart(100, 100, false, false, false);
-        ShipPart bathroom = new ShipPart(100, 100, false, false, false);
+        ShipPart body = new ShipPart("body", 100, 100, false, false, false);
+        ShipPart wing = new ShipPart("wing", 100, 100, false, false, false);
+        ShipPart cockpit = new ShipPart("cockpit",100, 100, false, false, false);
+        ShipPart kitchen = new ShipPart("kitchen",100, 100, false, false, false);
+        ShipPart dorm = new ShipPart("dorm",100, 100, false, false, false);
+        ShipPart engine = new ShipPart("engine",100, 100, false, false, false);
+        ShipPart forcefield = new ShipPart("forcefield",100, 100, false, false, false);
+        ShipPart storage = new ShipPart("storage",100, 100, false, false, false);
+        ShipPart infirmary = new ShipPart("infirmary",100, 100, false, false, false);
+        ShipPart armory = new ShipPart("armory",100, 100, false, false, false);
+        ShipPart bathroom = new ShipPart("bathroom",100, 100, false, false, false);
         part.add(body);
         part.add(wing);
         part.add(cockpit);
@@ -215,7 +215,7 @@ public class Ship extends Entity {
         }
         this.part = null;
 
-        //Ship's total health is equal to the sum of all the ship parts times two plus the healthBooster if applicable
+        //Ship's total health is equal difficulty times 10
         this.setTotalHealth(difficulty * 10);
     }
 
