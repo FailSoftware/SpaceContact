@@ -3,9 +3,8 @@
     package="com.example.spacecontact">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,19 +13,22 @@
         android:roundIcon="@drawable/logoimagen"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Planet"></activity>
+        <activity android:name=".PrefMenu"></activity>
+        <activity android:name=".Planet" />
         <activity android:name=".entity.Shop" />
+
         <service android:name=".gameFunctions.MyService" />
+
         <activity android:name=".Contact" />
         <activity android:name=".Register" />
         <activity android:name=".Game" />
         <activity android:name=".MainMenu" />
         <activity android:name=".Characters" />
         <activity android:name=".Login" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:hardwareAccelerated="false"
             android:theme="@style/SplashArt">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -13,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_register.*
 
 
-class Register : Login() {
+class Register : PrefMenu() {
      lateinit var bm:Bitmap
      lateinit var pilot:Worker
      lateinit var usr: User
@@ -22,22 +22,12 @@ class Register : Login() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        overridePendingTransition(
+            R.anim.fade_in,
+            R.anim.fade_out
+        )
 
     }
-
-    fun alertMatch() {
-
-        var title : String = this.getString(R.string.notMatchTitle)
-        var msg : String = this.getString(R.string.passNotMatch)
-        val bdr = AlertDialog.Builder(this)
-        bdr.setTitle(title)
-        bdr.setMessage(msg)
-        bdr.create()
-        bdr.show()
-    }
-
-
-
 
 
     fun newUser(view: View){

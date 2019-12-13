@@ -11,7 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 
 
-class Contact : Login() {
+class Contact : PrefMenu() {
 
     private val PERMISO_LLAMADA = 3
     private val i = Intent(Intent.ACTION_CALL, Uri.parse("tel:952312703"))
@@ -19,6 +19,10 @@ class Contact : Login() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact)
+        overridePendingTransition(
+            R.anim.fade_in,
+            R.anim.fade_out
+        )
     }
 
     fun toWeb(view: View) {

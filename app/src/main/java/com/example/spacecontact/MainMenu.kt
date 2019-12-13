@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 
-class MainMenu : Login(){
+class MainMenu : PrefMenu(){
 
     lateinit var userM : TextView
     lateinit var usFb : FirebaseUser
@@ -27,6 +27,10 @@ class MainMenu : Login(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
+        overridePendingTransition(
+            R.anim.fade_in,
+            R.anim.fade_out
+        )
 
         val lg = LoadGame()
         lg.run()

@@ -11,7 +11,7 @@ import android.widget.ImageView
 import com.example.spacecontact.entity.User
 import com.example.spacecontact.entity.Worker
 
-class Characters : Login() {
+class Characters : PrefMenu() {
     lateinit var finalCharacter:Bitmap
     var bodyList = ArrayList<Bitmap>()
     var suitList = ArrayList<Bitmap>()
@@ -28,6 +28,11 @@ class Characters : Login() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_characters)
+        overridePendingTransition(
+            R.anim.fade_in,
+            R.anim.fade_out
+        )
+
 
         var intent = intent
         usr.pilot = wor

@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_game.*
 import java.lang.IllegalStateException
 import kotlin.collections.ArrayList
 
-class Game : Login() {
+class Game : PrefMenu() {
     lateinit var gridLay: GridView;
     lateinit var framChar: FrameLayout;
     lateinit var ship: Ship;
@@ -22,6 +22,10 @@ class Game : Login() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+        overridePendingTransition(
+            R.anim.fade_in,
+            R.anim.fade_out
+        )
 
         msgBox = findViewById(R.id.msgBox)
 
