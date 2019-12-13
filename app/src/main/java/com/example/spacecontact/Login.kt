@@ -169,7 +169,8 @@ open class Login : PrefMenu() {
         val wor: Worker = Worker(view.context, 1)
         val usr: User =
             User(0, false, "NombreComp", "NombreUsuario", "Descripcion", LocalDate.now(), wor)
-        var ship: Ship = Ship(wor, this)
+        //TODO change to playership instead of testship
+        var ship: Ship = Ship(this)
 
         val sg = SaveGame(ship)
         sg.run()
