@@ -16,6 +16,7 @@ import java.util.Random;
 public class Worker extends Entity{
     @Expose(serialize = false, deserialize = false)
     private transient Bitmap sprite;
+    private String description;
     private Integer totalTurns;
     private Integer currentTurns;
     private Integer hungerLevel;
@@ -65,6 +66,7 @@ public class Worker extends Entity{
         this.setName(nameList.get(new Random().nextInt(nameList.size())));
         int pick = new Random().nextInt(Job.values().length);
 
+        description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras faucibus ante id elit ornare placerat. Nam nisl lacus, egestas at lacus id, pulvinar convallis mi. Nunc condimentum congue blandit. Vivamus mi sapien, viverra non erat at, pretium viverra velit. Vivamus vehicula mollis lacus, et dapibus dolor ullamcorper nec.";
         sprite = BitmapFactory.decodeResource(con.getResources(), R.drawable.bodyzero);
         hungerLevel = 100;
         fatigue = 100;
@@ -91,6 +93,8 @@ public class Worker extends Entity{
         this.setName(nameList.get(new Random().nextInt(nameList.size())));
         int pick = new Random().nextInt(Job.values().length);
 
+
+        description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras faucibus ante id elit ornare placerat. Nam nisl lacus, egestas at lacus id, pulvinar convallis mi. Nunc condimentum congue blandit. Vivamus mi sapien, viverra non erat at, pretium viverra velit. Vivamus vehicula mollis lacus, et dapibus dolor ullamcorper nec.";
         sprite = null;
         hungerLevel = 100;
         fatigue = 100;
@@ -225,5 +229,14 @@ public class Worker extends Entity{
     public void setJob(Job job) {
         this.job = job;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     //endregion
 }

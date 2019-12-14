@@ -89,13 +89,13 @@ public class Ship extends Entity {
         }
 
         part = new ArrayList<>();
-        ShipPart body = new ShipPart("body", 100, 100, true, false, false);
-        ShipPart wing = new ShipPart("wing", 100, 100, false, true, false);
-        ShipPart cockpit = new ShipPart("cockpit",100, 100, false, false, false);
-        ShipPart kitchen = new ShipPart("kitchen",100, 100, false, false, false);
-        ShipPart dorm = new ShipPart("dorm",100, 100, false, true, false);
-        ShipPart engine = new ShipPart("engine",100, 100, false, false, false);
-        ShipPart forcefield = new ShipPart("forcefield",100, 100, true, false, true);
+        ShipPart body = new ShipPart("body", 100, 100, true, true, true);
+        ShipPart wing = new ShipPart("wing", 100, 100, false, false, false);
+        ShipPart cockpit = new ShipPart("cockpit",100, 100, true, false, false);
+        ShipPart kitchen = new ShipPart("kitchen",100, 100, false, true, false);
+        ShipPart dorm = new ShipPart("dorm",100, 100, false, false, true);
+        ShipPart engine = new ShipPart("engine",100, 100, true, true, false);
+        ShipPart forcefield = new ShipPart("forcefield",100, 100, false, true, true);
         ShipPart storage = new ShipPart("storage",100, 100, false, false, false);
         ShipPart infirmary = new ShipPart("infirmary",100, 100, false, false, false);
         ShipPart armory = new ShipPart("armory",100, 100, false, true, false);

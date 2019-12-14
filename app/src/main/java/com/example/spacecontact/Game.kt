@@ -18,9 +18,9 @@ class Game : PrefMenu() {
     private lateinit var ship: Ship;
     private lateinit var enemyShip: Ship;
     private var selectedWorker: Int = 0;
-    private lateinit var selectedShipPart : ShipPart;
-    private var workerAction : String = "";
-    private lateinit var msgBox : TextView;
+    private lateinit var selectedShipPart: ShipPart;
+    private var workerAction: String = "";
+    private lateinit var msgBox: TextView;
     private lateinit var injuredWorker: Worker;
 
 
@@ -32,22 +32,120 @@ class Game : PrefMenu() {
             R.anim.fade_out
         )
 
-        msgBox = findViewById(R.id.msgBox)
-
         val lg = LoadGame()
         lg.run()
 
-        var gridLay: GridView = findViewById(R.id.gridLay)
+        msgBox = findViewById(R.id.msgBox)
+        framChar = findViewById(R.id.framChar)
         ship = lg.ship
 
-        var listRepair: ListView = findViewById(R.id.repairList)
+        updateAdapters()
+        updateShipInfo()
+    }
 
-        var adapterRepair : AdapterRepair =
-            AdapterRepair(this,(ship.part).toCollection(ArrayList())
+    fun loadCharData(view: View) {
+        //Toast.makeText(this, "pos >> " + view.getTag().toString(), Toast.LENGTH_LONG).show();
+
+        try {
+            var thisWorker: Worker;
+            var tvWorkerName: TextView = findViewById(R.id.tvWorkerName)
+            var tvWorkerJob: TextView = findViewById(R.id.tvWorkerJob)
+            var tvWorkerTurns: TextView = findViewById(R.id.tvWorkerTurns)
+            var pbHp: ProgressBar = findViewById(R.id.pbHp)
+            var pbFat: ProgressBar = findViewById(R.id.pbFat)
+            var pbHung: ProgressBar = findViewById(R.id.pbHung)
+            var tvWorkerLore: TextView = findViewById(R.id.tvWorkerLore)
+
+
+            if (framChar.visibility == View.VISIBLE && tvWorkerName.text == ship.crew[view.getTag() as Int].name) {
+                framChar.visibility = View.GONE
+            } else {
+                thisWorker = ship.crew[view.getTag() as Int]
+                if (thisWorker.currentTurns > 0) {
+                    selectedWorker = view.getTag() as Int;
+                    framChar.visibility = View.VISIBLE
+                    tvWorkerName.text = thisWorker.name
+                    tvWorkerJob.text = thisWorker.job.toString()
+                    tvWorkerTurns.text =
+                        "[" + ship.crew[view.getTag() as Int].currentTurns.toString() + " / " + ship.crew[view.getTag() as Int].totalTurns.toString() + "]"
+                    pbHp.progress = thisWorker.currentHealth
+                    pbFat.progress = thisWorker.fatigue
+                    pbHung.progress = thisWorker.hungerLevel
+                    tvWorkerLore.text = thisWorker.description
+                } else {
+                    msgBox.text = thisWorker.name + " doesn't have any turns left"
+                }
+
+            }
+        } catch (e: IllegalStateException) {
+            framChar.visibility = View.GONE
+            msgBox.text =
+                "This is a reserved space for a new worker you can get as a reward after defeating foes"
+        }
+    }
+
+    fun workerActTurn(view: View) {
+        var msgText: String = "";
+        var currentEnemyShip: Ship? = null;
+        var currentSelectedShipPart: ShipPart? = null;
+        var currentInjuredWorker: Worker? = null;
+
+        if (::enemyShip.isInitialized) {
+            currentEnemyShip = enemyShip
+        }
+        if (::selectedShipPart.isInitialized) {
+            currentSelectedShipPart = selectedShipPart
+        }
+        if (::injuredWorker.isInitialized) {
+            currentInjuredWorker = injuredWorker
+        }
+
+        workerAction = view.getTag() as String
+
+        msgText = ship.playerTurn(
+            workerAction,
+            ship.crew[selectedWorker],
+            currentEnemyShip,
+            currentSelectedShipPart,
+            currentInjuredWorker
         )
 
-        listRepair.adapter = adapterRepair
+        msgBox.text = msgText
+        framChar.visibility = View.GONE
 
+
+        updateShipInfo()
+        updateAdapters()
+    }
+
+    //Updates the information displayed at the top of the screen
+    fun updateShipInfo() {
+        var s1: TextView = findViewById(R.id.tvS1)
+        var s2: TextView = findViewById(R.id.tvS2)
+        var s3: TextView = findViewById(R.id.tvS3)
+        var s4: TextView = findViewById(R.id.tvS4)
+        var s5: TextView = findViewById(R.id.tvS5)
+
+        var w1: TextView = findViewById(R.id.tvS6)
+        var w2: TextView = findViewById(R.id.tvS7)
+        var w3: TextView = findViewById(R.id.tvS8)
+
+
+        s1.setText("Health [" + ship.currentHealth + " | " + ship.totalHealth + "] ")
+        s2.setText("Credits [" + ship.credit + "] ")
+        s3.setText("Oxygen [" + ship.currentOxygen + " | " + ship.totalOxygen + "] ")
+        s4.setText("Food [" + ship.currentFood + " | " + ship.totalFood + "] ")
+        s5.setText("Fuel [" + ship.currentFuel + " | " + ship.totalFuel + "] ")
+
+        w1.setText("Firepower = " + ship.weapon.weaponPower)
+        w2.setText("Crit chance = " + ship.weapon.weaponCritChance)
+        w3.setText("Crit mult = " + ship.weapon.weaponCritMultiplier)
+
+    }
+
+    //Calls every adapter to update layouts
+    fun updateAdapters(){
+        var gridLay: GridView = findViewById(R.id.gridLay)
         var adapterWorkers: AdapterWorkers =
             AdapterWorkers(
                 this,
@@ -55,72 +153,12 @@ class Game : PrefMenu() {
             )
         gridLay.adapter = adapterWorkers;
 
-        framChar = findViewById(R.id.framChar)
-    }
-
-    fun loadCharData(view: View) {
-        //Toast.makeText(this, "pos >> " + view.getTag().toString(), Toast.LENGTH_LONG).show();
-
-        try {
-            var thisWorker : Worker;
-
-            var tvWorkerName: TextView = findViewById(R.id.tvWorkerName)
-            var tvWorkerJob: TextView = findViewById(R.id.tvWorkerJob)
-            var tvWorkerTurns: TextView = findViewById(R.id.tvWorkerTurns)
-            var pbHp : ProgressBar = findViewById(R.id.pbHp)
-            var pbFat : ProgressBar = findViewById(R.id.pbFat)
-            var pbHung : ProgressBar = findViewById(R.id.pbHung)
-
-
-            if (framChar.visibility == View.VISIBLE && tvWorkerName.text == ship.crew[view.getTag() as Int].name) {
-                framChar.visibility = View.GONE
-            } else {
-                thisWorker = ship.crew[view.getTag() as Int]
-                selectedWorker = view.getTag() as Int;
-                framChar.visibility = View.VISIBLE
-                tvWorkerName.text = thisWorker.name
-                tvWorkerJob.text = thisWorker.job.toString()
-                tvWorkerTurns.text =
-                    "[" + ship.crew[view.getTag() as Int].currentTurns.toString() + " / " + ship.crew[view.getTag() as Int].totalTurns.toString() + "]"
-                pbHp.progress = thisWorker.currentHealth
-                pbFat.progress = thisWorker.fatigue
-                pbHung.progress = thisWorker.hungerLevel
-            }
-        } catch (e: IllegalStateException) {
-            framChar.visibility = View.GONE
-        }
-    }
-
-    fun attackFun(view: View){
-        val msgText : String = ship.playerTurn("Attack", ship.crew[selectedWorker], null, null, null)
-        msgBox.text = msgText
-        framChar.visibility = View.GONE
-
-    }
-
-    fun workerActTurn(view: View){
-        var msgText : String = "";
-        var currentEnemyShip : Ship? = null;
-        var currentSelectedShipPart : ShipPart? = null;
-        var currentInjuredWorker : Worker? = null;
-
-        if (::enemyShip.isInitialized){
-            currentEnemyShip = enemyShip
-        }
-        if (::selectedShipPart.isInitialized){
-            currentSelectedShipPart = selectedShipPart
-        }
-        if (::injuredWorker.isInitialized){
-            currentInjuredWorker = injuredWorker
-        }
-
-        workerAction = view.getTag() as String
-
-        msgText = ship.playerTurn(workerAction, ship.crew[selectedWorker], currentEnemyShip , currentSelectedShipPart, currentInjuredWorker)
-
-        msgBox.text = msgText
-        framChar.visibility = View.GONE
-
+        var listRepair: ListView = findViewById(R.id.repairList)
+        var adapterRepair: AdapterRepair =
+            AdapterRepair(
+                this, (ship.part).toCollection(ArrayList())
+            )
+        listRepair.adapter = adapterRepair
     }
 
     fun optionsChar(view: View) {
