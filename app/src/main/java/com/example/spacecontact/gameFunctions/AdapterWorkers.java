@@ -86,7 +86,6 @@ public class AdapterWorkers extends BaseAdapter {
 
         }
 
-
         return convertView;
     }
 

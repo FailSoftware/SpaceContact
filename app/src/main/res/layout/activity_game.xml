@@ -15,7 +15,11 @@
         android:layout_height="match_parent"
         android:background="@android:color/background_dark"
         android:scaleType="center"
-        android:src="@drawable/backgame" />
+        android:src="@drawable/backgame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +35,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
     <FrameLayout
         android:id="@+id/enemyLayout"
         android:layout_width="150dp"
@@ -43,7 +46,7 @@
             android:id="@+id/gifImageView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="battlEnemy"
+            android:onClick="battleEnemy"
             android:src="@drawable/logoimagen">
 
         </pl.droidsonroids.gif.GifImageView>
@@ -65,12 +68,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
-            android:text="holita"
+            android:text=""
             android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/buttonstyle"
+        android:fontFamily="@font/geostar"
+        android:onClick="endTurn"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="@string/endTurnTv"
+        android:textColor="#ffedb2"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/msgLayout"
+        app:layout_constraintEnd_toEndOf="@+id/gifImageView" />
 
     <LinearLayout
         android:id="@+id/statsLayout"
@@ -216,7 +239,7 @@
         android:layout_height="wrap_content"
         android:background="@color/violetMain"
         android:padding="4dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/msgLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -240,7 +263,6 @@
 
             <Button
                 android:id="@+id/btAtack"
-                android:tag="Attack"
                 android:layout_width="110dp"
                 android:layout_height="30dp"
                 android:layout_marginBottom="2dp"
@@ -251,6 +273,7 @@
                 android:shadowDx="0"
                 android:shadowDy="0"
                 android:shadowRadius="5"
+                android:tag="Attack"
                 android:text="@string/buttonAttack"
                 android:textColor="#ffedb2"
                 android:textSize="10sp"
@@ -354,7 +377,7 @@
                 android:id="@+id/tvWorkerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="5dp"
                 android:text="TextView"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -367,7 +390,7 @@
                 android:id="@+id/tvWorkerJob"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="5dp"
                 android:text="TextView"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -446,6 +469,7 @@
                 android:id="@+id/tvWorkerTurns"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text="TextView"
                 android:textColor="@color/black"
                 android:textStyle="bold"
