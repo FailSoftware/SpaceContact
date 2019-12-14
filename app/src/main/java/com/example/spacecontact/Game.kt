@@ -110,11 +110,12 @@ class Game : PrefMenu() {
 
     private fun enemyTurn(view: View){
         if (enemyTotalTurns > 0){
-            msgBox.text = enemyShip.EnemyAction(ship);
-            enemyTotalTurns--;
+            msgBox.text = enemyShip.EnemyAction(ship)
+            enemyTotalTurns--
 
             updateShipInfo()
-            checkBattleEvent();
+            updateAdapters()
+            checkBattleEvent()
         } else {
             msgBox.text = "Enemy is out of turns"
             gridLay.visibility = View.VISIBLE
