@@ -240,7 +240,7 @@
         android:layout_height="wrap_content"
         android:background="@color/violetMain"
         android:padding="4dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/msgLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -568,7 +568,7 @@
                 android:layout_height="35dp"
                 android:background="@drawable/buttonstyle"
                 android:fontFamily="@font/geostar"
-                android:onClick="exitOptionMenu"
+                android:onClick="heal"
                 android:shadowColor="#A8A8A8"
                 android:shadowDx="0"
                 android:shadowDy="0"
@@ -614,7 +614,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/violetMain" />
+
     </FrameLayout>
 
+
+    <FrameLayout
+        android:id="@+id/frameRHeal"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/violetMain"
+        android:padding="4dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/msgLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statsLayout">
+
+        <ListView
+            android:id="@+id/healList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/violetMain" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

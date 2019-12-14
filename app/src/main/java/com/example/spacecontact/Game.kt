@@ -6,6 +6,7 @@ import android.widget.*
 import com.example.spacecontact.entity.Ship
 import com.example.spacecontact.entity.ShipPart
 import com.example.spacecontact.entity.Worker
+import com.example.spacecontact.gameFunctions.AdapterHeal
 import com.example.spacecontact.gameFunctions.AdapterRepair
 import com.example.spacecontact.gameFunctions.AdapterWorkers
 import com.example.spacecontact.gameFunctions.LoadGame
@@ -237,6 +238,10 @@ class Game : PrefMenu() {
                 this, (ship.part).toCollection(ArrayList())
             )
         listRepair.adapter = adapterRepair
+
+        var listHeal : ListView = findViewById(R.id.healList)
+        var adapaterHeal: AdapterHeal = AdapterHeal(this, (ship.crew).toCollection(ArrayList()))
+        listHeal.adapter = adapaterHeal
     }
 
     fun optionsChar(view: View) {
@@ -246,6 +251,10 @@ class Game : PrefMenu() {
 
     fun exitOptionMenu(view: View) {
         frameOthers.visibility = View.GONE
+    }
+
+    fun heal(view: View) {
+        frameRHeal.visibility = View.VISIBLE
     }
 
 }

@@ -63,7 +63,8 @@
     <string name="shock">Cortocircuito</string>
     <string name="jobChar">Trabajo</string>
     <string name="endTurnTv">Acabar turno</string>
-
+    <string name="wounded">Herido</string>
+    <string name="wNameAd">Nombre</string>
 
 
 </resources>
