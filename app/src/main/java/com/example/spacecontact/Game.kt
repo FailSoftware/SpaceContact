@@ -282,12 +282,12 @@ class Game : PrefMenu() {
 
     fun repair(view: View){
         hideWindows()
-        var listRepair: ListView = findViewById(R.id.repairList)
+        var listRepair: FrameLayout = findViewById(R.id.frameRepair)
         listRepair.visibility = View.VISIBLE
     }
 
     fun hideWindows(){
-        var listRepair: ListView = findViewById(R.id.repairList)
+        var listRepair: FrameLayout = findViewById(R.id.frameRepair)
         listRepair.visibility = View.GONE
         frameRHeal.visibility = View.GONE
         framChar.visibility = View.GONE
