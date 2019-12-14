@@ -3,8 +3,6 @@ package com.example.spacecontact.entity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
 import com.example.spacecontact.R;
 import com.google.gson.annotations.Expose;

@@ -91,15 +91,15 @@ public class Ship extends Entity {
         part = new ArrayList<>();
         ShipPart body = new ShipPart("body", 100, 100, true, true, true);
         ShipPart wing = new ShipPart("wing", 100, 100, false, false, false);
-        ShipPart cockpit = new ShipPart("cockpit",100, 100, true, false, false);
-        ShipPart kitchen = new ShipPart("kitchen",100, 100, false, true, false);
-        ShipPart dorm = new ShipPart("dorm",100, 100, false, false, true);
-        ShipPart engine = new ShipPart("engine",100, 100, true, true, false);
-        ShipPart forcefield = new ShipPart("forcefield",100, 100, false, true, true);
-        ShipPart storage = new ShipPart("storage",100, 100, false, false, false);
-        ShipPart infirmary = new ShipPart("infirmary",100, 100, false, false, false);
-        ShipPart armory = new ShipPart("armory",100, 100, false, true, false);
-        ShipPart bathroom = new ShipPart("bathroom",100, 100, true, false, false);
+        ShipPart cockpit = new ShipPart("cockpit", 100, 100, true, false, false);
+        ShipPart kitchen = new ShipPart("kitchen", 100, 100, false, true, false);
+        ShipPart dorm = new ShipPart("dorm", 100, 100, false, false, true);
+        ShipPart engine = new ShipPart("engine", 100, 100, true, true, false);
+        ShipPart forcefield = new ShipPart("forcefield", 100, 100, false, true, true);
+        ShipPart storage = new ShipPart("storage", 100, 100, false, false, false);
+        ShipPart infirmary = new ShipPart("infirmary", 100, 100, false, false, false);
+        ShipPart armory = new ShipPart("armory", 100, 100, false, true, false);
+        ShipPart bathroom = new ShipPart("bathroom", 100, 100, true, false, false);
         part.add(body);
         part.add(wing);
         part.add(cockpit);
@@ -134,22 +134,22 @@ public class Ship extends Entity {
 
         Worker[] crew = new Worker[6];
         crew[0] = worker;
-        for (int i = 1; i < 3; i++){
+        for (int i = 1; i < 3; i++) {
             crew[i] = new Worker(con, 1);
         }
 
         part = new ArrayList<>();
         ShipPart body = new ShipPart("body", 100, 100, false, false, false);
         ShipPart wing = new ShipPart("wing", 100, 100, false, false, false);
-        ShipPart cockpit = new ShipPart("cockpit",100, 100, false, false, false);
-        ShipPart kitchen = new ShipPart("kitchen",100, 100, false, false, false);
-        ShipPart dorm = new ShipPart("dorm",100, 100, false, false, false);
-        ShipPart engine = new ShipPart("engine",100, 100, false, false, false);
-        ShipPart forcefield = new ShipPart("forcefield",100, 100, false, false, false);
-        ShipPart storage = new ShipPart("storage",100, 100, false, false, false);
-        ShipPart infirmary = new ShipPart("infirmary",100, 100, false, false, false);
-        ShipPart armory = new ShipPart("armory",100, 100, false, false, false);
-        ShipPart bathroom = new ShipPart("bathroom",100, 100, false, false, false);
+        ShipPart cockpit = new ShipPart("cockpit", 100, 100, false, false, false);
+        ShipPart kitchen = new ShipPart("kitchen", 100, 100, false, false, false);
+        ShipPart dorm = new ShipPart("dorm", 100, 100, false, false, false);
+        ShipPart engine = new ShipPart("engine", 100, 100, false, false, false);
+        ShipPart forcefield = new ShipPart("forcefield", 100, 100, false, false, false);
+        ShipPart storage = new ShipPart("storage", 100, 100, false, false, false);
+        ShipPart infirmary = new ShipPart("infirmary", 100, 100, false, false, false);
+        ShipPart armory = new ShipPart("armory", 100, 100, false, false, false);
+        ShipPart bathroom = new ShipPart("bathroom", 100, 100, false, false, false);
         part.add(body);
         part.add(wing);
         part.add(cockpit);
@@ -243,38 +243,38 @@ public class Ship extends Entity {
                 break;
 
             case "Repair":
-                GeneralRepair(w);
+                returnString = GeneralRepair(w);
                 break;
 
             case "Extinguish":
-                RepairExtinguish(w, sp);
+                returnString = RepairExtinguish(w, sp);
                 break;
 
             case "Weld":
-                RepairWeld(w, sp);
+                returnString = RepairWeld(w, sp);
                 break;
 
             case "Fix":
-                RepairFix(w, sp);
+                returnString = RepairFix(w, sp);
                 break;
 
             case "Eat":
-                WorkerEat(w);
+                returnString = WorkerEat(w);
                 break;
 
             case "Sleep":
-                WorkerSleep(w);
+                returnString = WorkerSleep(w);
                 break;
 
             case "Talk":
-                WorkerTalk(w.getName());
+                returnString = WorkerTalk(w.getName());
                 break;
 
             case "Cure":
-                WorkerHeal(w, injured);
+                returnString = WorkerHeal(w, injured);
 
             case "Inspect":
-                WorkerInspect(w.getName());
+                returnString = WorkerInspect(w.getName());
                 break;
 
             default:
@@ -297,32 +297,34 @@ public class Ship extends Entity {
 
     //region Worker SubFunctions
     private String WorkerInspect(String w) {
-        //TODO show some info on screen
         String returnString = w + " tried to inspect something but failed cause I'm too lazy to code this properly";
         return returnString;
     }
 
-    private void WorkerTalk(String w) {
-        //TODO show some info on screen
+    private String WorkerTalk(String w) {
+        String returnString = w + " social anxiety did not let him talk to anyone";
+        return returnString;
     }
 
     //Recovers 50 fatigue to worker if he's tired
-    private void WorkerSleep(Worker w) {
-
+    private String WorkerSleep(Worker w) {
+        String returnString = "";
         if (w.getFatigue() > 100) {
             //TODO add snore sound
             w.setFatigue(100);
+            returnString = w.getName() + " slept very well";
         } else {
-            //TODO display w is not tired
-            //1 turn added so that it is not lost to a useless action
             w.setCurrentTurns(w.getCurrentTurns() + 1);
+            returnString = w.getName() + " is not tired right now";
+            //1 turn added so that it is not lost to a useless action
         }
+        return returnString;
     }
 
     //Recovers 50 hunger to worker if there's any food in the ship
-    private void WorkerEat(Worker w) {
-
-        if (w.getHungerLevel() < 100) {
+    private String WorkerEat(Worker w) {
+        String returnString = "";
+        if (w.getHungerLevel() < 100 && getCurrentFood() > 0) {
             if (getCurrentFood() > 10) {
                 setCurrentFood(getCurrentFood() - 10);
             } else {
@@ -333,17 +335,20 @@ public class Ship extends Entity {
             } else {
                 w.setHungerLevel(w.getHungerLevel() + 50);
             }
-            //TODO display w recovered X hunger
+            returnString = w.getName() + " ate some food and now feels much better";
+
             //TODO add eat sound
         } else {
-            //TODO display w is not hungry
             //1 turn added so that it is not lost to a useless action
             w.setCurrentTurns(w.getCurrentTurns() + 1);
+            returnString = w.getName() + " either was not hungry or did not find anything to eat";
         }
+        return returnString;
     }
 
 
-    private void WorkerHeal(Worker w, Worker injured) {
+    private String WorkerHeal(Worker w, Worker injured) {
+        String returnString = "";
         int successChance = 0;
 
         switch (w.getJob()) {
@@ -366,21 +371,26 @@ public class Ship extends Entity {
 
         //If successChance is greater than random %, worker successfully does the action
         if (successChance > new Random().nextInt(100)) {
-            //TODO display worker cured injured
             injured.removeStatuses();
             injured.setCurrentHealth(injured.getCurrentHealth() + (injured.getTotalHealth() / 8));
+            if (injured.getCurrentHealth() > 100) {
+                injured.setCurrentHealth(100);
+            }
+            returnString = w.getName() + " succesfully helped out " + injured.getName();
         } else {
-            //TODO display worker failed and further damaged the injured worker
             injured.setWounded(true);
             injured.setCurrentHealth(injured.getCurrentHealth() - 20);
+            returnString = w.getName() + " failed aiding " + injured.getName() + " and made things even worse";
         }
+        return returnString;
     }
     //endregion
 
 
     //region Ship Repair subfunctions
     //Repairs onShock part status if applicable
-    private void RepairFix(Worker w, ShipPart sp) {
+    private String RepairFix(Worker w, ShipPart sp) {
+        String returnString = "";
         int successChance = 0;
 
         if (sp.getOnShock()) {
@@ -404,21 +414,22 @@ public class Ship extends Entity {
 
             //If successChance is greater than random %, worker successfully does the action
             if (successChance > new Random().nextInt(100)) {
-                //TODO display worker fixed shock
                 sp.setOnShock(false);
+                returnString = w.getName() + " successfully fixed the short in " + sp.getPartName();
             } else {
-                //TODO display worker failed and shocked himself
                 w.setOnShock(true);
+                returnString = w.getName() + " failed fixing the short and electrocuted himself";
             }
         } else {
-            //TODO display part not onShock
             //1 turn added so that it is not lost to a useless action
             w.setCurrentTurns(w.getCurrentTurns() + 1);
+            returnString = "This part of the ship doesn't have a short";
         }
-
+        return returnString;
     }
 
-    private void RepairWeld(Worker w, ShipPart sp) {
+    private String RepairWeld(Worker w, ShipPart sp) {
+        String returnString = "";
         int successChance = 0;
 
         if (sp.getPierced()) {
@@ -442,20 +453,22 @@ public class Ship extends Entity {
 
             //If successChance is greater than random %, worker successfully does the action
             if (successChance > new Random().nextInt(100)) {
-                //TODO display worker fixed breach
                 sp.setPierced(false);
+                returnString = w.getName() + " successfully welded the hole in " + sp.getPartName();
             } else {
-                //TODO display worker failed and wounded himself
                 w.setWounded(true);
+                returnString = w.getName() + " failed fixing the short and wounded himself";
             }
         } else {
-            //TODO display part not pierced
             //1 turn added so that it is not lost to a useless action
             w.setCurrentTurns(w.getCurrentTurns() + 1);
+            returnString = "This part of the ship doesn't have a hole";
         }
+        return returnString;
     }
 
-    private void RepairExtinguish(Worker w, ShipPart sp) {
+    private String RepairExtinguish(Worker w, ShipPart sp) {
+        String returnString = "";
         int successChance = 0;
 
         if (sp.getOnFire()) {
@@ -479,20 +492,22 @@ public class Ship extends Entity {
 
             //If successChance is greater than random %, worker successfully does the action
             if (successChance > new Random().nextInt(100)) {
-                //TODO display worker fixed breach
                 sp.setOnFire(false);
+                returnString = w.getName() + " successfully extinguished the fire in " + sp.getPartName();
             } else {
-                //TODO display worker failed and burned himself
                 w.setOnFire(true);
+                returnString = w.getName() + " failed extinguishing the flames and burnt himself";
             }
         } else {
-            //TODO display part not pierced
             //1 turn added so that it is not lost to a useless action
             w.setCurrentTurns(w.getCurrentTurns() + 1);
+            returnString = "This part of the ship doesn't have any fire";
         }
+        return returnString;
     }
 
-    private void GeneralRepair(Worker w) {
+    private String GeneralRepair(Worker w) {
+        String returnString = "";
         int successChance = 0;
         //If true is returned, there's a status effect in a part that must be fixed before ship can be repaired
         Boolean partStatus = CheckPartStatus();
@@ -517,22 +532,23 @@ public class Ship extends Entity {
                         break;
                 }
                 if (successChance > new Random().nextInt(100)) {
-                    //TODO display worker repaired X health (10%)
                     this.setCurrentHealth(getCurrentHealth() + (getTotalHealth() / 10));
+                    returnString = w.getName() + " went through the ship fixing problems and recovering some haul power";
                 } else {
-                    //TODO display worker failed and wounded himself
                     w.setWounded(true);
+                    returnString = w.getName() + " hurt himself while trying to fix the ship";
                 }
             } else {
-                //TODO display Ship is already at full health
                 //1 turn added so that it is not lost to a useless action
                 w.setCurrentTurns(w.getCurrentTurns() + 1);
+                returnString = w.getName() + " didn't find anything to fix in the ship";
             }
         } else {
-            //TODO display There's a part with problems, need to repair before repairing ship
             //1 turn added so that it is not lost to a useless action
             w.setCurrentTurns(w.getCurrentTurns() + 1);
+            returnString = "Some parts of the ship are having serious problems, better fix those before";
         }
+        return returnString;
     }
     //endregion
 
@@ -551,7 +567,8 @@ public class Ship extends Entity {
         return problem;
     }
 
-    private void PlayerShield(Worker w) {
+    private String PlayerShield(Worker w) {
+        String returnString = "";
         int successChance = 0;
 
         switch (w.getJob()) {
@@ -574,16 +591,17 @@ public class Ship extends Entity {
         if (this.getCurrentShield() < this.getTotalShield()) {
             if (successChance > new Random().nextInt(100)) {
                 this.setCurrentShield(this.getCurrentShield() + 1);
+                returnString = w.getName() + " turned on a shield generator";
             } else {
-                //TODO display failed shielding, w got shocked
                 w.setOnShock(true);
+                returnString = w.getName() + " shocked himself with the shield generator";
             }
         } else {
-            //TODO display already on full shield
             //1 turn added so that it is not lost to a useless action
             w.setCurrentTurns(w.getCurrentTurns() + 1);
+            returnString = w.getName() + " did not realize all the shield generators are turned on";
         }
-
+        return returnString;
     }
 
     private String PlayerAttack(Worker w, Ship enemyShip) {
@@ -613,19 +631,20 @@ public class Ship extends Entity {
             if (successChance > new Random().nextInt(100)) {
                 //TODO display player shot enemy
                 int totalDamage = getWeapon().getWeaponPower();
-
+                returnString = w.getName() + " shot the enemy";
 
                 if (getWeapon().getWeaponCritChance() > new Random().nextInt(100)) {
                     //TODO display it was critical
                     totalDamage = (int) (getWeapon().getWeaponPower() * getWeapon().getWeaponCritMultiplier());
+                    returnString += ". The bullet completly went through the enemy ship!";
                 }
 
                 enemyShip.setCurrentHealth(enemyShip.getCurrentHealth() - totalDamage);
 
             } else {
-                //TODO display shot missed
+                returnString = w.getName() + " got distracted while aiming and missed the shot";
             }
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             returnString = w.getName() + " wondered what would happen if he stuck a potato in the antimaterial cannon";
         }
         return returnString;
@@ -763,9 +782,9 @@ public class Ship extends Entity {
         int rareItemChance = new Random().nextInt(101);
         Worker worker = null;
         Weapon weapon = null;
-        int credits = enemyShip.getCredit()+1;
-        int fuel = enemyShip.getCurrentFuel()+1;
-        int food = enemyShip.getCurrentFood()+1;
+        int credits = enemyShip.getCredit() + 1;
+        int fuel = enemyShip.getCurrentFuel() + 1;
+        int food = enemyShip.getCurrentFood() + 1;
 
         //Worker reward
         if (rareItemChance >= 1 && rareItemChance <= 100) {
@@ -780,7 +799,7 @@ public class Ship extends Entity {
             if (rareItemChance >= 95 && rareItemChance <= 100) {
                 weapon = enemyShip.getWeapon();
                 weapon.setName("Legendary " + weapon.getName());
-                weapon.setWeaponPower((int)(weapon.getWeaponPower() * 1.5));
+                weapon.setWeaponPower((int) (weapon.getWeaponPower() * 1.5));
                 weapon.setWeaponCritChance(weapon.getWeaponCritChance() * 2);
                 weapon.setWeaponCritMultiplier(weapon.getWeaponCritMultiplier() * 2);
             } else {
@@ -788,36 +807,36 @@ public class Ship extends Entity {
             }
         }
 
-        Log.d("Reward", "Ship - cred:" + credits + ", fuel:" + fuel + ", food:"+food);
+        Log.d("Reward", "Ship - cred:" + credits + ", fuel:" + fuel + ", food:" + food);
 
-        if (worker != null || weapon != null){
-           if (worker != null){
-               RareRewardDialog rewardDialog = new RareRewardDialog();
-               rewardDialog.setCon(aca);
-               rewardDialog.setShip(this);
-               rewardDialog.setWorker(worker);
-               rewardDialog.setCredits(credits);
-               rewardDialog.setFuel(fuel);
-               rewardDialog.setFood(food);
-               rewardDialog.setRarename("NEW WORKER");
-               rewardDialog.setRarestat1("Name: " + worker.getName());
-               rewardDialog.setRarestat2("Job: " + worker.getJob());
-               rewardDialog.setRarestat3("Turns: " + worker.getTotalTurns());
-               rewardDialog.show(aca.getSupportFragmentManager(), "tag");
-           }
-           if (weapon != null){
-               RareRewardDialog rewardDialog = new RareRewardDialog();
-               rewardDialog.setCon(aca);
-               rewardDialog.setShip(this);
-               rewardDialog.setWeapon(weapon);
-               rewardDialog.setCredits(credits);
-               rewardDialog.setFuel(fuel);
-               rewardDialog.setFood(food);
-               rewardDialog.setRarename(weapon.getName());
-               rewardDialog.setRarestat1("Fire Power: " + weapon.getWeaponPower());
-               rewardDialog.setRarestat2("Critical chance: " + weapon.getWeaponCritChance());
-               rewardDialog.setRarestat3("Critical multiplier: " + weapon.getWeaponCritMultiplier());
-               rewardDialog.show(aca.getSupportFragmentManager(), "tag");
+        if (worker != null || weapon != null) {
+            if (worker != null) {
+                RareRewardDialog rewardDialog = new RareRewardDialog();
+                rewardDialog.setCon(aca);
+                rewardDialog.setShip(this);
+                rewardDialog.setWorker(worker);
+                rewardDialog.setCredits(credits);
+                rewardDialog.setFuel(fuel);
+                rewardDialog.setFood(food);
+                rewardDialog.setRarename("NEW WORKER");
+                rewardDialog.setRarestat1("Name: " + worker.getName());
+                rewardDialog.setRarestat2("Job: " + worker.getJob());
+                rewardDialog.setRarestat3("Turns: " + worker.getTotalTurns());
+                rewardDialog.show(aca.getSupportFragmentManager(), "tag");
+            }
+            if (weapon != null) {
+                RareRewardDialog rewardDialog = new RareRewardDialog();
+                rewardDialog.setCon(aca);
+                rewardDialog.setShip(this);
+                rewardDialog.setWeapon(weapon);
+                rewardDialog.setCredits(credits);
+                rewardDialog.setFuel(fuel);
+                rewardDialog.setFood(food);
+                rewardDialog.setRarename(weapon.getName());
+                rewardDialog.setRarestat1("Fire Power: " + weapon.getWeaponPower());
+                rewardDialog.setRarestat2("Critical chance: " + weapon.getWeaponCritChance());
+                rewardDialog.setRarestat3("Critical multiplier: " + weapon.getWeaponCritMultiplier());
+                rewardDialog.show(aca.getSupportFragmentManager(), "tag");
             }
 
 
@@ -830,10 +849,6 @@ public class Ship extends Entity {
             rewardDialog.setFood(food);
             rewardDialog.show(aca.getSupportFragmentManager(), "tag");
         }
-
-
-
-
 
 
     }
