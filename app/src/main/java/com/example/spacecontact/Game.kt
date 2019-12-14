@@ -10,6 +10,7 @@ import com.example.spacecontact.gameFunctions.AdapterRepair
 import com.example.spacecontact.gameFunctions.AdapterWorkers
 import com.example.spacecontact.gameFunctions.LoadGame
 import kotlinx.android.synthetic.main.activity_game.*
+import pl.droidsonroids.gif.GifImageView
 import java.lang.IllegalStateException
 import kotlin.collections.ArrayList
 
@@ -18,10 +19,12 @@ class Game : PrefMenu() {
     private lateinit var ship: Ship;
     private lateinit var enemyShip: Ship;
     private var selectedWorker: Int = 0;
+    private var enemyTotalTurns: Int = 0;
     private lateinit var selectedShipPart: ShipPart;
     private var workerAction: String = "";
     private lateinit var msgBox: TextView;
     private lateinit var injuredWorker: Worker;
+    private lateinit var turnBtn : Button;
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +38,7 @@ class Game : PrefMenu() {
         val lg = LoadGame()
         lg.run()
 
+        turnBtn = findViewById(R.id.btnEndTurn)
         msgBox = findViewById(R.id.msgBox)
         framChar = findViewById(R.id.framChar)
         ship = lg.ship
@@ -43,9 +47,10 @@ class Game : PrefMenu() {
         updateShipInfo()
     }
 
+
+
     fun loadCharData(view: View) {
         //Toast.makeText(this, "pos >> " + view.getTag().toString(), Toast.LENGTH_LONG).show();
-
         try {
             var thisWorker: Worker;
             var tvWorkerName: TextView = findViewById(R.id.tvWorkerName)
@@ -84,6 +89,47 @@ class Game : PrefMenu() {
         }
     }
 
+
+
+    fun battleEnemy(view: View) {
+        msgBox.setText("Entering combat mode")
+        var battleBtn: GifImageView = findViewById(R.id.gifImageView2)
+        battleBtn.visibility = View.GONE
+        enemyShip = Ship(ship.difficulty)
+        turnBtn.visibility = View.VISIBLE
+    }
+
+
+
+    private fun enemyTurn(view: View){
+        //Enemy out of turns
+        if (enemyTotalTurns > 0){
+            enemyShip.EnemyAction(ship);
+            checkBattleEvent();
+        } else {
+            gridLay.visibility = View.VISIBLE
+            turnBtn.setText("End turn")
+            turnBtn.setOnClickListener{
+                endTurn(view)
+            }
+        }
+    }
+
+    fun endTurn(view: View){
+        ship.RestoreTurns()
+        enemyShip.RestoreTurns()
+        enemyTotalTurns = enemyShip.totalTurns
+
+        gridLay.visibility = View.GONE
+        var btn : Button = findViewById(R.id.btnEndTurn)
+        btn.setText("Next")
+        btn.setOnClickListener{
+            enemyTurn(view)
+        }
+
+        enemyTurn(view)
+    }
+
     fun workerActTurn(view: View) {
         var msgText: String = "";
         var currentEnemyShip: Ship? = null;
@@ -116,6 +162,26 @@ class Game : PrefMenu() {
 
         updateShipInfo()
         updateAdapters()
+        checkBattleEvent()
+    }
+
+    fun checkBattleEvent() {
+        var currentEnemyShip: Ship? = null;
+
+        //Player wins
+        if (::enemyShip.isInitialized) {
+            currentEnemyShip = enemyShip
+            if (currentEnemyShip.currentHealth <= 0) {
+                msgBox.text = "You won the battle"
+            }
+        }
+
+        //Player looses
+        if (ship.currentHealth <= 0) {
+            msgBox.text = "Your ship got destroyed"
+        } else if (ship.crew[0].currentHealth <= 0) {
+            msgBox.text = "You died in action"
+        }
     }
 
     //Updates the information displayed at the top of the screen
@@ -144,7 +210,7 @@ class Game : PrefMenu() {
     }
 
     //Calls every adapter to update layouts
-    fun updateAdapters(){
+    fun updateAdapters() {
         var gridLay: GridView = findViewById(R.id.gridLay)
         var adapterWorkers: AdapterWorkers =
             AdapterWorkers(

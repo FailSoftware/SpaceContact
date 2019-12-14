@@ -111,6 +111,11 @@ public class Worker extends Entity{
     }
 
     //region WorkerFunctions
+
+    public void restoreTurns(){
+        this.currentTurns = this.totalTurns;
+    }
+
     public void checkStatus() {
         if (this.getCurrentHealth() > 0) {
             checkWounded();
