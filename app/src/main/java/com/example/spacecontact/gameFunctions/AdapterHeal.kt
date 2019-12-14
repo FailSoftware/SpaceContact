@@ -9,6 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.spacecontact.R
 import com.example.spacecontact.entity.Worker
+import java.lang.IllegalStateException
 
 class AdapterHeal constructor(context: Context, workerHealing : ArrayList<Worker>):BaseAdapter() {
     private var context : Context = context
@@ -18,22 +19,25 @@ class AdapterHeal constructor(context: Context, workerHealing : ArrayList<Worker
     private lateinit var wPr: String
 
 
-    override fun getCount(): Int {return workerHealing.size}
+    override fun getCount(): Int {
+        return workerHealing.size
+    }
+
     override fun getItem(position: Int): Any {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
 
     override fun getItemId(position: Int): Long {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+
         var v : View? = convertView
         var lInflater: LayoutInflater = (context as Activity).layoutInflater
         v = lInflater.inflate(R.layout.adapter_healin, null)
-        v.setTag(position)
-
-
+        v.setTag(1, position)
 
         var wNameAda : TextView = v.findViewById(R.id.tvWname)
         var wHpAda : TextView = v.findViewById(R.id.tvWhp)
@@ -45,25 +49,32 @@ class AdapterHeal constructor(context: Context, workerHealing : ArrayList<Worker
 
         wPr =""
 
-        var contextHealing: Worker
-        contextHealing = workerHealing.get(position)
+        try{
+            var contextHealing: Worker
+            contextHealing = workerHealing.get(position)
 
-        wNameAda.setText(context.getString(R.string.wNameAd)+": "+contextHealing.name)
-        wHpAda.setText(contextHealing.currentHealth.toString() +"/"+contextHealing.totalHealth)
-        if(contextHealing.onFire){
-            wPr += " ["+context.getString(R.string.fire)+"] "
+            wNameAda.setText(context.getString(R.string.wNameAd)+": "+contextHealing.name)
+            wHpAda.setText(contextHealing.currentHealth.toString() +"/"+contextHealing.totalHealth)
+            if(contextHealing.onFire){
+                wPr += " ["+context.getString(R.string.fire)+"] "
 
+            }
+
+            if(contextHealing.onShock){
+                wPr += " ["+context.getString(R.string.shock)+"] "
+            }
+
+            if(contextHealing.wounded){
+                wPr += " ["+context.getString(R.string.wounded)+"] "
+
+            }
+            wProbAda.setText(context.getString(R.string.shipProblem)+": "+wPr)
+        } catch (e : IllegalStateException){
+            wNameAda.setText("Empty space")
+            wHpAda.setText("")
+            wProbAda.setText("")
         }
 
-        if(contextHealing.onShock){
-            wPr += " ["+context.getString(R.string.shock)+"] "
-        }
-
-        if(contextHealing.wounded){
-            wPr += " ["+context.getString(R.string.wounded)+"] "
-
-        }
-        wProbAda.setText(context.getString(R.string.shipProblem)+": "+wPr)
 
         return v
 

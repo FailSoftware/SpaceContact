@@ -37,7 +37,7 @@ class AdapterRepair constructor(context : Context, repairParts : ArrayList<ShipP
         var v = convertView
         var lInflater = (context as Activity).layoutInflater
         v = lInflater.inflate(R.layout.adapter_repair, null)
-        v.setTag(position)
+        v.setTag(1, position)
 
 
 

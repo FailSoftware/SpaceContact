@@ -53,6 +53,9 @@ public class Worker extends Entity{
         this.hungerLevel = hungerLevel;
         this.fatigue = fatigue;
         this.job = job;
+        this.isOnFire = false;
+        this.isWounded = false;
+        this.isOnShock = false;
     }
 
     // Used to add a random worker to the player ship when they win a battle or hire a new worker
