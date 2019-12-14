@@ -216,6 +216,7 @@
 
             <Button
                 android:id="@+id/btAtack"
+                android:tag="Attack"
                 android:layout_width="110dp"
                 android:layout_height="30dp"
                 android:layout_marginBottom="2dp"
@@ -545,6 +546,6 @@
             android:id="@+id/repairList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/brokengrey" />
+            android:background="@color/violetMain" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

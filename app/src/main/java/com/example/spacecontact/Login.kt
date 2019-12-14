@@ -41,8 +41,6 @@ open class Login : PrefMenu() {
     lateinit var userPass: EditText
     lateinit var fbAut: FirebaseAuth
 
-    //var c: Context = this
-    //val preferencesfieldName = "Preferences"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -50,8 +48,6 @@ open class Login : PrefMenu() {
             R.anim.fade_in,
             R.anim.fade_out
         )
-
-
 
         userMail = findViewById(R.id.etUser)
         userPass = findViewById(R.id.etPass)
@@ -70,7 +66,6 @@ open class Login : PrefMenu() {
                 EXTERNAL_STORAGE_WRITE
             )
 
-
         }
 
         if (ContextCompat.checkSelfPermission(
@@ -87,7 +82,6 @@ open class Login : PrefMenu() {
         }
 
     }
-
 
     @SuppressLint("NewApi")
     fun toMenu(view: View) {
@@ -120,7 +114,5 @@ open class Login : PrefMenu() {
         val i = Intent(this, Register::class.java)
         startActivity(i)
 
-
     }
-    
 }
