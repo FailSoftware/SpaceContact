@@ -58,6 +58,12 @@
     <string name="shipPart">[Ship Part]</string>
     <string name="shipProblem">[Problem]</string>
     <string name="shipHp">[Health]</string>
+    <string name="heal">Heal</string>
+    <string name="pierce">Pierced</string>
+    <string name="fire">On fire</string>
+    <string name="shock">Shorted</string>
+    <string name="jobChar">Job</string>
+
 
 
 </resources>

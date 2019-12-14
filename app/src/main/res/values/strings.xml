@@ -57,7 +57,12 @@
     <string name="shipPart">[Sector Nave]</string>
     <string name="shipProblem">[Problema]</string>
     <string name="shipHp">[Vida]</string>
-    >
+    <string name="heal">Curar</string>
+    <string name="pierce">Perforada</string>
+    <string name="fire">En llamas</string>
+    <string name="shock">Cortocircuito</string>
+    <string name="jobChar">Trabajo</string>
+
 
 
 </resources>

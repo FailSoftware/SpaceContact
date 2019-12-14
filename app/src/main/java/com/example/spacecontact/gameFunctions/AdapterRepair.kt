@@ -54,21 +54,22 @@ class AdapterRepair constructor(context : Context, repairParts : ArrayList<ShipP
         var contextShipPart: ShipPart
 
         contextShipPart = repairParts.get(position)
-        hpAdap.setText(contextShipPart.currentHealth.toString())
-        partsAdap.setText(contextShipPart.partName)
+        hpAdap.setText(context.getString(R.string.shipHp)+": "+contextShipPart.currentHealth.toString()+"/"+ contextShipPart.totalHealth.toString())
+        partsAdap.setText(context.getString(R.string.shipPart)+": "+contextShipPart.partName)
         if(contextShipPart.onFire){
-            problem += "Fuego"
+            problem += " ["+context.getString(R.string.fire)+"] "
 
         }
 
         if(contextShipPart.onShock){
-            problem += "Cortocircuito"
+            problem += " ["+context.getString(R.string.shock)+"] "
         }
 
         if(contextShipPart.pierced){
-            problem += "Bujero"
+            problem += " ["+context.getString(R.string.pierce)+"] "
+
         }
-        problemAdap.setText(problem)
+        problemAdap.setText(context.getString(R.string.shipProblem)+": "+problem)
 
     return v
     }

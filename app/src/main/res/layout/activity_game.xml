@@ -17,35 +17,59 @@
         android:scaleType="center"
         android:src="@drawable/backgame" />
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/gameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.77"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
+    <FrameLayout
+        android:id="@+id/enemyLayout"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="@+id/frameRepair"
+        app:layout_constraintEnd_toEndOf="@+id/gameLayout">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gifImageView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="battlEnemy"
+            android:src="@drawable/logoimagen">
+
+        </pl.droidsonroids.gif.GifImageView>
+
+    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/msgLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.10"
-        app:layout_constraintBottom_toTopOf="@id/violetLay"
         android:background="@color/brokengreyAlpha"
-        >
+        app:layout_constraintBottom_toTopOf="@id/violetLay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.10"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/msgBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
             android:text="holita"
-            app:layout_constraintLeft_toLeftOf="parent"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:paddingLeft="5dp"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -437,7 +461,7 @@
         android:id="@+id/frameOthers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/violetMain"
+        android:background="@color/alphaFinal"
         android:padding="4dp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/msgLayout"
@@ -449,14 +473,14 @@
             android:id="@+id/actionOthers"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/brokengrey"
+            android:background="@color/alphaFinal"
             android:orientation="vertical">
 
 
             <Button
-                android:id="@+id/button4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/btEat"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
                 android:background="@drawable/buttonstyle"
                 android:fontFamily="@font/geostar"
                 android:shadowColor="#A8A8A8"
@@ -469,9 +493,9 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/btSleep"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
                 android:background="@drawable/buttonstyle"
                 android:fontFamily="@font/geostar"
                 android:shadowColor="#A8A8A8"
@@ -484,9 +508,9 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/btInspect"
+                android:layout_width="150dp"
+                android:layout_height="37dp"
                 android:background="@drawable/buttonstyle"
                 android:fontFamily="@font/geostar"
                 android:shadowColor="#A8A8A8"
@@ -496,12 +520,12 @@
                 android:text="@string/buttonInspect"
                 android:textColor="#ffedb2"
                 android:textSize="10sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/btTalk"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
                 android:background="@drawable/buttonstyle"
                 android:fontFamily="@font/geostar"
                 android:shadowColor="#A8A8A8"
@@ -514,20 +538,37 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/btHeal"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
                 android:background="@drawable/buttonstyle"
                 android:fontFamily="@font/geostar"
+                android:onClick="exitOptionMenu"
                 android:shadowColor="#A8A8A8"
                 android:shadowDx="0"
                 android:shadowDy="0"
+                android:shadowRadius="5"
+                android:text="@string/heal"
+                android:textColor="#ffedb2"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btExit"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:background="@drawable/buttonstyle"
+                android:fontFamily="@font/geostar"
                 android:onClick="exitOptionMenu"
+                android:shadowColor="#A8A8A8"
+                android:shadowDx="0"
+                android:shadowDy="0"
                 android:shadowRadius="5"
                 android:text="@string/menuExit"
                 android:textColor="#ffedb2"
                 android:textSize="10sp"
                 android:textStyle="bold" />
+
         </LinearLayout>
     </FrameLayout>
 
@@ -545,9 +586,10 @@
 
         <ListView
             android:id="@+id/repairList"
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/violetMain" />
     </FrameLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

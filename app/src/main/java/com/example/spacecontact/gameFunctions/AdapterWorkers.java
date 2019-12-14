@@ -2,26 +2,17 @@ package com.example.spacecontact.gameFunctions;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.spacecontact.R;
 import com.example.spacecontact.entity.Worker;
-import com.google.firebase.database.snapshot.Index;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class AdapterWorkers extends BaseAdapter {
 
@@ -31,6 +22,7 @@ public class AdapterWorkers extends BaseAdapter {
     private String hunger;
     private String fatige;
     private String turns;
+    private String jobA;
 
     public AdapterWorkers(Context context, ArrayList<Worker> workers) {
         this.context = context;
@@ -63,6 +55,7 @@ public class AdapterWorkers extends BaseAdapter {
         TextView fAdapt = convertView.findViewById(R.id.tvFat);
         TextView hAdapt = convertView.findViewById(R.id.tvHunger);
         TextView tAdapt = convertView.findViewById(R.id.tvTurns);
+        TextView jAdapt = convertView.findViewById(R.id.tvJobAdapt);
         ImageView iAdapt = convertView.findViewById(R.id.ivWorker);
 
         Worker contextWorkers;
@@ -70,14 +63,15 @@ public class AdapterWorkers extends BaseAdapter {
         hunger = context.getString(R.string.hungerChar);
         fatige = context.getString(R.string.fatigeChar);
         turns = context.getString(R.string.turnsChar);
-
+        jobA = context.getString(R.string.jobChar);
         try {
             contextWorkers = workers.get(position);
 
             nAdapt.setText(contextWorkers.getName());
-            fAdapt.setText(fatige + ": " + contextWorkers.getFatigue() + "/100");
-            hAdapt.setText(hunger + ": " + contextWorkers.getHungerLevel() + "/100");
-            tAdapt.setText(turns + ": " + contextWorkers.getCurrentTurns() + "/" + contextWorkers.getTotalTurns());
+            fAdapt.setText(fatige + ": [" + contextWorkers.getFatigue() + "/100]");
+            hAdapt.setText(hunger + ": [" + contextWorkers.getHungerLevel() + "/100]");
+            tAdapt.setText(turns + ": [" + contextWorkers.getCurrentTurns() + "/" + contextWorkers.getTotalTurns()+"] ");
+            jAdapt.setText(jobA +": " + contextWorkers.getJob().toString());
             iAdapt.setImageBitmap(contextWorkers.getSprite());
 
 
@@ -86,6 +80,7 @@ public class AdapterWorkers extends BaseAdapter {
             fAdapt.setText("");
             hAdapt.setText("");
             tAdapt.setText("");
+            jAdapt.setText("");
             //iAdapt.setImageBitmap(contextWorkers.getSprite());
         } catch (IndexOutOfBoundsException e) {
 
