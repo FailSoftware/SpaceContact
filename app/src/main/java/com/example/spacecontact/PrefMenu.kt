@@ -20,16 +20,16 @@ open class PrefMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pref_menu)
-
         getSupportActionBar()?.setDisplayShowTitleEnabled(false)
+
         val settingsfile = getSharedPreferences(preferencesfieldName, Context.MODE_PRIVATE)
         if (settingsfile.getBoolean(
                 "language",
                 true
             ) && (!settingsfile.contains("iniciado") || settingsfile.getBoolean("iniciado", true))
         ) {
-            var myeditor: SharedPreferences.Editor = settingsfile.edit();
-            myeditor.putBoolean("iniciado", false);
+            var myeditor: SharedPreferences.Editor = settingsfile.edit()
+            myeditor.putBoolean("iniciado", false)
             myeditor.commit()
             setLocale("en")
         }
@@ -38,8 +38,8 @@ open class PrefMenu : AppCompatActivity() {
                 false
             ) && (!settingsfile.contains("iniciado") || settingsfile.getBoolean("iniciado", true))
         ) {
-            var myeditor: SharedPreferences.Editor = settingsfile.edit();
-            myeditor.putBoolean("iniciado", false);
+            var myeditor: SharedPreferences.Editor = settingsfile.edit()
+            myeditor.putBoolean("iniciado", false)
             myeditor.commit()
             setLocale("es")
 
@@ -47,8 +47,6 @@ open class PrefMenu : AppCompatActivity() {
         if (settingsfile.getBoolean("muisc", true) == true) {
             setMusicOn()
         }
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -70,7 +68,6 @@ open class PrefMenu : AppCompatActivity() {
             R.id.settUnmute -> {
                 setMusicOn()
             }
-
 
             R.id.menuContact -> {
                 val i = Intent(this, Contact::class.java)

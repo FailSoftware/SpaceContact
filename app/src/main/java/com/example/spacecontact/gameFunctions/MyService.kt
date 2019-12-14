@@ -18,7 +18,7 @@ class MyService : Service() {
 
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        Toast.makeText(this, "Servicio en Ejecucion", Toast.LENGTH_SHORT).show()
+
 
         mp  = MediaPlayer.create(this,
             R.raw.cancionlogin
@@ -30,7 +30,7 @@ class MyService : Service() {
     }
     override fun onDestroy() {
         super.onDestroy()
-        Toast.makeText(this, "Servicio destruido", Toast.LENGTH_SHORT).show()
+
         mp.stop()
     }
 

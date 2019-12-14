@@ -412,7 +412,7 @@
                 android:layout_height="3dp"
                 android:layout_marginTop="15dp"
                 android:background="@color/violetMain"
-                app:layout_constraintBottom_toTopOf="@+id/textView9"
+                app:layout_constraintBottom_toTopOf="@+id/tvShipHp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -528,5 +528,23 @@
                 android:textSize="10sp"
                 android:textStyle="bold" />
         </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameRepair"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/violetMain"
+        android:padding="4dp"
+        app:layout_constraintBottom_toTopOf="@id/msgLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statsLayout">
+
+        <ListView
+            android:id="@+id/repairList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/brokengrey" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,7 +25,6 @@ import java.util.Iterator;
 
 public class AdapterWorkers extends BaseAdapter {
 
-    private Boolean frameActivated = true;
     private Context context;
     private ArrayList<Worker> workers;
 

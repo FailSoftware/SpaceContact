@@ -54,6 +54,9 @@
     <string name="workerHP">[Vida]</string>
     <string name="workerFat">[Fatiga]</string>
     <string name="workerHung">[Hambre]</string>
+    <string name="shipPart">[Sector Nave]</string>
+    <string name="shipProblem">[Problema]</string>
+    <string name="shipHp">[Vida]</string>
     >
 
 

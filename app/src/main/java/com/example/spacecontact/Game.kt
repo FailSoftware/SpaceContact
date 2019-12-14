@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.GridView
+import android.widget.ListView
 import android.widget.TextView
 import com.example.spacecontact.entity.Ship
+import com.example.spacecontact.gameFunctions.AdapterRepair
 import com.example.spacecontact.gameFunctions.AdapterWorkers
 import com.example.spacecontact.gameFunctions.LoadGame
 import kotlinx.android.synthetic.main.activity_game.*
@@ -35,6 +37,13 @@ class Game : PrefMenu() {
         var gridLay: GridView = findViewById(R.id.gridLay)
         ship = lg.ship
 
+        var listRepair: ListView = findViewById(R.id.repairList)
+
+        var adapterRepair : AdapterRepair =
+            AdapterRepair(this,(ship.part).toCollection(ArrayList())
+        )
+
+        listRepair.adapter = adapterRepair
 
         var adapterWorkers: AdapterWorkers =
             AdapterWorkers(
