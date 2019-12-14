@@ -60,10 +60,16 @@ class Game : PrefMenu() {
             var pbFat: ProgressBar = findViewById(R.id.pbFat)
             var pbHung: ProgressBar = findViewById(R.id.pbHung)
             var tvWorkerLore: TextView = findViewById(R.id.tvWorkerLore)
+            var otherFrame : FrameLayout = findViewById(R.id.frameOthers)
+            otherFrame.visibility = View.GONE
+            turnBtn.visibility = View.GONE
 
 
             if (framChar.visibility == View.VISIBLE && tvWorkerName.text == ship.crew[view.getTag() as Int].name) {
                 framChar.visibility = View.GONE
+                turnBtn.visibility = View.VISIBLE
+
+
             } else {
                 thisWorker = ship.crew[view.getTag() as Int]
                 if (thisWorker.currentTurns > 0) {
@@ -84,6 +90,7 @@ class Game : PrefMenu() {
             }
         } catch (e: IllegalStateException) {
             framChar.visibility = View.GONE
+            turnBtn.visibility = View.VISIBLE
             msgBox.text =
                 "This is a reserved space for a new worker you can get as a reward after defeating foes"
         }
@@ -102,11 +109,14 @@ class Game : PrefMenu() {
 
 
     private fun enemyTurn(view: View){
-        //Enemy out of turns
         if (enemyTotalTurns > 0){
-            enemyShip.EnemyAction(ship);
+            msgBox.text = enemyShip.EnemyAction(ship);
+            enemyTotalTurns--;
+
+            updateShipInfo()
             checkBattleEvent();
         } else {
+            msgBox.text = "Enemy is out of turns"
             gridLay.visibility = View.VISIBLE
             turnBtn.setText("End turn")
             turnBtn.setOnClickListener{
@@ -163,6 +173,7 @@ class Game : PrefMenu() {
         updateShipInfo()
         updateAdapters()
         checkBattleEvent()
+        turnBtn.visibility = View.VISIBLE
     }
 
     fun checkBattleEvent() {
@@ -173,6 +184,7 @@ class Game : PrefMenu() {
             currentEnemyShip = enemyShip
             if (currentEnemyShip.currentHealth <= 0) {
                 msgBox.text = "You won the battle"
+                ship.battleRewards(this, enemyShip);
             }
         }
 

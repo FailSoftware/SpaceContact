@@ -16,6 +16,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import com.example.spacecontact.entity.Ship;
 import com.example.spacecontact.entity.Weapon;
 import com.example.spacecontact.entity.Worker;
+import com.example.spacecontact.gameFunctions.SaveGame;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -95,6 +96,7 @@ public class RareRewardDialog extends AppCompatDialogFragment {
                     for (int i = 0; i < ship.getCrew().length; i++) {
                         if (ship.getCrew()[i] == null) {
                             ship.getCrew()[i] = worker;
+                            worker = null;
                         }
                     }
                 } else if (worker != null) {
@@ -110,13 +112,11 @@ public class RareRewardDialog extends AppCompatDialogFragment {
                 if (ship.getTotalFood() < ship.getCurrentFood()) {
                     ship.setCurrentFood(ship.getCurrentFood() + food);
                 }
-                GsonBuilder gbilder = new GsonBuilder();
-                gbilder.setPrettyPrinting();
-                Gson gson = gbilder.create();
-                String json = gson.toJson(ship);
-                Log.d("json", json);
+
+                SaveGame sg = new SaveGame(ship);
+                sg.run();
+
                 Intent intent = new Intent(con, Game.class);
-                intent.putExtra("json", json);
                 con.startActivity(intent);
             }
         });
@@ -134,13 +134,10 @@ public class RareRewardDialog extends AppCompatDialogFragment {
                 if (ship.getTotalFood() < ship.getCurrentFood()) {
                     ship.setCurrentFood(ship.getCurrentFood() + food);
                 }
-                GsonBuilder gbilder = new GsonBuilder();
-                gbilder.setPrettyPrinting();
-                Gson gson = gbilder.create();
-                String json = gson.toJson(ship);
-                Log.d("json", json);
+
+                SaveGame sg = new SaveGame(ship);
+                sg.run();
                 Intent intent = new Intent(con, Game.class);
-                intent.putExtra("json", json);
                 con.startActivity(intent);
             }
         });

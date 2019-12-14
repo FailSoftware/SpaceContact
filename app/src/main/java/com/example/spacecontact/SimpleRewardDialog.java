@@ -75,12 +75,6 @@ public class SimpleRewardDialog extends AppCompatDialogFragment {
                 SaveGame sg = new SaveGame(ship);
                 sg.run();
 
-
-
-//                Gson gson = new Gson();
-//                String json = gson.toJson(ship);
-//                intent.putExtra("json", json);
-
                 Intent i = new Intent(con, Game.class);
                 con.startActivity(i);
 

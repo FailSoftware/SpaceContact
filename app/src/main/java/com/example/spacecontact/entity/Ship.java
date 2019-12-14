@@ -720,10 +720,10 @@ public class Ship extends Entity {
             descriptor = "but failed";
             damageDealt = 1;
         } else if (rndAttackStat == 20) {
-            descriptor = "and hit critically";
+            descriptor = "and hit a critical shot";
             damageDealt = Math.round((this.getWeapon().getWeaponPower() * this.getWeapon().getWeaponCritMultiplier()));
         } else {
-            descriptor = "and hit";
+            descriptor = "and successfully hit";
             damageDealt = this.getWeapon().getWeaponPower();
         }
 
@@ -798,9 +798,8 @@ public class Ship extends Entity {
         int food = enemyShip.getCurrentFood() + 1;
 
         //Worker reward
-        if (rareItemChance >= 1 && rareItemChance <= 100) {
+        if (rareItemChance >= 1 && rareItemChance <= 20) {
             worker = enemyShip.crew[0];
-
         }
 
         //Weapon reward
