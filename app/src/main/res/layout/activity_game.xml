@@ -37,8 +37,8 @@
 
     <FrameLayout
         android:id="@+id/enemyLayout"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="@+id/frameRepair"
         app:layout_constraintEnd_toEndOf="@+id/gameLayout">
 
@@ -47,7 +47,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="battleEnemy"
-            android:src="@drawable/logoimagen">
+            android:src="@drawable/enemy">
+
+        </pl.droidsonroids.gif.GifImageView>
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/msgLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameRepair"
+        android:layout_marginLeft="30dp">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gifImageView3"
+            android:layout_width="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_height="match_parent"
+            android:src="@drawable/our">
 
         </pl.droidsonroids.gif.GifImageView>
 

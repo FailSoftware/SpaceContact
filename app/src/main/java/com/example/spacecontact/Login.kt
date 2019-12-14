@@ -23,6 +23,8 @@ import com.example.spacecontact.entity.Worker
 import com.example.spacecontact.gameFunctions.MyService
 import com.example.spacecontact.gameFunctions.SaveGame
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 import java.time.LocalDate
 import java.util.*
 
@@ -85,6 +87,7 @@ open class Login : PrefMenu() {
 
     @SuppressLint("NewApi")
     fun toMenu(view: View) {
+        var db : FirebaseFirestore = FirebaseFirestore.getInstance()
         var msg: String = this.getString(R.string.welcomeMsg)
         fbAut.signInWithEmailAndPassword(userMail.text.toString(), userPass.text.toString())
             .addOnCompleteListener {
@@ -93,6 +96,8 @@ open class Login : PrefMenu() {
                     startActivity(i)
                     Toast.makeText(this, msg + ": " + userMail.text.toString(), Toast.LENGTH_SHORT)
                         .show()
+
+
                 } else {
 
                 }
