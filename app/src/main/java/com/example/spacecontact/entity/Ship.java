@@ -136,10 +136,11 @@ public class Ship extends Entity {
         this.failureIgnoreChance = 10f;
 
         Worker[] crew = new Worker[6];
-        crew[0] = worker;
+
         for (int i = 1; i < 3; i++) {
             crew[i] = new Worker(con, 1);
         }
+        crew[0] = worker;
 
         part = new ArrayList<>();
         ShipPart body = new ShipPart("body", 100, 100, false, false, false);

@@ -85,16 +85,6 @@ open class Login : PrefMenu() {
 
     @SuppressLint("NewApi")
     fun toMenu(view: View) {
-        val wor: Worker = Worker(view.context, 1)
-        val usr: User =
-            User(0, false, "NombreComp", "NombreUsuario", "Descripcion", LocalDate.now(), wor)
-        //TODO change to playership instead of testship
-        var ship: Ship = Ship(this)
-
-        val sg = SaveGame(ship)
-        sg.run()
-
-
         var msg: String = this.getString(R.string.welcomeMsg)
         fbAut.signInWithEmailAndPassword(userMail.text.toString(), userPass.text.toString())
             .addOnCompleteListener {
