@@ -37,8 +37,9 @@ class AdapterRepair constructor(context : Context, repairParts : ArrayList<ShipP
         var v = convertView
         var lInflater = (context as Activity).layoutInflater
         v = lInflater.inflate(R.layout.adapter_repair, null)
-        v.setTag(1, position)
+        var customTag : CustomTag = CustomTag("Heal", position.toString())
 
+        v.setTag(customTag)
 
 
         var hpAdap : TextView = v.findViewById(R.id.tvShipHp)

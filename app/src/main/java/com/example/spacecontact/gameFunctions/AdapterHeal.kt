@@ -37,7 +37,11 @@ class AdapterHeal constructor(context: Context, workerHealing : ArrayList<Worker
         var v : View? = convertView
         var lInflater: LayoutInflater = (context as Activity).layoutInflater
         v = lInflater.inflate(R.layout.adapter_healin, null)
-        v.setTag(1, position)
+
+
+        var customTag : CustomTag = CustomTag("Heal", position.toString())
+
+        v.setTag(customTag)
 
         var wNameAda : TextView = v.findViewById(R.id.tvWname)
         var wHpAda : TextView = v.findViewById(R.id.tvWhp)

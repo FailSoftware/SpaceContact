@@ -6,12 +6,11 @@ import android.widget.*
 import com.example.spacecontact.entity.Ship
 import com.example.spacecontact.entity.ShipPart
 import com.example.spacecontact.entity.Worker
-import com.example.spacecontact.gameFunctions.AdapterHeal
-import com.example.spacecontact.gameFunctions.AdapterRepair
-import com.example.spacecontact.gameFunctions.AdapterWorkers
-import com.example.spacecontact.gameFunctions.LoadGame
+import com.example.spacecontact.gameFunctions.*
 import kotlinx.android.synthetic.main.activity_game.*
 import pl.droidsonroids.gif.GifImageView
+import java.lang.ClassCastException
+import java.lang.Exception
 import java.lang.IllegalStateException
 import kotlin.collections.ArrayList
 
@@ -62,12 +61,11 @@ class Game : PrefMenu() {
             var pbHung: ProgressBar = findViewById(R.id.pbHung)
             var tvWorkerLore: TextView = findViewById(R.id.tvWorkerLore)
             var otherFrame : FrameLayout = findViewById(R.id.frameOthers)
-            otherFrame.visibility = View.GONE
-            turnBtn.visibility = View.GONE
+            hideWindows()
 
 
             if (framChar.visibility == View.VISIBLE && tvWorkerName.text == ship.crew[view.getTag() as Int].name) {
-                framChar.visibility = View.GONE
+                hideWindows()
                 turnBtn.visibility = View.VISIBLE
 
 
@@ -90,7 +88,7 @@ class Game : PrefMenu() {
 
             }
         } catch (e: IllegalStateException) {
-            framChar.visibility = View.GONE
+            hideWindows()
             turnBtn.visibility = View.VISIBLE
             msgBox.text =
                 "This is a reserved space for a new worker you can get as a reward after defeating foes"
@@ -104,6 +102,7 @@ class Game : PrefMenu() {
         var battleBtn: GifImageView = findViewById(R.id.gifImageView2)
         battleBtn.visibility = View.GONE
         enemyShip = Ship(ship.difficulty)
+        hideWindows()
         turnBtn.visibility = View.VISIBLE
     }
 
@@ -146,6 +145,25 @@ class Game : PrefMenu() {
         var currentEnemyShip: Ship? = null;
         var currentSelectedShipPart: ShipPart? = null;
         var currentInjuredWorker: Worker? = null;
+        var customAction : String = "";
+
+
+        try{
+            var customTag : CustomTag = view.tag as CustomTag
+            customAction = customTag.action
+            var position = customTag.position
+
+            if (customAction == "Heal"){
+                currentInjuredWorker = ship.crew[position.toInt()]
+            } else if(customAction == "Repair"){
+                selectedShipPart = ship.part[position.toInt()]
+            }
+
+        } catch (e : Exception) {
+
+        }
+
+
 
         if (::enemyShip.isInitialized) {
             currentEnemyShip = enemyShip
@@ -157,7 +175,12 @@ class Game : PrefMenu() {
             currentInjuredWorker = injuredWorker
         }
 
-        workerAction = view.getTag() as String
+        try {
+            workerAction = view.getTag() as String
+        } catch (e : ClassCastException){
+            workerAction = customAction;
+        }
+
 
         msgText = ship.playerTurn(
             workerAction,
@@ -168,9 +191,9 @@ class Game : PrefMenu() {
         )
 
         msgBox.text = msgText
-        framChar.visibility = View.GONE
 
 
+        hideWindows()
         updateShipInfo()
         updateAdapters()
         checkBattleEvent()
@@ -246,15 +269,30 @@ class Game : PrefMenu() {
 
     fun optionsChar(view: View) {
         frameOthers.visibility = View.VISIBLE
-        framChar.visibility = View.GONE
     }
 
     fun exitOptionMenu(view: View) {
-        frameOthers.visibility = View.GONE
+        hideWindows()
     }
 
     fun heal(view: View) {
+        hideWindows()
         frameRHeal.visibility = View.VISIBLE
+    }
+
+    fun repair(view: View){
+        hideWindows()
+        var listRepair: ListView = findViewById(R.id.repairList)
+        listRepair.visibility = View.VISIBLE
+    }
+
+    fun hideWindows(){
+        var listRepair: ListView = findViewById(R.id.repairList)
+        listRepair.visibility = View.GONE
+        frameRHeal.visibility = View.GONE
+        framChar.visibility = View.GONE
+        frameOthers.visibility = View.GONE
+        turnBtn.visibility = View.GONE
     }
 
 }

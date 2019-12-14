@@ -299,7 +299,9 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                android:onClick="repair"
+                />
 
             <Button
                 android:id="@+id/button5"
@@ -504,6 +506,8 @@
 
             <Button
                 android:id="@+id/btEat"
+                android:tag="Eat"
+                android:onClick="workerActTurn"
                 android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:background="@drawable/buttonstyle"
@@ -519,6 +523,8 @@
 
             <Button
                 android:id="@+id/btSleep"
+                android:tag="Sleep"
+                android:onClick="workerActTurn"
                 android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:background="@drawable/buttonstyle"
@@ -534,6 +540,8 @@
 
             <Button
                 android:id="@+id/btInspect"
+                android:tag="Inspect"
+                android:onClick="workerActTurn"
                 android:layout_width="150dp"
                 android:layout_height="37dp"
                 android:background="@drawable/buttonstyle"
@@ -549,6 +557,8 @@
 
             <Button
                 android:id="@+id/btTalk"
+                android:tag="Talk"
+                android:onClick="workerActTurn"
                 android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:background="@drawable/buttonstyle"
